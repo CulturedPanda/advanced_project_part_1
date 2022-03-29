@@ -12,7 +12,7 @@ function LoginForm(){
                 <PasswordField></PasswordField>
                 <div>
                     New user?
-                    <Link to="/sign_up">Sign up here</Link>
+                    <Link to="/sign_up"> Sign up here</Link>
                 </div>
                 <div>
                     <Link to="/forgot_password">I forgot my password</Link>
