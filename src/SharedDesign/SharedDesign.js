@@ -2,7 +2,7 @@ import './SharedDesignStyle.css'
 
 function SharedDesign( {children} ){
     return (
-            <div class="background">
+            <div className="background">
                 {children}
             </div>
     )

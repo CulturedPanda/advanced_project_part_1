@@ -4,3 +4,8 @@
     position: absolute;
     width: 100%;
 }
+
+#wrong-details-text{
+    display: none;
+    color: red;
+}

@@ -1,10 +1,9 @@
-function UsernameField({usernameRef}){
+function UsernameField({usernameRef}) {
     return (
-        <div>
-            <div className="col-auto">
-                <label htmlFor="username" className="form-label">Username</label>
-                <input ref={usernameRef} type="text" id="username" className="form-control" aria-describedby="email-help"></input>
-            </div>
+        <div className="col-auto mb-1">
+            <label htmlFor="login-username" className="form-label">Username</label>
+            <input ref={usernameRef} type="text" id="login-username" className="form-control"
+                   aria-describedby="email-help"></input>
         </div>
     )
 }
