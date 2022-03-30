@@ -1,8 +1,10 @@
-function SharedDesign(){
+import './SharedDesignStyle.css'
+
+function SharedDesign( {children} ){
     return (
-        <div>
-            yes
-        </div>
+            <div class="background">
+                {children}
+            </div>
     )
 }
 
