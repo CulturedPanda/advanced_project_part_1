@@ -16,10 +16,10 @@ function LoginForm() {
             return
         }
         if (RegisteredUser.isSameUser(username, password)){
-            console.log("success");
+            $("#wrong-details-text").hide();
         }
         else{
-            $("#wrong-details-text").toggle();
+            $("#wrong-details-text").show();
         }
     }
 
