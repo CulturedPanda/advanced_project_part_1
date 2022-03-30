@@ -9,7 +9,9 @@ class PendingUser{
         this.phone = user.phone;
         this.dateOfBirth = user.dateOfBirth;
         this.nickname = user.nickname;
-        this.time = new Date();
+        this.gender = user.gender;
+        this.secretQuestions = user.secretQuestions;
+        this.timeCreated = new Date();
         this.verString = this.generateVerificationCode();
         PendingUser.pendingUsers.push(this);
     }
@@ -24,7 +26,7 @@ class PendingUser{
 
     timeoutUsers(){
         let current = new Date();
-        PendingUser.pendingUsers = PendingUser.pendingUsers.filter(element => current - element.time < 1200000);
+        PendingUser.pendingUsers = PendingUser.pendingUsers.filter(element => current - element.timeCreated < 1200000);
     }
 }
 

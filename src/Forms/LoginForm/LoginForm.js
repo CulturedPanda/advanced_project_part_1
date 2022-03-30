@@ -15,7 +15,7 @@ function LoginForm() {
         if (username === "" || password === ""){
             return
         }
-        if (RegisteredUser.isSameUser(username, password)){
+        if (RegisteredUser.DoUserAndPasswordMatch(username, password)){
             $("#wrong-details-text").hide();
         }
         else{
