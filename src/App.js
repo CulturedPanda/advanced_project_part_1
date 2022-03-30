@@ -10,8 +10,9 @@ import SharedDesign from "./SharedDesign/SharedDesign";
 function App() {
     return (
         <div>
-            <SharedDesign></SharedDesign>
-            <BaseForm></BaseForm>
+            <SharedDesign>
+                <BaseForm></BaseForm>
+            </SharedDesign>
         </div>
     );
 }
