@@ -4,6 +4,7 @@ import PasswordField from "./LoginFormComponents/PasswordField";
 import {useRef} from "react";
 import RegisteredUser from "../../Users/RegisteredUser";
 import $ from "jquery";
+import Utils from "../../Utils";
 
 function LoginForm() {
 
@@ -12,7 +13,7 @@ function LoginForm() {
     const handleSubmit = ()=>{
         let username = usernameRef.current.value;
         let password = passwordRef.current.value;
-        if (username === "" || password === ""){
+        if (username === "" && password === ""){
             return
         }
         if (RegisteredUser.DoUserAndPasswordMatch(username, password)){
@@ -23,8 +24,10 @@ function LoginForm() {
         }
     }
 
+
+
     return (
-        <div>
+        <div onKeyUp={event => Utils.onEnter(event, handleSubmit)}>
             <UsernameField usernameRef={usernameRef}/>
             <PasswordField passwordRef={passwordRef}/>
             <div id="wrong-details-text" className="mb-3">Incorrect username or password</div>

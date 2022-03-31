@@ -2,6 +2,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import LoginForm from "./LoginForm/LoginForm";
 import SignUpForm from "./SignUpForm/SignUpForm";
 import ForgotPasswordForm from "./ForgotPasswordForm/ForgotPasswordForm";
+import EmailVerificationForm from "./EmailVerificationForm/EmailVerificationForm";
 
 function BaseForm() {
     return (
@@ -13,6 +14,7 @@ function BaseForm() {
                         <Route path="/" element={<LoginForm></LoginForm>}/>
                         <Route path="/sign_up" element={<SignUpForm></SignUpForm>}/>
                         <Route path="/forgot_password" element={<ForgotPasswordForm></ForgotPasswordForm>}/>
+                        <Route path="/verify_email" element={<EmailVerificationForm></EmailVerificationForm>}></Route>
                     </Routes>
                 </BrowserRouter>
             </form>
