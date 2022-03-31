@@ -1,8 +1,13 @@
-function UsernameField({usernameRef}) {
+import UsernameEmailRadio from "./UsernameEmailRadio";
+
+function UsernameField({usernameRef, toggleRef}) {
     return (
-        <div className="col-auto mb-1">
-            <label htmlFor="login-username" className="form-label">Username</label>
-            <input ref={usernameRef} type="text" id="login-username" className="form-control"></input>
+        <div className="row mb-3">
+            <label htmlFor="login-username" className="col-form-label col-2 me-2" id="username-label">Username:</label>
+            <div className="col-8">
+                <input ref={usernameRef} type="text" id="login-username" className="form-control"/>
+            </div>
+            <UsernameEmailRadio refTo={toggleRef}/>
         </div>
     )
 }

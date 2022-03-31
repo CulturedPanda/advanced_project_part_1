@@ -1,6 +1,6 @@
 class RegisteredUser{
 
-    static registeredUsers = [{username:"Alice", password:"1234", email: null,
+    static registeredUsers = [{username:"Alice", password:"1234", email: "alice@foo.com",
         phone: null, dateOfBirth: null, nickname: "Alice", secretQuestions: null, gender: "female"},
         {username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male"},
@@ -27,6 +27,11 @@ class RegisteredUser{
     static DoUserAndPasswordMatch(username, password){
         return RegisteredUser.registeredUsers.find(element =>
             element.username === username && element.password === password) !== undefined;
+    }
+
+    static doEmailAndPasswordMatch(email, password){
+        return RegisteredUser.registeredUsers.find(element =>
+            element.email === email && element.password === password) !== undefined;
     }
 }
 
