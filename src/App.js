@@ -6,14 +6,23 @@ import ForgotPasswordForm from "./Forms/ForgotPasswordForm/ForgotPasswordForm";
 import SignUpForm from "./Forms/SignUpForm/SignUpForm";
 import BaseForm from "./Forms/BaseForm";
 import SharedDesign from "./SharedDesign/SharedDesign";
+import PendingUser from "./Users/PendingUser";
+import RegisteredUser from "./Users/RegisteredUser";
 
 function App() {
+
+    PendingUser.pendingUsers.forEach(element => {
+        sessionStorage.setItem(element.username, JSON.stringify(element));
+        sessionStorage.setItem(element.email, JSON.stringify(element));
+    });
+    RegisteredUser.registeredUsers.forEach(element => {
+        sessionStorage.setItem(element.username, JSON.stringify(element))
+        sessionStorage.setItem(element.email, JSON.stringify(element));
+    });
     return (
-        <div>
             <SharedDesign>
-                <BaseForm></BaseForm>
+                <BaseForm/>
             </SharedDesign>
-        </div>
     );
 }
 

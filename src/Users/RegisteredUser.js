@@ -1,3 +1,5 @@
+import PendingUser from "./PendingUser";
+
 class RegisteredUser{
 
     static registeredUsers = [{username:"Alice", password:"1234", email: "alice@foo.com",
@@ -16,22 +18,24 @@ class RegisteredUser{
         this.nickname = pendingUser.nickname;
         this.gender = pendingUser.gender;
         this.secretQuestions = pendingUser.secretQuestions;
-        RegisteredUser.registeredUsers.push(this);
+        sessionStorage.setItem(this.username, JSON.stringify(this));
+        sessionStorage.setItem(this.email, JSON.stringify(this));
     }
 
     static DoesUserExist(username){
-        return RegisteredUser.registeredUsers.find(element => element.username === username) === undefined;
+        return (sessionStorage.getItem(username));
 
     }
 
     static DoUserAndPasswordMatch(username, password){
-        return RegisteredUser.registeredUsers.find(element =>
-            element.username === username && element.password === password) !== undefined;
+        let user = JSON.parse(sessionStorage.getItem(username));
+        return !!(user && user.password === password);
+
     }
 
     static doEmailAndPasswordMatch(email, password){
-        return RegisteredUser.registeredUsers.find(element =>
-            element.email === email && element.password === password) !== undefined;
+        let user = JSON.parse(sessionStorage.getItem(email));
+        return !!(user && user.password === password);
     }
 }
 

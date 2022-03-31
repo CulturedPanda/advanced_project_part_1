@@ -1,12 +1,12 @@
 import {Link} from "react-router-dom";
-import EmailField from "./EmailField";
-import UsernameSignupField from "./UsernameSignupField";
-import PasswordSignupField from "./PasswordSignupField";
-import NicknameField from "./NicknameField";
-import PhonenumberField from "./PhonenumberField";
-import DateOfBirthField from "./DateOfBirthField";
-import GenderField from "./GenderField";
-import SecretQuestionsField from "./SecretQuestionsField";
+import EmailField from "./SignUpComponents/EmailField";
+import UsernameSignupField from "./SignUpComponents/UsernameSignupField";
+import PasswordSignupField from "./SignUpComponents/PasswordSignupField";
+import NicknameField from "./SignUpComponents/NicknameField";
+import PhonenumberField from "./SignUpComponents/PhonenumberField";
+import DateOfBirthField from "./SignUpComponents/DateOfBirthField";
+import GenderField from "./SignUpComponents/GenderField";
+import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
 
 function SignUpForm() {
     return (

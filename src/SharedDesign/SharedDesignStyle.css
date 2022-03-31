@@ -17,3 +17,8 @@
 #other-text{
     display: none;
 }
+
+.error-text{
+    display: none;
+    color: red;
+}
