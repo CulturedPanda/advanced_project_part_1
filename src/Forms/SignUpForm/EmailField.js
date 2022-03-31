@@ -1,9 +1,9 @@
 function EmailField(){
     return (
-        <div>
-            <div className="col-auto">
-                <label htmlFor="username" className="form-label">Email:</label>
-                <input type="email" id="username" className="form-control" aria-describedby="email-help" placeholder="name@example.com"></input>
+        <div className="row mb-3">
+            <label htmlFor="exampleEmail" className="col-2 col-form-label">Email:</label>
+            <div className="col-10">
+                <input type="email" id="exampleEmail" className="form-control" placeholder="name@example.com"></input>
             </div>
         </div>
     )

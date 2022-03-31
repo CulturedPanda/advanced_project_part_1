@@ -1,9 +1,9 @@
 function UsernameSignupField(){
     return (
-        <div>
-            <div className="col-auto">
-                <label htmlFor="username" className="form-label">Username:</label>
-                <input type="email" id="username" className="form-control" aria-describedby="email-help" placeholder="Example: John Smith"></input>
+        <div className="row mb-3">
+            <label htmlFor="username" className="col-2 col-form-label">Username:</label>
+            <div className="col-10">
+                <input type="email" id="username" className="form-control" placeholder="Example: John Smith"></input>
             </div>
         </div>
     )
