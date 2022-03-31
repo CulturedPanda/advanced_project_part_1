@@ -8,8 +8,8 @@ function PasswordSignupField() {
                 </div>
             </div>
             <div className="row mb-3">
-            <label htmlFor="new-pass2" className="col-3 col-form-label">Repeat Password:</label>
-            <div className="col-9">
+            <label htmlFor="new-pass2" className="col-4 col-form-label">Confirm Password:</label>
+            <div className="col-8">
                 <input type="password" id="new-pass2" className="form-control"></input>
             </div>
             </div>

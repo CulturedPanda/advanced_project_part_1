@@ -1,9 +1,9 @@
 function NicknameField(){
     return (
-        <div>
-            <div className="col-auto">
-                <label htmlFor="nickname" className="form-label">Nick name:</label>
-                <input type="text" id="nickname" className="form-control" aria-describedby="email-help" placeholder="Example: Mr. Bond007"></input>
+        <div className="row mb-3">
+            <label htmlFor="nickname" className="col-3 col-form-label">Nick name:</label>
+            <div className="col-9">
+                <input type="text" id="nickname" className="form-control" placeholder="Example: Mr. Bond007"></input>
             </div>
         </div>
     )

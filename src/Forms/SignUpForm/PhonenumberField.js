@@ -1,12 +1,14 @@
 function PhonenumberField(){
     return (
         <div>
-            <div className="col-auto">
-                <label htmlFor="phone" className="form-label">Phone number:</label>
-                <input type="tel" id="phone" className="form-control" aria-describedby="phone-help" placeholder="Example: 05-1234-5678"></input>
+            <div className="row mb-0">
+            <label htmlFor="phone" className="col-3 col-form-label">Phone number:</label>
+            <div className="col-9">
+                <input type="tel" id="phone" className="form-control" placeholder="Example: 05-1234-5678"></input>
             </div>
-            <div className="col-auto">
-                        <span id="phone-help" className="form-text">Phone number must include only numbers and consist of 10 digits.</span>
+        </div>
+            <div className="row mb-2">
+                        <span id="phone" className="form-text">Phone number must include only numbers.</span>
             </div>
         </div>
     )

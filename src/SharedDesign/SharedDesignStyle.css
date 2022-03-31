@@ -13,3 +13,7 @@
 #base-form{
     padding: 14px;
 }
+
+#other-text{
+    display: none;
+}
