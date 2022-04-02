@@ -10,7 +10,7 @@ import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
 
 function SignUpForm() {
     return (
-        <div>
+        <form>
             <div>
                 <EmailField></EmailField>
                 <UsernameSignupField></UsernameSignupField>
@@ -27,7 +27,7 @@ function SignUpForm() {
             <div>
                 <Link to="/">I already have an account</Link>
             </div>
-        </div>
+        </form>
     )
 }
 

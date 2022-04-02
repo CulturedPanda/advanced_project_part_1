@@ -23,7 +23,7 @@ function LoginForm() {
         if (isUsername) {
             if (RegisteredUser.DoUserAndPasswordMatch(username, password)) {
                 wrongDetails.hide();
-                $("#base-form").submit();
+                $("#log-in-form").submit();
             } else {
                 wrongDetails.text("Incorrect username or password");
                 wrongDetails.show();
@@ -31,7 +31,7 @@ function LoginForm() {
         } else {
             if (RegisteredUser.doEmailAndPasswordMatch(username.toLowerCase(), password)) {
                 wrongDetails.hide();
-                $("#base-form").submit();
+                $("#log-in-form").submit();
             } else {
                 wrongDetails.text("Incorrect Email or password");
                 wrongDetails.show();
@@ -41,7 +41,7 @@ function LoginForm() {
 
 
     return (
-        <div onKeyUp={event => Utils.onEnter(event, handleSubmit)}>
+        <form onKeyUp={event => Utils.onEnter(event, handleSubmit)} id="log-in-form">
             <UsernameField usernameRef={usernameRef} toggleRef={usernameToggle}/>
             <PasswordField passwordRef={passwordRef}/>
             <div id="wrong-details-text" className="mb-3 error-text"/>
@@ -57,7 +57,7 @@ function LoginForm() {
             <div>
                 <Link to="/forgot_password">I forgot my password</Link>
             </div>
-        </div>
+        </form>
     )
 }
 
