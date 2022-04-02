@@ -18,8 +18,8 @@ class PendingUser{
         this.timeCreated = new Date();
         this.verString = PendingUser.generateVerificationCode();
         PendingUser.pendingUsers.push(this);
-        sessionStorage.setItem(this.username, JSON.stringify(this));
-        sessionStorage.setItem(this.email, JSON.stringify(this));
+        sessionStorage.setItem(this.username + "pend", JSON.stringify(this));
+        sessionStorage.setItem(this.email + "pend", JSON.stringify(this));
     }
 
     static generateVerificationCode() {
@@ -33,17 +33,17 @@ class PendingUser{
     }
 
     static renewCode(username){
-        let user = JSON.parse(sessionStorage.getItem(username));
+        let user = JSON.parse(sessionStorage.getItem(username + "pend"));
         user.verString = PendingUser.generateVerificationCode();
     }
 
     static canVerify(username, userInput){
-        let user = JSON.parse(sessionStorage.getItem(username));
+        let user = JSON.parse(sessionStorage.getItem(username + "pend"));
         return user.verString === userInput;
     }
 
     static addUser(username){
-        let user = JSON.parse(sessionStorage.getItem(username));
+        let user = JSON.parse(sessionStorage.getItem(username + "pend"));
         sessionStorage.removeItem(user.username);
         sessionStorage.removeItem(user.email);
         new RegisteredUser(user);

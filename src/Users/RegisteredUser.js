@@ -18,23 +18,23 @@ class RegisteredUser{
         this.nickname = pendingUser.nickname;
         this.gender = pendingUser.gender;
         this.secretQuestions = pendingUser.secretQuestions;
-        sessionStorage.setItem(this.username, JSON.stringify(this));
-        sessionStorage.setItem(this.email, JSON.stringify(this));
+        sessionStorage.setItem(this.username + "log", JSON.stringify(this));
+        sessionStorage.setItem(this.email + "log", JSON.stringify(this));
     }
 
     static DoesUserExist(username){
-        return (sessionStorage.getItem(username));
+        return (sessionStorage.getItem(username + "log"));
 
     }
 
     static DoUserAndPasswordMatch(username, password){
-        let user = JSON.parse(sessionStorage.getItem(username));
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
         return !!(user && user.password === password);
 
     }
 
     static doEmailAndPasswordMatch(email, password){
-        let user = JSON.parse(sessionStorage.getItem(email));
+        let user = JSON.parse(sessionStorage.getItem(email + "log"));
         return !!(user && user.password === password);
     }
 }

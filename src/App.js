@@ -11,13 +11,14 @@ import RegisteredUser from "./Users/RegisteredUser";
 
 function App() {
 
+    // Incredibly temporary methods where we make awful storage of sessions storage as our database.
     PendingUser.pendingUsers.forEach(element => {
-        sessionStorage.setItem(element.username, JSON.stringify(element));
-        sessionStorage.setItem(element.email, JSON.stringify(element));
+        sessionStorage.setItem(element.username + "pend", JSON.stringify(element));
+        sessionStorage.setItem(element.email + "pend", JSON.stringify(element));
     });
     RegisteredUser.registeredUsers.forEach(element => {
-        sessionStorage.setItem(element.username, JSON.stringify(element))
-        sessionStorage.setItem(element.email, JSON.stringify(element));
+        sessionStorage.setItem(element.username + "log", JSON.stringify(element))
+        sessionStorage.setItem(element.email + "log", JSON.stringify(element));
     });
     return (
             <SharedDesign>
