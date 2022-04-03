@@ -1,6 +1,6 @@
 import $ from "jquery"
 
-function UsernameEmailRadio({refTo}) {
+function UsernameEmailRadio({props}) {
 
     const onChange = (event, text)=>{
         $("#username-label").text(text);
@@ -9,13 +9,13 @@ function UsernameEmailRadio({refTo}) {
     return (
         <div>
             <div className="form-check form-check-inline">
-                <input ref={refTo} className="form-check-input-sm" type="radio" name="inlineRadioOptions" id="username-radio"
-                       value="1" onChange={event => onChange(event, "Username:")} defaultChecked/>
+                <input ref={props.refTo} className="form-check-input-sm" type="radio" name="inlineRadioOptions" id="username-radio"
+                       value="1" onChange={event => onChange(event, "Username:")} defaultChecked={props.usernameDefault}/>
                 <label className="form-check-label" htmlFor="username-radio">Username</label>
             </div>
             <div className="form-check form-check-inline">
                 <input className="form-check-input-sm" type="radio" name="inlineRadioOptions" id="email-radio"
-                       value="2" onChange={event => onChange(event,"Email:")}/>
+                       value="2" onChange={event => onChange(event,"Email:")} defaultChecked={!props.usernameDefault}/>
                 <label className="form-check-label" htmlFor="email-radio">Email</label>
             </div>
         </div>

@@ -7,19 +7,26 @@ import PhonenumberField from "./SignUpComponents/PhonenumberField";
 import DateOfBirthField from "./SignUpComponents/DateOfBirthField";
 import GenderField from "./SignUpComponents/GenderField";
 import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
+import {useRef} from "react";
+import SecretQuestionDescriptor from "./SignUpComponents/SecretQuestionDescriptor";
+import SecretQuestionFieldAnswerField from "./SignUpComponents/SecretQuestionFieldAnswerField";
 
 function SignUpForm() {
+    let questionFormRef = useRef("1");
+
     return (
         <form>
             <div>
-                <EmailField></EmailField>
-                <UsernameSignupField></UsernameSignupField>
-                <PasswordSignupField></PasswordSignupField>
-                <NicknameField></NicknameField>
-                <PhonenumberField></PhonenumberField>
-                <DateOfBirthField></DateOfBirthField>
-                <GenderField></GenderField>
-                <SecretQuestionsField></SecretQuestionsField>
+                <EmailField/>
+                <UsernameSignupField/>
+                <PasswordSignupField/>
+                <NicknameField/>
+                <PhonenumberField/>
+                <DateOfBirthField/>
+                <GenderField/>
+                <SecretQuestionsField props={{questionRef: questionFormRef}}/>
+                <SecretQuestionDescriptor/>
+                <SecretQuestionFieldAnswerField/>
                 <div className="d-grid gap-2 col-6 mx-auto">
                     <button type="button" className="btn btn-primary">Submit</button>
                 </div>

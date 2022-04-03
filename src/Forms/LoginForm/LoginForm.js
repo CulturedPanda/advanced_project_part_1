@@ -9,13 +9,13 @@ import UsernameEmailRadio from "./LoginFormComponents/UsernameEmailRadio";
 
 function LoginForm() {
 
-    const usernameRef = useRef("");
-    const passwordRef = useRef("");
-    let usernameToggle = useRef(true);
+    const usernameFormRef = useRef("");
+    const passwordFormRef = useRef("");
+    let usernameFormToggle = useRef(true);
     const handleSubmit = () => {
-        let username = usernameRef.current.value;
-        let password = passwordRef.current.value;
-        let isUsername = usernameToggle.current.checked;
+        let username = usernameFormRef.current.value;
+        let password = passwordFormRef.current.value;
+        let isUsername = usernameFormToggle.current.checked;
         if (username === "" && password === "") {
             return
         }
@@ -42,8 +42,9 @@ function LoginForm() {
 
     return (
         <form onKeyUp={event => Utils.onEnter(event, handleSubmit)} id="log-in-form">
-            <UsernameField usernameRef={usernameRef} toggleRef={usernameToggle}/>
-            <PasswordField passwordRef={passwordRef}/>
+            <UsernameField props={{usernameRef: usernameFormRef, toggleRef: usernameFormToggle, current: "",
+                usernameDefault: true}}/>
+            <PasswordField passwordRef={passwordFormRef}/>
             <div id="wrong-details-text" className="mb-3 error-text"/>
             <div className="col text-center">
                 <button onClick={handleSubmit}
