@@ -17,7 +17,7 @@ function App() {
         sessionStorage.setItem(element.email + "pend", JSON.stringify(element));
     });
     RegisteredUser.registeredUsers.forEach(element => {
-        sessionStorage.setItem(element.username + "log", JSON.stringify(element))
+        sessionStorage.setItem(element.username + "log", JSON.stringify(element));
         sessionStorage.setItem(element.email + "log", JSON.stringify(element));
     });
     return (

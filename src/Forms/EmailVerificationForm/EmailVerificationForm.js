@@ -3,13 +3,14 @@ import {useRef} from "react";
 import PendingUser from "../../Users/PendingUser";
 import Utils from "../../Utils";
 import $ from "jquery";
+import VerificationFormText from "./EmailVerificationComponents/VerificationFormText";
 
 function EmailVerificationForm({props}){
 
-    const textRef = useRef("");
+    const textFormRef = useRef("");
 
     let verifyUser = ()=>{
-        let code = textRef.current.value;
+        let code = textFormRef.current.value;
         let field = $("#verification-code-input");
         let text = $("#format-error");
         if (code.length !== 6){
@@ -34,8 +35,8 @@ function EmailVerificationForm({props}){
 
     return (
         <form id="verify-form" onSubmit={handleSubmit}>
-            {props.children}
-            <VerifierField textRef={textRef}/>
+            <VerificationFormText props={{from: "sign_up"}}/>
+            <VerifierField props={{textRef: textFormRef, username: props.username}}/>
             <div className="col text-center mt-4">
                 <button type="button" className="btn btn-primary" onClick={verifyUser}>Submit</button>
             </div>

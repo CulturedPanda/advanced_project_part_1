@@ -1,9 +1,10 @@
 import $ from "jquery";
+import ResendCodeButton from "./ResendCodeButton";
 
-function VerifierField({textRef}){
+function VerifierField({props}){
 
     const verifyCodeStructure = ()=>{
-        let userInput = textRef.current.value;
+        let userInput = props.textRef.current.value;
         let field = $("#verification-code-input");
         let text = $("#format-error");
         $("#verification-error").hide();
@@ -18,14 +19,17 @@ function VerifierField({textRef}){
     }
 
     return (
-        <div className="row">
+        <div className="row g-3r">
             <label htmlFor="verification-code-input" className="col-form-label col-4">Verification code:</label>
-            <div className="col-6">
-                <input ref={textRef} type="text" name="verification-code" className="form-control"
+            <div className="col-4">
+                <input ref={props.textRef} type="text" name="verification-code" className="form-control"
                        id="verification-code-input" onChange={verifyCodeStructure}/>
                     <span id="format-error" className="error-text">Verification code must be
                         6 digits long and only contain letters and numbers</span>
                     <span id="verification-error" className="error-text">Error - incorrect code</span>
+            </div>
+            <div className="col-4">
+                <ResendCodeButton props={{username: props.username}}/>
             </div>
         </div>
     )

@@ -1,0 +1,38 @@
+import $ from "jquery"
+import PendingUser from "../../../Users/PendingUser";
+
+function ResendCodeButton({props}) {
+
+    const reSend = () => {
+        PendingUser.renewCode(props.username);
+        let button = $("#re-send-button");
+        button.append("<br> <div class='small-text' id='text-area'></div>")
+        let textArea = $("#text-area");
+        let totalSeconds = 60;
+        button.addClass("btn-secondary");
+        button.removeClass("btn-primary");
+        button.prop("disabled", true);
+        for (let i = 0; i <= totalSeconds; i++) {
+            setTimeout(() => {
+                textArea.text((60 - i) + "s");
+            }, i * 1000);
+        }
+        setTimeout(() => {
+            button.prop("disabled", false);
+            button.addClass("btn-primary");
+            button.removeClass("btn-secondary");
+            button.find("br:last").remove();
+            textArea.remove();
+        }, totalSeconds * 1000)
+    }
+
+    return (
+        <button type="button" id="re-send-button" onClick={reSend}
+                className="btn btn-primary form-text text-wrap small-text">
+            Re-send code <br/>
+            <i className="bi bi-arrow-repeat"/>
+        </button>
+    )
+}
+
+export default ResendCodeButton;
