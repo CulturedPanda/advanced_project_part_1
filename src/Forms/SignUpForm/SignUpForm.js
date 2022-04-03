@@ -27,8 +27,7 @@ function SignUpForm() {
                 <PhonenumberField/>
                 <DateOfBirthField/>
                 <GenderField/>
-                <SecretQuestionsField props={{questionRef: questionFormRef}}/>
-                <SecretQuestionDescriptor/>
+                <SecretQuestionsField props={{questionRef: questionFormRef, children: <SecretQuestionDescriptor/>}}/>
                 <SecretQuestionFieldAnswerField props={{answerRef: answerFormRef}}/>
                 <TermOfServiceField/>
                 <PrivacyPolicyField/>
