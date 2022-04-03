@@ -5,12 +5,10 @@ import SecretQuestionsField from "../SignUpForm/SignUpComponents/SecretQuestions
 import SecretQuestionFieldAnswerField from "../SignUpForm/SignUpComponents/SecretQuestionFieldAnswerField";
 import RegisteredUser from "../../Users/RegisteredUser";
 import $ from "jquery"
-import ForgotPasswordFormText from "./ForgotPasswordComponents/ForgotPasswordFormText";
+import InitialForgotPasswordFormText from "./InitialForgotPasswordComponents/InitialForgotPasswordFormText";
 
-function ForgotPasswordForm({props}) {
+function InitialForgotPasswordForm({props}) {
     let usernameFormRef = useRef("");
-    // Currently redundant, will be useful when working with actual database and needing to know if
-    // key is username or email.
     let usernameFormToggle = useRef(true);
     let questionFormRef = useRef("1");
     let answerFormRef = useRef("");
@@ -21,13 +19,21 @@ function ForgotPasswordForm({props}) {
             questionFormRef.current.value, answerFormRef.current.value)) {
             $("#forgot-password-form").submit();
         } else {
-            $("#wrong-details-text").show();
+            let warnText = $("#wrong-details-text");
+            if (usernameFormToggle.current.checked) {
+                warnText.text("Error: Incorrect username and / or security question and / or answer")
+                warnText.show();
+            }
+            else{
+                warnText.text("Error: Incorrect Email and / or security question and / or answer")
+                warnText.show();
+            }
         }
     }
 
     return (
         <form id="forgot-password-form" onSubmit={handleSubmit}>
-            <ForgotPasswordFormText/>
+            <InitialForgotPasswordFormText/>
             <div className="row">
                 <UsernameField props={{
                     usernameRef: usernameFormRef, toggleRef: usernameFormToggle, current: "abc",
@@ -43,9 +49,7 @@ function ForgotPasswordForm({props}) {
             <div className="col text-center mb-2">
                 <button type="submit" className="btn btn-primary">Submit</button>
             </div>
-            <div id="wrong-details-text" className="row mb-3 error-text">
-                Error: Incorrect username or security question + answer
-            </div>
+            <div id="wrong-details-text" className="row mb-3 error-text"/>
             <div className="row">
                 <Link to="/">I remember my password</Link>
             </div>
@@ -53,4 +57,4 @@ function ForgotPasswordForm({props}) {
     )
 }
 
-export default ForgotPasswordForm;
+export default InitialForgotPasswordForm;

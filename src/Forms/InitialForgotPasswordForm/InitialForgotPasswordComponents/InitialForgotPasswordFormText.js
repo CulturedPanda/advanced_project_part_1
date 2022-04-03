@@ -1,4 +1,4 @@
-function ForgotPasswordFormText(){
+function InitialForgotPasswordFormText(){
     return(
         <div className="row">
             <h3>
@@ -13,4 +13,4 @@ function ForgotPasswordFormText(){
         </div>
     )
 }
-export default ForgotPasswordFormText;
+export default InitialForgotPasswordFormText;
