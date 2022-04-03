@@ -1,10 +1,11 @@
+/*for class */
 .background {
     background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
     height: 100vh;
     position: absolute;
     width: 100%;
 }
-
+/*for id */
 #wrong-details-text{
     display: none;
     color: red;
