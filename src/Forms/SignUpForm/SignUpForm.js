@@ -13,6 +13,7 @@ import SecretQuestionFieldAnswerField from "./SignUpComponents/SecretQuestionFie
 
 function SignUpForm() {
     let questionFormRef = useRef("1");
+    let answerFormRef = useRef("");
 
     return (
         <form>
@@ -26,7 +27,7 @@ function SignUpForm() {
                 <GenderField/>
                 <SecretQuestionsField props={{questionRef: questionFormRef}}/>
                 <SecretQuestionDescriptor/>
-                <SecretQuestionFieldAnswerField/>
+                <SecretQuestionFieldAnswerField props={{answerRef: answerFormRef}}/>
                 <div className="d-grid gap-2 col-6 mx-auto">
                     <button type="button" className="btn btn-primary">Submit</button>
                 </div>
