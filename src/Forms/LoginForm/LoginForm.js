@@ -5,7 +5,6 @@ import {useRef} from "react";
 import RegisteredUser from "../../Users/RegisteredUser";
 import $ from "jquery";
 import Utils from "../../Utils";
-import UsernameEmailRadio from "./LoginFormComponents/UsernameEmailRadio";
 
 function LoginForm() {
 
