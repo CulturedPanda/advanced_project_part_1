@@ -10,6 +10,8 @@ import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
 import {useRef} from "react";
 import SecretQuestionDescriptor from "./SignUpComponents/SecretQuestionDescriptor";
 import SecretQuestionFieldAnswerField from "./SignUpComponents/SecretQuestionFieldAnswerField";
+import TermOfServiceField from "./SignUpComponents/TermsOfServiceField";
+import PrivacyPolicyField from "./SignUpComponents/PrivacyPolicyField";
 
 function SignUpForm() {
     let questionFormRef = useRef("1");
@@ -28,6 +30,8 @@ function SignUpForm() {
                 <SecretQuestionsField props={{questionRef: questionFormRef}}/>
                 <SecretQuestionDescriptor/>
                 <SecretQuestionFieldAnswerField props={{answerRef: answerFormRef}}/>
+                <TermOfServiceField/>
+                <PrivacyPolicyField/>
                 <div className="d-grid gap-2 col-6 mx-auto">
                     <button type="button" className="btn btn-primary">Submit</button>
                 </div>
