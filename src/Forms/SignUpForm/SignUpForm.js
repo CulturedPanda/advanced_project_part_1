@@ -17,8 +17,12 @@ function SignUpForm() {
     let questionFormRef = useRef("1");
     let answerFormRef = useRef("");
 
+    //This function prevents then loss of info in refresh once we submit new user
+    function validateForm(event){
+        event.preventDefault();
+    }
     return (
-        <form>
+        <form onSubmit={validateForm}>
             <div>
                 <EmailField/>
                 <UsernameSignupField/>
@@ -32,7 +36,7 @@ function SignUpForm() {
                 <TermOfServiceField/>
                 <PrivacyPolicyField/>
                 <div className="d-grid gap-2 col-6 mx-auto mb-3">
-                    <button type="button" className="btn btn-primary">Submit</button>
+                    <button className="btn btn-primary">Submit</button>
                 </div>
             </div>
             <div>

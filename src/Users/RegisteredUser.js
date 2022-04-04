@@ -26,6 +26,11 @@ class RegisteredUser{
     static DoesUserExist(username){
         return (sessionStorage.getItem(username + "log"));
     }
+    static CheckIfUserNameExists(username){ // Bob
+        return this.registeredUsers.find((user) => {
+            return user.username === username
+        })
+    }
 
     static VerifySecretQuestion(username, questionNum, answer){
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
@@ -41,6 +46,7 @@ class RegisteredUser{
         let user = JSON.parse(sessionStorage.getItem(email + "log"));
         return (user && user.password === password);
     }
+
 }
 
 export default RegisteredUser;

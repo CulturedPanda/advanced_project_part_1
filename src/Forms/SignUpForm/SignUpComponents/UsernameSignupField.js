@@ -5,18 +5,14 @@ import $ from "jquery";
 
 function UsernameSignupField(){
 
-    let username = useRef("");
-    const onBlur = ()=>{
-        if(RegisteredUser.DoesUserExist(useRef.current.value)){
-            let checkUsername = $("#username");
-            checkUsername.addClass("border-danger")
-        }
-    }
+
     return (
         <div className="row mb-3">
-            <label htmlFor="username" className="col-2 col-form-label">Username:</label>
-            <div className="col-10">
-                <input type="text" id="username" className="form-control" placeholder="Example: John Smith"></input>
+            <label htmlFor="username" className="col-4 col-form-label">Username:
+                <span className = "required-field"> *</span>
+            </label>
+            <div className="col-8">
+                <input type="text" id="username" className="form-control" placeholder="Example: John Smith" required></input>
             </div>
         </div>
     )

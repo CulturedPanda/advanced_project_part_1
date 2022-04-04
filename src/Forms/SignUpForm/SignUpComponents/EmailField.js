@@ -6,7 +6,7 @@ function EmailField(){
                 <span className = "required-field"> *</span>
             </label>
             <div className="col-10">
-                <input type="email" id="exampleEmail" className="form-control" placeholder="name@example.com"></input>
+                <input type="email" id="exampleEmail" className="form-control" placeholder="name@example.com" required></input>
             </div>
         </div>
     )
