@@ -7,7 +7,7 @@ class RegisteredUser{
         {username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male"},
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
-            secretQuestions: null, gender: null}];
+            secretQuestions: {question: "1",answer: "PandaES"}, gender: null}];
 
     constructor(pendingUser) {
         this.username = pendingUser.username;
@@ -24,18 +24,21 @@ class RegisteredUser{
 
     static DoesUserExist(username){
         return (sessionStorage.getItem(username + "log"));
+    }
 
+    static VerifySecretQuestion(username, questionNum, answer){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        return (user && user.secretQuestions.question === questionNum && user.secretQuestions.answer === answer);
     }
 
     static DoUserAndPasswordMatch(username, password){
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        return !!(user && user.password === password);
-
+        return (user && user.password === password);
     }
 
     static doEmailAndPasswordMatch(email, password){
         let user = JSON.parse(sessionStorage.getItem(email + "log"));
-        return !!(user && user.password === password);
+        return (user && user.password === password);
     }
 }
 

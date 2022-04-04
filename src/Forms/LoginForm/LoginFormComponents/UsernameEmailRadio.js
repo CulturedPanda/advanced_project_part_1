@@ -9,7 +9,7 @@ function UsernameEmailRadio({props}) {
     return (
         <div>
             <div className="form-check form-check-inline">
-                <input ref={props.refTo} className="form-check-input-sm" type="radio" name="inlineRadioOptions" id="username-radio"
+                <input ref={props.toggleRef} className="form-check-input-sm" type="radio" name="inlineRadioOptions" id="username-radio"
                        value="1" onChange={event => onChange(event, "Username:")} defaultChecked={props.usernameDefault}/>
                 <label className="form-check-label" htmlFor="username-radio">Username</label>
             </div>

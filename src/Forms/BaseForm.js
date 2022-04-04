@@ -1,9 +1,8 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import LoginForm from "./LoginForm/LoginForm";
 import SignUpForm from "./SignUpForm/SignUpForm";
-import ForgotPasswordForm from "./ForgotPasswordForm/ForgotPasswordForm";
+import InitialForgotPasswordForm from "./InitialForgotPasswordForm/InitialForgotPasswordForm";
 import EmailVerificationForm from "./EmailVerificationForm/EmailVerificationForm";
-import $ from "jquery";
 import VerificationFormText from "./EmailVerificationForm/EmailVerificationComponents/VerificationFormText";
 
 function BaseForm() {
@@ -18,7 +17,7 @@ function BaseForm() {
                     <Routes>
                         <Route path="/" element={<LoginForm></LoginForm>}/>
                         <Route path="/sign_up" element={<SignUpForm></SignUpForm>}/>
-                        <Route path="/forgot_password" element={<ForgotPasswordForm></ForgotPasswordForm>}/>
+                        <Route path="/forgot_password" element={<InitialForgotPasswordForm></InitialForgotPasswordForm>}/>
                         <Route path="/verify_email" element={
                             <EmailVerificationForm props={{username: "Yuval", children : <VerificationFormText/>}}/>}/>
                     </Routes>
