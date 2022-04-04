@@ -14,7 +14,7 @@ function BaseForm() {
     // just straight up abuse.
     const [username, setUsername] = useState("");
     const [toggle, setToggle] = useState(true);
-    const [from, setFrom] = useState();
+    const [from, setFrom] = useState(false);
 
     return (
         // Keeping this temporarily as get method. Need to work with this in mind.
@@ -24,12 +24,13 @@ function BaseForm() {
              border-primary border-3 rounded-3 bg-light" id="base-form">
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<LoginForm props={{username: setUsername, toggle: setToggle}}/>} />
+                        <Route path="/" element={<LoginForm props={{username: setUsername, toggle: setToggle,
+                            fromSetter: setFrom}}/>} />
                         <Route path="/sign_up" element={<SignUpForm props={{username: setUsername}}/>}/>
                         <Route path="/forgot_password" element={<InitialForgotPasswordForm
                             props={{username: username, usernameSetter: setUsername, toggle: toggle, toggleSetter: setToggle}}/>}/>
                         <Route path="/verify_email" element={
-                            <EmailVerificationForm props={{username: "Yuval", from : "sign_up"}}/>}/>
+                            <EmailVerificationForm props={{username: "Yuval", from : "sign_up", fromSignup: true}}/>}/>
                         <Route path="/sign_up/terms_of_service" element={<TermsOfService></TermsOfService>}/>
                     </Routes>
                 </BrowserRouter>

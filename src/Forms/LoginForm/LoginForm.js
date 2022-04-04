@@ -39,6 +39,10 @@ function LoginForm({props}) {
         }
     }
 
+    const goToResetPassword = ()=>{
+        props.fromSetter(false);
+    }
+
     return (
         <form onSubmit={handleSubmit} id="log-in-form">
             <UsernameField props={{username: props.username, toggle: props.toggle, current: "", usernameDefault: true}}/>
@@ -52,7 +56,7 @@ function LoginForm({props}) {
                 <Link to="/sign_up"> Sign up here</Link>
             </div>
             <div>
-                <Link to="/forgot_password">Forgot my password</Link>
+                <Link to="/forgot_password" onClick={goToResetPassword}>Forgot my password</Link>
             </div>
         </form>
     )
