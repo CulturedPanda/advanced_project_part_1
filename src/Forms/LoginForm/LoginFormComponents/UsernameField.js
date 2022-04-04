@@ -1,4 +1,5 @@
 import UsernameEmailRadio from "./UsernameEmailRadio";
+import $ from "jquery";
 
 function UsernameField({props}) {
 
@@ -13,12 +14,12 @@ function UsernameField({props}) {
 
     return (
         <div className="row mb-3">
-            <label htmlFor="login-username" className="col-form-label col-2 me-2" id="username-label">{text()}</label>
+            <label htmlFor="login-username" className="col-form-label col-2" id="username-label">{text()}</label>
             <div className="col-8">
-                <input name="username" ref={props.usernameRef}
+                <input name="username" onKeyUp={()=>props.username($("#login-username").val())}
                        defaultValue={props.current} type="text" id="login-username" className="form-control"/>
             </div>
-            <UsernameEmailRadio props={{toggleRef: props.toggleRef, usernameDefault: props.usernameDefault}}/>
+            <UsernameEmailRadio props={{toggle: props.toggle, usernameDefault: props.usernameDefault}}/>
         </div>
     )
 }

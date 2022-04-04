@@ -2,8 +2,8 @@ function SecretQuestionsField({props}) {
     return (
         <div className="row mb-3">
                 <div className="col-auto">
-                    <select ref={props.questionRef} className="form-select" id="secret-questions">
-                        <option selected>Choose security question</option>
+                    <select className="form-select" id="secret-questions">
+                        <option defaultValue>Choose security question</option>
                         <option value="1">What was your elementary's school name?</option>
                         <option value="2">What is / was your dog's name?</option>
                         <option value="3">What is your favorite sport?</option>

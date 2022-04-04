@@ -35,7 +35,7 @@ function EmailVerificationForm({props}){
 
     return (
         <form id="verify-form" onSubmit={handleSubmit}>
-            <VerificationFormText props={{from: "sign_up"}}/>
+            <VerificationFormText props={{from: props.from}}/>
             <VerifierField props={{textRef: textFormRef, username: props.username}}/>
             <div className="col text-center mt-4">
                 <button type="button" className="btn btn-primary" onClick={verifyUser}>Submit</button>

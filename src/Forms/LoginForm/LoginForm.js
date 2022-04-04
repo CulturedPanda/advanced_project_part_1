@@ -1,20 +1,21 @@
-import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Link, useHistory} from "react-router-dom";
+import {Navigate} from "react-router";
 import UsernameField from "./LoginFormComponents/UsernameField";
 import PasswordField from "./LoginFormComponents/PasswordField";
 import {useRef} from "react";
 import RegisteredUser from "../../Users/RegisteredUser";
 import $ from "jquery";
 import Utils from "../../Utils";
+import {useNavigate} from "react-router";
+import ShowPasswordButton from "./LoginFormComponents/ShowPasswordButton";
 
-function LoginForm() {
+function LoginForm({props}) {
 
-    const usernameFormRef = useRef("");
-    const passwordFormRef = useRef("");
-    let usernameFormToggle = useRef(true);
-    const handleSubmit = () => {
-        let username = usernameFormRef.current.value;
-        let password = passwordFormRef.current.value;
-        let isUsername = usernameFormToggle.current.checked;
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        let username = $("#login-username").val();
+        let password = $("#login-pass").val();
+        let isUsername = $("#username-radio").is(":checked");
         if (username === "" && password === "") {
             return
         }
@@ -38,24 +39,20 @@ function LoginForm() {
         }
     }
 
-
     return (
-        <form onKeyUp={event => Utils.onEnter(event, handleSubmit)} id="log-in-form">
-            <UsernameField props={{usernameRef: usernameFormRef, toggleRef: usernameFormToggle, current: "",
-                usernameDefault: true}}/>
-            <PasswordField passwordRef={passwordFormRef}/>
+        <form onSubmit={handleSubmit} id="log-in-form">
+            <UsernameField props={{username: props.username, toggle: props.toggle, current: "", usernameDefault: true}}/>
+            <PasswordField/>
             <div id="wrong-details-text" className="mb-3 error-text"/>
             <div className="col text-center">
-                <button onClick={handleSubmit}
-                        type="button" className="btn btn-primary mb-3 col-2">Log in
-                </button>
+                <button type="submit" className="btn btn-primary mb-3 col-2">Log in</button>
             </div>
             <div className="mb-3">
                 New user?
                 <Link to="/sign_up"> Sign up here</Link>
             </div>
             <div>
-                <Link to="/forgot_password">I forgot my password</Link>
+                <Link to="/forgot_password">Forgot my password</Link>
             </div>
         </form>
     )
