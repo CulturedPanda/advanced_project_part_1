@@ -31,7 +31,7 @@ function SignUpForm() {
                 <SecretQuestionFieldAnswerField props={{answerRef: answerFormRef}}/>
                 <TermOfServiceField/>
                 <PrivacyPolicyField/>
-                <div className="d-grid gap-2 col-6 mx-auto">
+                <div className="d-grid gap-2 col-6 mx-auto mb-3">
                     <button type="button" className="btn btn-primary">Submit</button>
                 </div>
             </div>
