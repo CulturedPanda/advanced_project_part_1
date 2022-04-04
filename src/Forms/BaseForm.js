@@ -6,6 +6,7 @@ import EmailVerificationForm from "./EmailVerificationForm/EmailVerificationForm
 import VerificationFormText from "./EmailVerificationForm/EmailVerificationComponents/VerificationFormText";
 import $ from "jquery";
 import React, {useRef, useState} from "react";
+import TermsOfService from "../Policies/TermsOfService";
 
 function BaseForm() {
 
@@ -29,6 +30,7 @@ function BaseForm() {
                             props={{username: username, usernameSetter: setUsername, toggle: toggle, toggleSetter: setToggle}}/>}/>
                         <Route path="/verify_email" element={
                             <EmailVerificationForm props={{username: "Yuval", from : "sign_up"}}/>}/>
+                        <Route path="/sign_up/terms_of_service" element={<TermsOfService></TermsOfService>}/>
                     </Routes>
                 </BrowserRouter>
             </div>

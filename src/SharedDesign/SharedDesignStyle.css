@@ -27,3 +27,7 @@
 .small-text{
     font-size: 13px;
 }
+
+.required-field{
+    color: red;
+}

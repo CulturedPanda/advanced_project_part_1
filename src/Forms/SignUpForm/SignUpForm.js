@@ -3,7 +3,7 @@ import EmailField from "./SignUpComponents/EmailField";
 import UsernameSignupField from "./SignUpComponents/UsernameSignupField";
 import PasswordSignupField from "./SignUpComponents/PasswordSignupField";
 import NicknameField from "./SignUpComponents/NicknameField";
-import PhonenumberField from "./SignUpComponents/PhonenumberField";
+import PhoneNumberField from "./SignUpComponents/PhoneNumberField";
 import DateOfBirthField from "./SignUpComponents/DateOfBirthField";
 import GenderField from "./SignUpComponents/GenderField";
 import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
@@ -24,7 +24,7 @@ function SignUpForm() {
                 <UsernameSignupField/>
                 <PasswordSignupField/>
                 <NicknameField/>
-                <PhonenumberField/>
+                <PhoneNumberField/>
                 <DateOfBirthField/>
                 <GenderField/>
                 <SecretQuestionsField props={{questionRef: questionFormRef, children: <SecretQuestionDescriptor/>}}/>

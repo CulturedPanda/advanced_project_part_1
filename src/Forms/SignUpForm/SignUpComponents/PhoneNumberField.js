@@ -1,4 +1,4 @@
-function PhonenumberField(){
+function PhoneNumberField(){
     return (
         <div>
             <div className="row mb-0">
@@ -14,4 +14,4 @@ function PhonenumberField(){
     )
 }
 
-export default PhonenumberField;
+export default PhoneNumberField;
