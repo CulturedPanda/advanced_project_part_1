@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 import EmailField from "./SignUpComponents/EmailField";
 import UsernameSignupField from "./SignUpComponents/UsernameSignupField";
 import PasswordSignupField from "./SignUpComponents/PasswordSignupField";
@@ -7,7 +7,7 @@ import PhoneNumberField from "./SignUpComponents/PhoneNumberField";
 import DateOfBirthField from "./SignUpComponents/DateOfBirthField";
 import GenderField from "./SignUpComponents/GenderField";
 import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import SecretQuestionDescriptor from "./SignUpComponents/SecretQuestionDescriptor";
 import SecretQuestionFieldAnswerField from "./SignUpComponents/SecretQuestionFieldAnswerField";
 import TermOfServiceField from "./SignUpComponents/TermsOfServiceField";
@@ -17,6 +17,15 @@ function SignUpForm() {
     let questionFormRef = useRef("1");
     let answerFormRef = useRef("");
 
+
+    /*
+    const data = fieldsData[0]
+    const setFieldsData = fieldsData[1]
+    first element is the object, second element in the function to change the state
+    */
+    let [fieldsData, setFieldsData] = useState({username:""});
+    console.log(setFieldsData);
+    console.log("Erez")
     //This function prevents then loss of info in refresh once we submit new user
     function validateForm(event){
         event.preventDefault();
@@ -25,7 +34,7 @@ function SignUpForm() {
         <form onSubmit={validateForm}>
             <div>
                 <EmailField/>
-                <UsernameSignupField/>
+                <UsernameSignupField props={{username: fieldsData.username}} setFieldsData={setFieldsData}/>
                 <PasswordSignupField/>
                 <NicknameField/>
                 <PhoneNumberField/>

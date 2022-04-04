@@ -3,8 +3,14 @@ import RegisteredUser from "../../../Users/RegisteredUser";
 import $ from "jquery";
 
 
-function UsernameSignupField(){
+function UsernameSignupField(props, setFieldsData){
+    const username = props.username;
 
+    console.log(setFieldsData);
+
+    function handleChange(event) {
+        setFieldsData({username: event.target.value});
+    }
 
     return (
         <div className="row mb-3">
@@ -12,7 +18,7 @@ function UsernameSignupField(){
                 <span className = "required-field"> *</span>
             </label>
             <div className="col-8">
-                <input type="text" id="username" className="form-control" placeholder="Example: John Smith" required></input>
+                <input type="text" id="username" className="form-control" placeholder="Example: John Smith" value={username} onChange={handleChange} required />
             </div>
         </div>
     )
