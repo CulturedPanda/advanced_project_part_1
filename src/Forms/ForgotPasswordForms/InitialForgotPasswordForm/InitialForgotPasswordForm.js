@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, Prompt} from "react-router-dom";
 import UsernameField from "../../LoginForm/LoginFormComponents/UsernameField";
 import {useRef} from "react";
 import SecretQuestionsField from "../../SignUpForm/SignUpComponents/SecretQuestionsField";
@@ -27,12 +27,16 @@ function InitialForgotPasswordForm({props}) {
         }
     }
 
+    const clearText = ()=>{
+        props.usernameSetter("");
+    }
+
     return (
         <form id="forgot-password-form" onSubmit={handleSubmit}>
             <InitialForgotPasswordFormText/>
             <div className="row">
                 <UsernameField props={{
-                    username: props.usernameSetter, toggleRef: props.toggleSetter, current: props.username,
+                    username: props.usernameSetter, toggle: props.toggleSetter, current: props.username,
                     usernameDefault: props.toggle}}/>
             </div>
             <div className="row">
@@ -46,7 +50,7 @@ function InitialForgotPasswordForm({props}) {
             </div>
             <div id="wrong-details-text" className="row mb-3 error-text"/>
             <div className="row">
-                <Link to="/">I remember my password</Link>
+                <Link to="/" onClick={clearText}>I remember my password</Link>
             </div>
         </form>
     )
