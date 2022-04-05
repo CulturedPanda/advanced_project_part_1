@@ -32,6 +32,10 @@ class PendingUser{
         return verString;
     }
 
+    static doesUserExist(username){
+        return (sessionStorage.getItem(username + "pend"));
+    }
+
     static renewCode(username){
         let user = JSON.parse(sessionStorage.getItem(username + "pend"));
         user.verString = PendingUser.generateVerificationCode();

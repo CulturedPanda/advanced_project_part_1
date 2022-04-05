@@ -18,14 +18,6 @@ function SignUpForm() {
     let answerFormRef = useRef("");
 
 
-    /*
-    const data = fieldsData[0]
-    const setFieldsData = fieldsData[1]
-    first element is the object, second element in the function to change the state
-    */
-    let [fieldsData, setFieldsData] = useState({username:""});
-    console.log(setFieldsData);
-    console.log("Erez")
     //This function prevents then loss of info in refresh once we submit new user
     function validateForm(event){
         event.preventDefault();
@@ -34,7 +26,7 @@ function SignUpForm() {
         <form onSubmit={validateForm}>
             <div>
                 <EmailField/>
-                <UsernameSignupField props={{username: fieldsData.username}} setFieldsData={setFieldsData}/>
+                <UsernameSignupField/>
                 <PasswordSignupField/>
                 <NicknameField/>
                 <PhoneNumberField/>

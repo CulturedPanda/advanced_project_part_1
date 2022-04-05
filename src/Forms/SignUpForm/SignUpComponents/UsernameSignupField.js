@@ -1,15 +1,28 @@
 import {useRef} from "react";
 import RegisteredUser from "../../../Users/RegisteredUser";
 import $ from "jquery";
+import PendingUser from "../../../Users/PendingUser";
 
 
-function UsernameSignupField(props, setFieldsData){
-    const username = props.username;
+function UsernameSignupField({props}){
 
-    console.log(setFieldsData);
-
-    function handleChange(event) {
-        setFieldsData({username: event.target.value});
+    const handleBlur = ()=>{
+        let usernameField = $("#username-signup-field");
+        if (usernameField.val() === ""){
+            return;
+        }
+        let text = $("#username-error");
+        if (RegisteredUser.DoesUserExist(usernameField.val()) || PendingUser.doesUserExist(usernameField.val())){
+            usernameField.removeClass("border-success");
+            usernameField.addClass("border-danger");
+            text.text("Error: Username already exists")
+            text.show();
+        }
+        else{
+            usernameField.removeClass("border-danger");
+            usernameField.addClass("border-success");
+            text.hide();
+        }
     }
 
     return (
@@ -18,7 +31,8 @@ function UsernameSignupField(props, setFieldsData){
                 <span className = "required-field"> *</span>
             </label>
             <div className="col-8">
-                <input type="text" id="username" className="form-control" placeholder="Example: John Smith" value={username} onChange={handleChange} required />
+                <input type="text" onBlur={handleBlur} id="username-signup-field" className="form-control" placeholder="Example: John Smith" required />
+                <div className="error-text" id="username-error"/>
             </div>
         </div>
     )
