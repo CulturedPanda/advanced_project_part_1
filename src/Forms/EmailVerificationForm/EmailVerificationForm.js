@@ -4,12 +4,14 @@ import PendingUser from "../../Users/PendingUser";
 import Utils from "../../Utils";
 import $ from "jquery";
 import VerificationFormText from "./EmailVerificationComponents/VerificationFormText";
+import RegisteredUser from "../../Users/RegisteredUser";
 
 function EmailVerificationForm({props}){
 
     const textFormRef = useRef("");
 
-    let verifyUser = ()=>{
+    let handleSubmit = (e)=>{
+        e.preventDefault();
         let code = textFormRef.current.value;
         let field = $("#verification-code-input");
         let text = $("#format-error");
@@ -17,20 +19,27 @@ function EmailVerificationForm({props}){
             field.addClass("border-danger");
             text.show();
         }
-        if (PendingUser.canVerify(props.username, code)){
-            PendingUser.addUser(props.username);
-            $("#verify-form").submit();
-        }
-        else{
+        const onError = ()=>{
             field.addClass("border-danger");
             text.hide();
             $("#verification-error").show();
         }
-    }
-
-    let handleSubmit = (e)=>{
-        e.preventDefault();
-        verifyUser();
+        if (props.fromSignup) {
+            if (PendingUser.canVerify(props.username, code)) {
+                PendingUser.addUser(props.username);
+                $("#verify-form").submit();
+            } else {
+                onError();
+            }
+        }
+        else{
+            if (RegisteredUser.canVerify(props.username, code)) {
+                PendingUser.addUser(props.username);
+                $("#verify-form").submit();
+            } else {
+                onError();
+            }
+        }
     }
 
     return (
@@ -38,7 +47,7 @@ function EmailVerificationForm({props}){
             <VerificationFormText props={{from: props.from}}/>
             <VerifierField props={{textRef: textFormRef, username: props.username}}/>
             <div className="col text-center mt-4">
-                <button type="button" className="btn btn-primary" onClick={verifyUser}>Submit</button>
+                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
             </div>
         </form>
     )

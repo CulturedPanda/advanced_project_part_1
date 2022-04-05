@@ -39,8 +39,10 @@ class PendingUser{
     static renewCode(username){
         let user = JSON.parse(sessionStorage.getItem(username + "pend"));
         user.verString = PendingUser.generateVerificationCode();
-        sessionStorage.removeItem(username);
-        sessionStorage.setItem(username, JSON.stringify(user));
+        sessionStorage.removeItem(user.username + "pend");
+        sessionStorage.removeItem(user.email + "pend");
+        sessionStorage.setItem(user.email + "pend", JSON.stringify(user));
+        sessionStorage.setItem(user.username + "pend", JSON.stringify(user))
     }
 
     static canVerify(username, userInput){
@@ -50,8 +52,8 @@ class PendingUser{
 
     static addUser(username){
         let user = JSON.parse(sessionStorage.getItem(username + "pend"));
-        sessionStorage.removeItem(user.username);
-        sessionStorage.removeItem(user.email);
+        sessionStorage.removeItem(user.username + "pend");
+        sessionStorage.removeItem(user.email + "pend");
         new RegisteredUser(user);
     }
 
