@@ -7,10 +7,12 @@ function SecretQuestionsField({props}) {
         if (secretQuestionField.val() === "0"){
             secretQuestionField.removeClass("border-success");
             secretQuestionField.addClass("border-danger");
+            props.setConfirm(false);
         }
         else{
             secretQuestionField.removeClass("border-danger");
             secretQuestionField.addClass("border-success");
+            props.setConfirm(true);
         }
     }
 

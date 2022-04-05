@@ -3,7 +3,7 @@ import {useRef} from "react";
 import $ from "jquery";
 import ShowPasswordButton from "../../LoginForm/LoginFormComponents/ShowPasswordButton";
 
-function PasswordSignupField() {
+function PasswordSignupField({props}) {
 
     const pass = useRef("");
     const passConfirm = useRef("");
@@ -18,17 +18,20 @@ function PasswordSignupField() {
             passField.addClass("border-danger");
             error.text("Error: Password must contain 1 capital letter, 1 lowercase letter, 1 number and 1 special character");
             error.show();
+            props.setConfirmPass(false);
         }
         else if(len > 20 || len < 8){
             passField.removeClass("border-success");
             passField.addClass("border-danger");
             error.text("Error: Password must be between 8 to 20 characters long");
             error.show();
+            props.setConfirmPass(false);
         }
         else{
             passField.removeClass("border-danger");
             passField.addClass("border-success");
             error.hide();
+            props.setConfirmPass(true);
         }
     }
 
@@ -42,10 +45,12 @@ function PasswordSignupField() {
         if (currentPass !== currentConfirm){
             confirmField.removeClass("border-success");
             confirmField.addClass("border-danger");
+            props.setConfirmationConfirm(false);
         }
         else{
             confirmField.removeClass("border-danger");
             confirmField.addClass("border-success");
+            props.setConfirmationConfirm(true);
         }
     }
 

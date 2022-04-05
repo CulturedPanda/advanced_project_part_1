@@ -3,7 +3,7 @@ import $ from "jquery";
 import RegisteredUser from "../../../Users/RegisteredUser";
 import PendingUser from "../../../Users/PendingUser";
 
-function NicknameField(){
+function NicknameField({props}){
 
     const handleBlur = ()=>{
         let text = $("#nickname-error");
@@ -13,11 +13,13 @@ function NicknameField(){
             nicknameField.addClass("border-danger");
             text.text("Error: field can not be empty")
             text.show();
+            props.setConfirm(false);
         }
         else{
             nicknameField.removeClass("border-danger");
             nicknameField.addClass("border-success");
             text.hide();
+            props.setConfirm(true);
         }
     }
 

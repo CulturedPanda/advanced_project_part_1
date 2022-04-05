@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-function SecretQuestionFieldAnswerField(){
+function SecretQuestionAnswerField({props}){
     const handleBlur = ()=>{
         let secretAnswerField = $("#secret-answer");
         let text = $("#secret-answer-error");
@@ -9,11 +9,13 @@ function SecretQuestionFieldAnswerField(){
             secretAnswerField.addClass("border-danger");
             text.text("Error: field can not be empty")
             text.show();
+            props.setConfirm(false);
         }
         else{
             secretAnswerField.removeClass("border-danger");
             secretAnswerField.addClass("border-success");
             text.hide();
+            props.setConfirm(true);
         }
     }
 
@@ -30,4 +32,4 @@ function SecretQuestionFieldAnswerField(){
     )
 }
 
-export default SecretQuestionFieldAnswerField;
+export default SecretQuestionAnswerField;

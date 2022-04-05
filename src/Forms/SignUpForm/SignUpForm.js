@@ -9,13 +9,21 @@ import GenderField from "./SignUpComponents/GenderField";
 import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
 import {useRef, useState} from "react";
 import SecretQuestionDescriptor from "./SignUpComponents/SecretQuestionDescriptor";
-import SecretQuestionFieldAnswerField from "./SignUpComponents/SecretQuestionFieldAnswerField";
+import SecretQuestionAnswerField from "./SignUpComponents/SecretQuestionAnswerField";
 import TermOfServiceField from "./SignUpComponents/TermsOfServiceField";
 import PrivacyPolicyField from "./SignUpComponents/PrivacyPolicyField";
 
 function SignUpForm() {
-    let questionFormRef = useRef("1");
-    let answerFormRef = useRef("");
+
+    // Complete abuse of states. Likely to be deleted when we have a server.
+    const [userConfirm, userConfirmSet] = useState(false);
+    const [passConfirm, passConfirmSet] = useState(false);
+    const [passConfirmationConfirm, passConfirmationConfirmSet] = useState(false);
+    const [emailConfirm, emailConfirmSet] = useState(false);
+    const [nicknameConfirm, nicknameConfirmSet] = useState(false);
+    const [secretQuestionConfirm, secretQuestionConfirmSet] = useState(false);
+    const [secretAnswerConfirm, secretAnswerConfirmSet] = useState(false);
+    const [phoneConfirm, phoneConfirmSet] = useState(false);
 
 
     //This function prevents then loss of info in refresh once we submit new user
@@ -25,15 +33,15 @@ function SignUpForm() {
     return (
         <form onSubmit={validateForm}>
             <div>
-                <EmailField/>
-                <UsernameSignupField/>
-                <PasswordSignupField/>
-                <NicknameField/>
-                <PhoneNumberField/>
+                <EmailField props={{setConfirm: emailConfirmSet}}/>
+                <UsernameSignupField props={{setConfirm: userConfirmSet}}/>
+                <PasswordSignupField props={{setConfirmPass: passConfirmSet, setConfirmationConfirm: passConfirmationConfirmSet}}/>
+                <NicknameField props={{setConfirm: nicknameConfirmSet}}/>
+                <PhoneNumberField props={{setConfirm: phoneConfirmSet}}/>
                 <DateOfBirthField/>
                 <GenderField/>
-                <SecretQuestionsField props={{questionRef: questionFormRef, children: <SecretQuestionDescriptor/>}}/>
-                <SecretQuestionFieldAnswerField props={{answerRef: answerFormRef}}/>
+                <SecretQuestionsField props={{setConfirm: secretQuestionConfirmSet, children: <SecretQuestionDescriptor/>}}/>
+                <SecretQuestionAnswerField props={{setConfirm: secretAnswerConfirmSet}}/>
                 <TermOfServiceField/>
                 <PrivacyPolicyField/>
                 <div className="d-grid gap-2 col-6 mx-auto mb-3">

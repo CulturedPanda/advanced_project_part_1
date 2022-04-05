@@ -2,7 +2,7 @@ import {Link, Prompt} from "react-router-dom";
 import UsernameField from "../../LoginForm/LoginFormComponents/UsernameField";
 import {useRef} from "react";
 import SecretQuestionsField from "../../SignUpForm/SignUpComponents/SecretQuestionsField";
-import SecretQuestionFieldAnswerField from "../../SignUpForm/SignUpComponents/SecretQuestionFieldAnswerField";
+import SecretQuestionAnswerField from "../../SignUpForm/SignUpComponents/SecretQuestionAnswerField";
 import RegisteredUser from "../../../Users/RegisteredUser";
 import $ from "jquery"
 import InitialForgotPasswordFormText from "./InitialForgotPasswordComponents/InitialForgotPasswordFormText";
@@ -43,7 +43,7 @@ function InitialForgotPasswordForm({props}) {
                 <SecretQuestionsField props={{children: null}}/>
             </div>
             <div className="row">
-                <SecretQuestionFieldAnswerField/>
+                <SecretQuestionAnswerField/>
             </div>
             <div className="col text-center mb-2">
                 <button type="submit" className="btn btn-primary">Submit</button>

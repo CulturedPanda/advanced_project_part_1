@@ -2,7 +2,7 @@ import $ from "jquery";
 import RegisteredUser from "../../../Users/RegisteredUser";
 import PendingUser from "../../../Users/PendingUser";
 
-function EmailField(){
+function EmailField({props}){
 
     const handleBlur = ()=>{
         let emailField = $("#email-signup-field");
@@ -13,17 +13,20 @@ function EmailField(){
             emailField.addClass("border-danger");
             text.text("Error: Email already exists")
             text.show();
+            props.setConfirm(false);
         }
         else if(current.length < 3 || !current.includes("@")){
             emailField.removeClass("border-success");
             emailField.addClass("border-danger");
             text.text("Error: Invalid email address");
             text.show();
+            props.setConfirm(false);
         }
         else{
             emailField.removeClass("border-danger");
             emailField.addClass("border-success");
             text.hide();
+            props.setConfirm(true);
         }
     }
     return (
