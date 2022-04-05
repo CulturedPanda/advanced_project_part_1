@@ -1,19 +1,24 @@
 import {Link, Prompt} from "react-router-dom";
 import UsernameField from "../../LoginForm/LoginFormComponents/UsernameField";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import SecretQuestionsField from "../../SignUpForm/SignUpComponents/SecretQuestionsField";
 import SecretQuestionAnswerField from "../../SignUpForm/SignUpComponents/SecretQuestionAnswerField";
 import RegisteredUser from "../../../Users/RegisteredUser";
 import $ from "jquery"
 import InitialForgotPasswordFormText from "./InitialForgotPasswordComponents/InitialForgotPasswordFormText";
+import {useNavigate} from "react-router";
 
 function InitialForgotPasswordForm({props}) {
+
+    const nav = useNavigate();
+    const [questionConfirm, questionConfirmSet] = useState(false);
+    const [answerConfirm, answerConfirmSet] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (RegisteredUser.VerifySecretQuestion($("#login-username").val(),
             $("#secret-questions").val(), $("#secret-answer").val())) {
-            $("#forgot-password-form").submit();
+            nav("/forgot_password/verify");
         } else {
             let warnText = $("#wrong-details-text");
             if ($("#username-radio").is(":checked")) {
@@ -40,10 +45,10 @@ function InitialForgotPasswordForm({props}) {
                     usernameDefault: props.toggle}}/>
             </div>
             <div className="row">
-                <SecretQuestionsField props={{children: null}}/>
+                <SecretQuestionsField props={{children: null, setConfirm: questionConfirmSet}}/>
             </div>
             <div className="row">
-                <SecretQuestionAnswerField/>
+                <SecretQuestionAnswerField props={{setConfirm: answerConfirmSet}}/>
             </div>
             <div className="col text-center mb-2">
                 <button type="submit" className="btn btn-primary">Submit</button>

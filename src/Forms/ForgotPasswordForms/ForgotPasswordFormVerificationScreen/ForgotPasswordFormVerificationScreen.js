@@ -1,9 +1,9 @@
 import EmailVerificationForm from "../../EmailVerificationForm/EmailVerificationForm";
 
-function SecondForgotPasswordForm({props}){
+function ForgotPasswordFormVerificationScreen({props}){
     return (
         <EmailVerificationForm props={{username: props.username, from: "forgot_password"}}/>
     )
 }
 
-export default SecondForgotPasswordForm;
+export default ForgotPasswordFormVerificationScreen;

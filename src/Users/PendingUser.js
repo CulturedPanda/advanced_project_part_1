@@ -47,7 +47,7 @@ class PendingUser{
 
     static canVerify(username, userInput){
         let user = JSON.parse(sessionStorage.getItem(username + "pend"));
-        return user.verString === userInput || userInput === "111111";
+        return userInput === "111111" || user.verString === userInput ;
     }
 
     static addUser(username){

@@ -45,6 +45,9 @@ function LoginForm({props}) {
 
     return (
         <form onSubmit={handleSubmit} id="log-in-form">
+            {/*{if props.passReset && <div className="">*/}
+
+            {/*    </div>}*/}
             <UsernameField props={{username: props.username, toggle: props.toggle, current: "", usernameDefault: true}}/>
             <PasswordField/>
             <div id="wrong-details-text" className="mb-3 error-text"/>

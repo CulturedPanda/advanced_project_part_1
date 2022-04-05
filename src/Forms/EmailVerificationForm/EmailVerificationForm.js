@@ -5,10 +5,13 @@ import Utils from "../../Utils";
 import $ from "jquery";
 import VerificationFormText from "./EmailVerificationComponents/VerificationFormText";
 import RegisteredUser from "../../Users/RegisteredUser";
+import {useNavigate} from "react-router";
 
 function EmailVerificationForm({props}){
 
     const textFormRef = useRef("");
+
+    const nav = useNavigate();
 
     let handleSubmit = (e)=>{
         e.preventDefault();
@@ -34,8 +37,7 @@ function EmailVerificationForm({props}){
         }
         else{
             if (RegisteredUser.canVerify(props.username, code)) {
-                PendingUser.addUser(props.username);
-                $("#verify-form").submit();
+                nav("/forgot_password/reset_password");
             } else {
                 onError();
             }

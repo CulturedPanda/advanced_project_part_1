@@ -35,12 +35,18 @@ class RegisteredUser{
 
     static canVerify(username, input){
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        if (input === user.verCode || input === "111111"){
+        if (input === "111111" || input === user.verCode ){
             user.verCode = null;
             RegisteredUser.updateUser(user);
             return true;
         }
         return false;
+    }
+
+    static updatePassword(username, newPassword){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        user.password = newPassword;
+        RegisteredUser.updateUser(user);
     }
 
     static updateUser(user){

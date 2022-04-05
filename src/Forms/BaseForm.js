@@ -7,6 +7,10 @@ import VerificationFormText from "./EmailVerificationForm/EmailVerificationCompo
 import $ from "jquery";
 import React, {useRef, useState} from "react";
 import TermsOfService from "../Policies/TermsOfService";
+import ForgotPasswordFormResetPassword
+    from "./ForgotPasswordForms/ForgotPasswordFormResetPassword/ForgotPasswordFormResetPassword";
+import ForgotPasswordFormVerificationScreen
+    from "./ForgotPasswordForms/ForgotPasswordFormVerificationScreen/ForgotPasswordFormVerificationScreen";
 
 function BaseForm() {
 
@@ -32,6 +36,10 @@ function BaseForm() {
                         <Route path="/verify_email" element={
                             <EmailVerificationForm props={{username: "Yuval", from : "sign_up", fromSignup: true}}/>}/>
                         <Route path="/sign_up/terms_of_service" element={<TermsOfService/>}/>
+                        <Route path="/forgot_password/verify" element={
+                            <ForgotPasswordFormVerificationScreen props={{username: username}}/>}/>
+                        <Route path="/forgot_password/reset_password" element={
+                            <ForgotPasswordFormResetPassword props={{username: username, setter: setFrom}}/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>
