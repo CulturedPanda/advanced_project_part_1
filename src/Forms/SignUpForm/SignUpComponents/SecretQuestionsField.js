@@ -1,4 +1,19 @@
+import $ from "jquery";
+
 function SecretQuestionsField({props}) {
+
+    const handleBlur = ()=>{
+        let secretQuestionField = $("#secret-questions");
+        if (secretQuestionField.val() === "0"){
+            secretQuestionField.removeClass("border-success");
+            secretQuestionField.addClass("border-danger");
+        }
+        else{
+            secretQuestionField.removeClass("border-danger");
+            secretQuestionField.addClass("border-success");
+        }
+    }
+
     return (
         <div className="row mb-3">
             <label htmlFor="exampleEmail" className="col-4 col-form-label">
@@ -6,8 +21,8 @@ function SecretQuestionsField({props}) {
                 <span className = "required-field"> *</span>
             </label>
                 <div className="col-auto">
-                    <select className="form-select" id="secret-questions">
-                        <option defaultValue>Choose security question</option>
+                    <select className="form-select" id="secret-questions" onBlur={handleBlur} required>
+                        <option defaultValue value="0">Choose security question</option>
                         <option value="1">What was your elementary's school name?</option>
                         <option value="2">What is / was your dog's name?</option>
                         <option value="3">What is your favorite sport?</option>
