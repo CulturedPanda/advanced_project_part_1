@@ -17,7 +17,6 @@ class RegisteredUser{
         this.phone = pendingUser.phone;
         this.dateOfBirth = pendingUser.dateOfBirth;
         this.nickname = pendingUser.nickname;
-        this.gender = pendingUser.gender;
         this.secretQuestions = pendingUser.secretQuestions;
         this.verCode = null;
         sessionStorage.setItem(this.username + "log", JSON.stringify(this));

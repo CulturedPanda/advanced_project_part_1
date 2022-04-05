@@ -13,7 +13,6 @@ class PendingUser{
         this.phone = user.phone;
         this.dateOfBirth = user.dateOfBirth;
         this.nickname = user.nickname;
-        this.gender = user.gender;
         this.secretQuestions = user.secretQuestions;
         this.timeCreated = new Date();
         this.verString = PendingUser.generateVerificationCode();

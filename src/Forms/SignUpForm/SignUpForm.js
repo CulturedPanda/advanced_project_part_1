@@ -12,8 +12,11 @@ import SecretQuestionDescriptor from "./SignUpComponents/SecretQuestionDescripto
 import SecretQuestionAnswerField from "./SignUpComponents/SecretQuestionAnswerField";
 import TermOfServiceField from "./SignUpComponents/TermsOfServiceField";
 import PrivacyPolicyField from "./SignUpComponents/PrivacyPolicyField";
+import $ from "jquery";
+import PendingUser from "../../Users/PendingUser";
+import {useNavigate} from "react-router";
 
-function SignUpForm() {
+function SignUpForm({props}) {
 
     // Complete abuse of states. Likely to be deleted when we have a server.
     const [userConfirm, userConfirmSet] = useState(false);
@@ -26,21 +29,52 @@ function SignUpForm() {
     const [phoneConfirm, phoneConfirmSet] = useState(false);
 
 
+    const nav = useNavigate();
+
     //This function prevents then loss of info in refresh once we submit new user
-    function validateForm(event){
+    const handleSubmit = (event) => {
         event.preventDefault();
+        let isTos = $("#tos-radio-check").is(":checked");
+        let isPrivacyPolicy = $("#privacy-policy-radio-check").is(":checked");
+
+        if (isTos && isPrivacyPolicy) {
+            if (userConfirm && passConfirm && passConfirmationConfirm
+                && emailConfirm && nicknameConfirm && secretQuestionConfirm && secretAnswerConfirm) {
+                let username = $("#username-signup-field").val();
+                let email = $("#email-signup-field").val();
+                let password = $("#new-pass1").val();
+                let nickname = $("#nickname").val();
+                let phone = $("#phone").val();
+                let dob = $("#birthday").val();
+                let secretQuestion = $("#secret-questions").val();
+                let secretAnswer = $("#secret-answer").val();
+                props.username(username);
+                props.from(true);
+                new PendingUser({username: username, password: password,
+                    email: email, phone: phone, dateOfBirth: dob, nickname: nickname,
+                    secretQuestions: {question: secretQuestion, answer: secretAnswer}});
+                nav("/verify_email");
+            }
+        }
     }
     return (
         <form onSubmit={validateForm}>
             <div>
                 <EmailField props={{setConfirm: emailConfirmSet}}/>
                 <UsernameSignupField props={{setConfirm: userConfirmSet}}/>
-                <PasswordSignupField props={{setConfirmPass: passConfirmSet, setConfirmationConfirm: passConfirmationConfirmSet, renderRequired: true}}/>
+                <PasswordSignupField props={{
+                    setConfirmPass: passConfirmSet,
+                    setConfirmationConfirm: passConfirmationConfirmSet,
+                    renderRequired: true
+                }}/>
                 <NicknameField props={{setConfirm: nicknameConfirmSet}}/>
                 <PhoneNumberField props={{setConfirm: phoneConfirmSet}}/>
                 <DateOfBirthField/>
-                <GenderField/>
-                <SecretQuestionsField props={{setConfirm: secretQuestionConfirmSet, children: <SecretQuestionDescriptor/>, renderRequired: true}}/>
+                <SecretQuestionsField props={{
+                    setConfirm: secretQuestionConfirmSet,
+                    children: <SecretQuestionDescriptor/>,
+                    renderRequired: true
+                }}/>
                 <SecretQuestionAnswerField props={{setConfirm: secretAnswerConfirmSet, renderRequired: true}}/>
                 <TermOfServiceField/>
                 <PrivacyPolicyField/>

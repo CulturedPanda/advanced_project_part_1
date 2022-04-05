@@ -29,11 +29,11 @@ function BaseForm() {
                     <Routes>
                         <Route path="/" element={<LoginForm props={{username: setUsername, toggle: setToggle,
                             fromSetter: setFrom, passReset: from}}/>} />
-                        <Route path="/sign_up" element={<SignUpForm props={{username: setUsername}}/>}/>
+                        <Route path="/sign_up" element={<SignUpForm props={{username: setUsername, from: setFrom}}/>}/>
                         <Route path="/forgot_password" element={<InitialForgotPasswordForm
                             props={{username: username, usernameSetter: setUsername, toggle: toggle, toggleSetter: setToggle}}/>}/>
                         <Route path="/verify_email" element={
-                            <EmailVerificationForm props={{username: "Yuval", from : "sign_up", fromSignup: true}}/>}/>
+                            <EmailVerificationForm props={{username: username, fromSignup: true}}/>}/>
                         <Route path="/forgot_password/verify" element={
                             <ForgotPasswordFormVerificationScreen props={{username: username}}/>}/>
                         <Route path="/forgot_password/reset_password" element={

@@ -27,7 +27,7 @@ function UsernameSignupField({props}){
 
     return (
         <div className="row mb-3">
-            <label htmlFor="username" className="col-4 col-form-label">Username:
+            <label htmlFor="signup-username" className="col-4 col-form-label">Username:
                 <span className = "required-field"> *</span>
             </label>
             <div className="col-8">
