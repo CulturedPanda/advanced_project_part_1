@@ -59,7 +59,7 @@ function PasswordSignupField({props}) {
             <div className="row mb-3">
             <label htmlFor="new-pass1" className="col-4 col-form-label">
                 Password:
-                <span className = "required-field"> *</span>
+                {props.renderRequired && <span className = "required-field"> *</span>}
             </label>
                 <div className="col-8">
                     <input onBlur={handleBlur} onChange={handleChange} type="password" ref={pass} id="new-pass1" className="form-control"/>
@@ -69,7 +69,7 @@ function PasswordSignupField({props}) {
             </div>
             <div className="row mb-3">
             <label htmlFor="new-pass2" className="col-4 col-form-label">Confirm Password:
-                <span className = "required-field"> *</span>
+                {props.renderRequired && <span className = "required-field"> *</span>}
             </label>
             <div className="col-8">
                 <input ref={passConfirm} onChange={handleChange} type="password" id="new-pass2" className="form-control"/>

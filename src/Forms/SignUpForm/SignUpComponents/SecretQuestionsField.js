@@ -20,7 +20,7 @@ function SecretQuestionsField({props}) {
         <div className="row mb-3">
             <label htmlFor="exampleEmail" className="col-4 col-form-label">
                 Security question:
-                <span className = "required-field"> *</span>
+                {props.renderRequired && <span className = "required-field"> *</span>}
             </label>
                 <div className="col-auto">
                     <select className="form-select" id="secret-questions" onBlur={handleBlur} required>

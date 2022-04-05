@@ -35,13 +35,13 @@ function SignUpForm() {
             <div>
                 <EmailField props={{setConfirm: emailConfirmSet}}/>
                 <UsernameSignupField props={{setConfirm: userConfirmSet}}/>
-                <PasswordSignupField props={{setConfirmPass: passConfirmSet, setConfirmationConfirm: passConfirmationConfirmSet}}/>
+                <PasswordSignupField props={{setConfirmPass: passConfirmSet, setConfirmationConfirm: passConfirmationConfirmSet, renderRequired: true}}/>
                 <NicknameField props={{setConfirm: nicknameConfirmSet}}/>
                 <PhoneNumberField props={{setConfirm: phoneConfirmSet}}/>
                 <DateOfBirthField/>
                 <GenderField/>
-                <SecretQuestionsField props={{setConfirm: secretQuestionConfirmSet, children: <SecretQuestionDescriptor/>}}/>
-                <SecretQuestionAnswerField props={{setConfirm: secretAnswerConfirmSet}}/>
+                <SecretQuestionsField props={{setConfirm: secretQuestionConfirmSet, children: <SecretQuestionDescriptor/>, renderRequired: true}}/>
+                <SecretQuestionAnswerField props={{setConfirm: secretAnswerConfirmSet, renderRequired: true}}/>
                 <TermOfServiceField/>
                 <PrivacyPolicyField/>
                 <div className="d-grid gap-2 col-6 mx-auto mb-3">

@@ -22,7 +22,7 @@ function SecretQuestionAnswerField({props}){
     return(
         <div className="row mb-3">
             <label htmlFor="secret-answer" className="col-2 me-2 col-form-label">Answer:
-                <span className = "required-field"> *</span>
+                {props.renderRequired && <span className = "required-field"> *</span>}
             </label>
             <div className="col-8">
                 <input type="text" id="secret-answer" className="form-control" onBlur={handleBlur} required/>
