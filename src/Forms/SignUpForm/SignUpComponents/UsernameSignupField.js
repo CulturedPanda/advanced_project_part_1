@@ -17,11 +17,13 @@ function UsernameSignupField({props}){
             usernameField.addClass("border-danger");
             text.text("Error: Username already exists")
             text.show();
+            props.setConfirm(false);
         }
         else{
             usernameField.removeClass("border-danger");
             usernameField.addClass("border-success");
             text.hide();
+            props.setConfirm(true);
         }
     }
 

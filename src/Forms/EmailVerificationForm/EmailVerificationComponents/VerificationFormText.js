@@ -1,9 +1,9 @@
 function VerificationFormText({props}){
     let title = ()=>{
-        if (props.from === "sign_up"){
+        if (props.fromSignup){
             return "Please verify your email to complete your registration";
         }
-        else if(props.from === "forgot_password"){
+        else{
             return "Please verify your identity to reset your password"
         }
     }

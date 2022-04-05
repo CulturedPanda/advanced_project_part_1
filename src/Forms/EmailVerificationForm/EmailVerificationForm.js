@@ -30,7 +30,8 @@ function EmailVerificationForm({props}){
         if (props.fromSignup) {
             if (PendingUser.canVerify(props.username, code)) {
                 PendingUser.addUser(props.username);
-                $("#verify-form").submit();
+                props.setFrom(false);
+                nav("/")
             } else {
                 onError();
             }
@@ -46,7 +47,7 @@ function EmailVerificationForm({props}){
 
     return (
         <form id="verify-form" onSubmit={handleSubmit}>
-            <VerificationFormText props={{from: props.from}}/>
+            <VerificationFormText props={{from: props.fromSignup}}/>
             <VerifierField props={{textRef: textFormRef, username: props.username}}/>
             <div className="col text-center mt-4">
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
