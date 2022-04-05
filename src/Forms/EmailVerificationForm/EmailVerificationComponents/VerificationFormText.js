@@ -4,7 +4,7 @@ function VerificationFormText({props}){
             return "Please verify your email to complete your registration";
         }
         else{
-            return "Please verify your identity to reset your password"
+            return "Please verify your identity to reset your password";
         }
     }
     return(
