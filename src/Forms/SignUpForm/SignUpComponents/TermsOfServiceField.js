@@ -5,13 +5,13 @@ function TermOfServiceField() {
     return (
         <div className="form-check row mb-3">
             <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="tos-radio-check" required/>
+                <input className="form-check-input" type="checkbox" value="" id="tos-radio-check"/>
                 <label className="form-check-label" htmlFor="tos-radio-check">
                     I have read and accepted the
                     <a target="_blank" href={pdf}> terms of service</a>
                 </label>
-                <div className="invalid-feedback">
-                    You must agree before submitting.
+                <div className="error-text" id="invalid-tos">
+                    You must accept the terms of service to sign-up.
                 </div>
             </div>
         </div>

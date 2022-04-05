@@ -5,7 +5,6 @@ import PasswordSignupField from "./SignUpComponents/PasswordSignupField";
 import NicknameField from "./SignUpComponents/NicknameField";
 import PhoneNumberField from "./SignUpComponents/PhoneNumberField";
 import DateOfBirthField from "./SignUpComponents/DateOfBirthField";
-import GenderField from "./SignUpComponents/GenderField";
 import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
 import {useRef, useState} from "react";
 import SecretQuestionDescriptor from "./SignUpComponents/SecretQuestionDescriptor";
@@ -56,9 +55,17 @@ function SignUpForm({props}) {
                 nav("/verify_email");
             }
         }
+        else{
+            if(!isTos) {
+                $("#invalid-tos").show();
+            }
+            if (!isPrivacyPolicy){
+                $("#invalid-pp").show();
+            }
+        }
     }
     return (
-        <form onSubmit={validateForm}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <EmailField props={{setConfirm: emailConfirmSet}}/>
                 <UsernameSignupField props={{setConfirm: userConfirmSet}}/>
