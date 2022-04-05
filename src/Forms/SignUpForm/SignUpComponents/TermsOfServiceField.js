@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import pdf from "../../../Policies/tos.pdf";
 
 function TermOfServiceField() {
     return (
@@ -7,7 +8,7 @@ function TermOfServiceField() {
                 <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/>
                 <label className="form-check-label" htmlFor="invalidCheck">
                     I have read and accepted the
-                    <Link to="terms_of_service"> terms of service</Link>
+                    <a target="_blank" href={pdf}> terms of service</a>
                 </label>
                 <div className="invalid-feedback">
                     You must agree before submitting.

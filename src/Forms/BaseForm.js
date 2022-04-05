@@ -6,7 +6,6 @@ import EmailVerificationForm from "./EmailVerificationForm/EmailVerificationForm
 import VerificationFormText from "./EmailVerificationForm/EmailVerificationComponents/VerificationFormText";
 import $ from "jquery";
 import React, {useRef, useState} from "react";
-import TermsOfService from "../Policies/TermsOfService";
 import ForgotPasswordFormResetPassword
     from "./ForgotPasswordForms/ForgotPasswordFormResetPassword/ForgotPasswordFormResetPassword";
 import ForgotPasswordFormVerificationScreen
@@ -29,13 +28,12 @@ function BaseForm() {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<LoginForm props={{username: setUsername, toggle: setToggle,
-                            fromSetter: setFrom}}/>} />
+                            fromSetter: setFrom, passReset: from}}/>} />
                         <Route path="/sign_up" element={<SignUpForm props={{username: setUsername}}/>}/>
                         <Route path="/forgot_password" element={<InitialForgotPasswordForm
                             props={{username: username, usernameSetter: setUsername, toggle: toggle, toggleSetter: setToggle}}/>}/>
                         <Route path="/verify_email" element={
                             <EmailVerificationForm props={{username: "Yuval", from : "sign_up", fromSignup: true}}/>}/>
-                        <Route path="/sign_up/terms_of_service" element={<TermsOfService/>}/>
                         <Route path="/forgot_password/verify" element={
                             <ForgotPasswordFormVerificationScreen props={{username: username}}/>}/>
                         <Route path="/forgot_password/reset_password" element={
