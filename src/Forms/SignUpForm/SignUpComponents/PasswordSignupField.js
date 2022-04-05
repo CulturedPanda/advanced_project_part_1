@@ -63,7 +63,7 @@ function PasswordSignupField({props}) {
             </label>
                 <div className="col-8">
                     <input onBlur={handleBlur} onChange={handleChange} type="password" ref={pass} id="new-pass1" className="form-control"/>
-                    <ShowPasswordButton props={{passField: "new-pass1"}}/>
+                    <ShowPasswordButton props={{passField: "new-pass1", id: "toggle-pass1"}}/>
                     <div className="error-text" id="main-pass-error"/>
                 </div>
             </div>
@@ -73,7 +73,7 @@ function PasswordSignupField({props}) {
             </label>
             <div className="col-8">
                 <input ref={passConfirm} onChange={handleChange} type="password" id="new-pass2" className="form-control"/>
-                <ShowPasswordButton props={{passField: "new-pass2"}}/>
+                <ShowPasswordButton props={{passField: "new-pass2", id: "toggle-pass2"}}/>
             </div>
             </div>
         </div>

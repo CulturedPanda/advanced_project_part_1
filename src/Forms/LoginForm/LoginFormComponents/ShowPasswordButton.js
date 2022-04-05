@@ -4,7 +4,7 @@ function ShowPasswordButton({props}){
 
     const showPassword = ()=>{
         let passField = $("#" + props.passField);
-        if ($("#show-password-toggle").is(":checked")){
+        if ($("#" + props.id).is(":checked")){
             passField.get(0).type = "text";
         }
         else{
@@ -14,7 +14,7 @@ function ShowPasswordButton({props}){
 
     return(
         <div>
-            <input onChange={showPassword} className="form-check-input me-1" type="checkbox" value="" id="show-password-toggle"/>
+            <input onChange={showPassword} className="form-check-input me-1" type="checkbox" value="" id={props.id}/>
             <label htmlFor="show-password-toggle" className="form-check-label small-text">Show</label>
         </div>
     )

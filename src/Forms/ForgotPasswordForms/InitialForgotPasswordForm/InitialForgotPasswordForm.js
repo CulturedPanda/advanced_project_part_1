@@ -16,18 +16,19 @@ function InitialForgotPasswordForm({props}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (RegisteredUser.VerifySecretQuestion($("#login-username").val(),
-            $("#secret-questions").val(), $("#secret-answer").val())) {
-            nav("/forgot_password/verify");
-        } else {
-            let warnText = $("#wrong-details-text");
-            if ($("#username-radio").is(":checked")) {
-                warnText.text("Error: Incorrect username and / or security question and / or answer")
-                warnText.show();
-            }
-            else{
-                warnText.text("Error: Incorrect Email and / or security question and / or answer")
-                warnText.show();
+        if(questionConfirm && answerConfirm) {
+            if (RegisteredUser.VerifySecretQuestion($("#login-username").val(),
+                $("#secret-questions").val(), $("#secret-answer").val())) {
+                nav("/forgot_password/verify");
+            } else {
+                let warnText = $("#wrong-details-text");
+                if ($("#username-radio").is(":checked")) {
+                    warnText.text("Error: Incorrect username and / or security question and / or answer")
+                    warnText.show();
+                } else {
+                    warnText.text("Error: Incorrect Email and / or security question and / or answer")
+                    warnText.show();
+                }
             }
         }
     }
@@ -45,10 +46,10 @@ function InitialForgotPasswordForm({props}) {
                     usernameDefault: props.toggle}}/>
             </div>
             <div className="row">
-                <SecretQuestionsField props={{children: null, setConfirm: questionConfirmSet}}/>
+                <SecretQuestionsField props={{children: null, setConfirm: questionConfirmSet, renderRequired: false}}/>
             </div>
             <div className="row">
-                <SecretQuestionAnswerField props={{setConfirm: answerConfirmSet}}/>
+                <SecretQuestionAnswerField props={{setConfirm: answerConfirmSet, renderRequired: false}}/>
             </div>
             <div className="col text-center mb-2">
                 <button type="submit" className="btn btn-primary">Submit</button>

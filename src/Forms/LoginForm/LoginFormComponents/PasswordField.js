@@ -8,7 +8,7 @@ function PasswordField(){
                 <input name="password" type="password" id="login-pass" className="form-control"/>
                 </div>
                 <div className="col-2">
-                    <ShowPasswordButton props={{passField: "login-pass"}}/>
+                    <ShowPasswordButton props={{passField: "login-pass", id: "toggle-pass"}}/>
                 </div>
             </div>
     )

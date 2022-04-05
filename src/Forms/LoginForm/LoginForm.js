@@ -39,15 +39,18 @@ function LoginForm({props}) {
         }
     }
 
-    const goToResetPassword = ()=>{
+    const resetFrom = ()=>{
         props.fromSetter(false);
     }
 
+
     return (
         <form onSubmit={handleSubmit} id="log-in-form">
-            {/*{if props.passReset && <div className="">*/}
+            {props.passReset &&  <div className="
+            col-8 border border-success rounded mb-4 padding-5 shadow-sm bg-light p-2 text-success">
+                Password reset successfully. You may now log in.
+            </div>}
 
-            {/*    </div>}*/}
             <UsernameField props={{username: props.username, toggle: props.toggle, current: "", usernameDefault: true}}/>
             <PasswordField/>
             <div id="wrong-details-text" className="mb-3 error-text"/>
@@ -56,10 +59,10 @@ function LoginForm({props}) {
             </div>
             <div className="mb-3">
                 New user?
-                <Link to="/sign_up"> Sign up here</Link>
+                <Link to="/sign_up" onClick={resetFrom}> Sign up here</Link>
             </div>
             <div>
-                <Link to="/forgot_password" onClick={goToResetPassword}>Forgot my password</Link>
+                <Link to="/forgot_password" onClick={resetFrom}>Forgot my password</Link>
             </div>
         </form>
     )
