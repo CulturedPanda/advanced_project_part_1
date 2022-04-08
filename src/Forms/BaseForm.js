@@ -26,22 +26,22 @@ function BaseForm() {
         <div className="row align-items-center vw-100 vh-100">
             <div className="row col-md-4 col-sm-12 col-xs-12 border
              border-primary border-3 rounded-3 bg-light" id="base-form">
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<LoginForm props={{username: setUsername, toggle: setToggle,
-                            fromSetter: setFrom, passReset: from}}/>} />
-                        <Route path="/sign_up" element={<SignUpForm props={{username: setUsername, from: setFrom}}/>}/>
-                        <Route path="/forgot_password" element={<InitialForgotPasswordForm
-                            props={{username: username, usernameSetter: setUsername, toggle: toggle, toggleSetter: setToggle}}/>}/>
-                        <Route path="/verify_email" element={
-                            <EmailVerificationForm props={{username: username, fromSignup: from, setFrom: setFrom}}/>}/>
-                        <Route path="/forgot_password/verify" element={
-                            <ForgotPasswordFormVerificationScreen props={{username: username}}/>}/>
-                        <Route path="/forgot_password/reset_password" element={
-                            <ForgotPasswordFormResetPassword props={{username: username, setter: setFrom}}/>}/>
-                        <Route path="/chat" element={<MainApp/>}/>
-                    </Routes>
-                </BrowserRouter>
+                {/*<BrowserRouter>*/}
+                {/*    <Routes>*/}
+                {/*        <Route path="/" element={<LoginForm props={{username: setUsername, toggle: setToggle,*/}
+                {/*            fromSetter: setFrom, passReset: from}}/>} />*/}
+                {/*        <Route path="/sign_up" element={<SignUpForm props={{username: setUsername, from: setFrom}}/>}/>*/}
+                {/*        <Route path="/forgot_password" element={<InitialForgotPasswordForm*/}
+                {/*            props={{username: username, usernameSetter: setUsername, toggle: toggle, toggleSetter: setToggle}}/>}/>*/}
+                {/*        <Route path="/verify_email" element={*/}
+                {/*            <EmailVerificationForm props={{username: username, fromSignup: from, setFrom: setFrom}}/>}/>*/}
+                {/*        <Route path="/forgot_password/verify" element={*/}
+                {/*            <ForgotPasswordFormVerificationScreen props={{username: username}}/>}/>*/}
+                {/*        <Route path="/forgot_password/reset_password" element={*/}
+                {/*            <ForgotPasswordFormResetPassword props={{username: username, setter: setFrom}}/>}/>*/}
+                {/*        <Route path="/chat" element={<MainApp/>}/>*/}
+                {/*    </Routes>*/}
+                {/*</BrowserRouter>*/}
             </div>
         </div>
     );
