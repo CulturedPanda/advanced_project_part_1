@@ -5,8 +5,8 @@ import attachMenu from "./InputBar/AttachMenu";
 function Conversation(){
     return(
         <div className="col-8">
-            <AttachMenu/>
-            <InputBar props={{attachMenu: attachMenu}}/>
+            <InputBar props={{attachMenu: attachMenu}}>
+            </InputBar>
         </div>
     )
 

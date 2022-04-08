@@ -17,8 +17,16 @@
     margin-left: auto;
     margin-right: auto;
 }
+.padding{
+    margin-right: 10px;
+}
 
 #other-text{
+    display: none;
+    position: absolute;
+}
+
+.hide-stuff{
     display: none;
 }
 

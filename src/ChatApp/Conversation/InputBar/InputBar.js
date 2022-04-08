@@ -14,12 +14,13 @@ function InputBar({props}) {
     return (
         <div className="row col-9 mt-1 ">
             <div className="input-group mb-3" >
-                <button type="button" className="btn btn-primary" id="paperclip-click" onFocus={handleFocus} >
+                <button type="button" className="btn btn-success" id="paperclip-click" onFocus={handleFocus} >
                     <i className="bi bi-paperclip"/>
+                    <AttachMenu/>
                 </button>
                 <input type="text" className="form-control" placeholder="New message here..." aria-label="Example text with button addon"
                        aria-describedby="button-addon1"/>
-                <button type="button" className="btn btn-primary">Send</button>
+                <button type="button" className="btn btn-success">Send</button>
             </div>
         </div>
     )
