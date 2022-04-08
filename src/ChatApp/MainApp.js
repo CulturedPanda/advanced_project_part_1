@@ -1,8 +1,14 @@
-function MainApp(){
+import Conversation from "./Conversation/Conversation";
+
+function MainApp() {
     return (
         <div>
-            Hello world
+            <div>
+                Hello world
+            </div>
+            <Conversation></Conversation>
         </div>
+
     )
 }
 
