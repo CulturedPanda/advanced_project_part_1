@@ -1,14 +1,17 @@
 import PendingUser from "./PendingUser";
+import person from "../Resources/person-circle.svg"
 
 class RegisteredUser{
 
     static registeredUsers = [
         {username:"Alice", password:"1234", email: "alice@foo.com",
-        phone: null, dateOfBirth: null, nickname: "Alice", secretQuestions: null, gender: "female", verCode: "111222"},
+        phone: null, dateOfBirth: null, nickname: "Alice", secretQuestions: null, gender: "female", verCode: "111222",
+            img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR"},
         {username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233"},
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
-            secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566"}];
+            secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
+        contacts: ["Alice", "Bob"]}];
 
     constructor(pendingUser) {
         this.username = pendingUser.username;
@@ -19,8 +22,14 @@ class RegisteredUser{
         this.nickname = pendingUser.nickname;
         this.secretQuestions = pendingUser.secretQuestions;
         this.verCode = null;
+        this.img = null;
         sessionStorage.setItem(this.username + "log", JSON.stringify(this));
         sessionStorage.setItem(this.email + "log", JSON.stringify(this));
+    }
+
+    static getDescription(username){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        return user.description;
     }
 
     static DoesUserExist(username){
@@ -42,6 +51,11 @@ class RegisteredUser{
         return false;
     }
 
+    static getContacts(username){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        return user.contacts;
+    }
+
     static updatePassword(username, newPassword){
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
         user.password = newPassword;
@@ -49,7 +63,16 @@ class RegisteredUser{
     }
 
     static getImage(username){
-
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        if (!user){
+            return person;
+        }
+        if (user.img){
+            return user.img;
+        }
+        else{
+            return person;
+        }
     }
 
     static updateUser(user){
