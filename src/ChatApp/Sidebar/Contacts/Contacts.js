@@ -17,7 +17,7 @@ class Contacts extends Component {
     filterContacts = (val)=>{
         let contacts = this.state.contacts;
         this.setState({
-            filteredContacts: contacts.filter(element => element.includes(val))
+            filteredContacts: contacts.filter(element => element.toLowerCase().includes(val.toLowerCase()))
         });
     }
 
