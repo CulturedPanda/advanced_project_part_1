@@ -10,6 +10,7 @@ import ForgotPasswordFormResetPassword
     from "./ForgotPasswordForms/ForgotPasswordFormResetPassword/ForgotPasswordFormResetPassword";
 import ForgotPasswordFormVerificationScreen
     from "./ForgotPasswordForms/ForgotPasswordFormVerificationScreen/ForgotPasswordFormVerificationScreen";
+import MainApp from "../ChatApp/MainApp";
 
 function BaseForm() {
 
@@ -38,6 +39,7 @@ function BaseForm() {
                             <ForgotPasswordFormVerificationScreen props={{username: username}}/>}/>
                         <Route path="/forgot_password/reset_password" element={
                             <ForgotPasswordFormResetPassword props={{username: username, setter: setFrom}}/>}/>
+                        <Route path="/chat" element={<MainApp/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>
