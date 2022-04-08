@@ -1,13 +1,13 @@
-function SearchBar({props}){
-    return(
-        <div className="row">
-            {/*<div className="col-1">*/}
-            {/*<label htmlFor="contact-search-bar" className="col-form-label"><i className="bi bi-search"/></label>*/}
-            {/*</div>*/}
-            <div>
-                <i className="bi bi-search"/>
-            <input type="search" placeholder="Search contacts..." className="form-control col-10 nosubmit" id="contact-search-bar"/>
-            </div>
+import {useRef} from "react";
+
+function SearchBar({props}) {
+
+    const val = useRef();
+
+    return (
+        <div className="input-group">
+            <i className="bi bi-search input-group-text"/>
+            <input ref={val} onChange={()=>props.update(val.current.value)} type="search" className="form-control" placeholder="Search contacts"/>
         </div>
     )
 }
