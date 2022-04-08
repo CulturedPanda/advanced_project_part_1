@@ -8,14 +8,13 @@ class ContactContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastMessageDate: new Date(),
-            TimeFromLastMessage: 0
+            lastMessageDate: RegisteredUser.getLastSeen(this.props.username)
         };
     }
 
     updateTime = ()=>{
         this.setState(
-            {TimeFromLastMessage: this.state.TimeFromLastMessage + 1}
+            {lastMessageDate: RegisteredUser.getLastSeen(this.props.username)}
         );
     }
 
@@ -54,7 +53,7 @@ class ContactContainer extends Component {
 
     render() {
         return (
-            <li className="d-grid list-group-item bg-light" id={"contact" + this.props.username}>
+            <li className="d-grid list-group-item bg-light hover-pointer" id={"contact" + this.props.username}>
                 <button onFocus={this.focusHandler} onBlur={this.blurHandler}
                         className="btn no-effect-button text-start btn-flex justify-content-left">
                     <div className="col">

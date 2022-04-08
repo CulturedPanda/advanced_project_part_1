@@ -8,10 +8,11 @@ import $ from "jquery";
 import Utils from "../../Utils";
 import {useNavigate} from "react-router";
 import ShowPasswordButton from "./LoginFormComponents/ShowPasswordButton";
+import BaseForm from "../BaseForm";
 
 function LoginForm({props}) {
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         let username = $("#login-username").val();
         let password = $("#login-pass").val();
@@ -39,32 +40,35 @@ function LoginForm({props}) {
         }
     }
 
-    const resetFrom = ()=>{
+    const resetFrom = () => {
         props.fromSetter(false);
     }
 
 
     return (
-        <form onSubmit={handleSubmit} id="log-in-form">
-            {props.passReset &&  <div className="
+        <BaseForm>
+            <form onSubmit={handleSubmit} id="log-in-form">
+                {props.passReset && <div className="
             col-8 border border-success rounded mb-4 padding-5 shadow-sm bg-light p-2 text-success">
-                Password reset successfully. You may now log in.
-            </div>}
+                    Password reset successfully. You may now log in.
+                </div>}
 
-            <UsernameField props={{username: props.username, toggle: props.toggle, current: "", usernameDefault: true}}/>
-            <PasswordField/>
-            <div id="wrong-details-text" className="mb-3 error-text"/>
-            <div className="col text-center">
-                <button type="submit" className="btn btn-primary mb-3 col-2">Log in</button>
-            </div>
-            <div className="mb-3">
-                New user?
-                <Link to="/sign_up" onClick={resetFrom}> Sign up here</Link>
-            </div>
-            <div>
-                <Link to="/forgot_password" onClick={resetFrom}>Forgot my password</Link>
-            </div>
-        </form>
+                <UsernameField
+                    props={{username: props.username, toggle: props.toggle, current: "", usernameDefault: true}}/>
+                <PasswordField/>
+                <div id="wrong-details-text" className="mb-3 error-text"/>
+                <div className="col text-center">
+                    <button type="submit" className="btn btn-primary mb-3 col-2">Log in</button>
+                </div>
+                <div className="mb-3">
+                    New user?
+                    <Link to="/sign_up" onClick={resetFrom}> Sign up here</Link>
+                </div>
+                <div>
+                    <Link to="/forgot_password" onClick={resetFrom}>Forgot my password</Link>
+                </div>
+            </form>
+        </BaseForm>
     )
 }
 

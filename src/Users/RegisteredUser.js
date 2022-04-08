@@ -6,26 +6,34 @@ class RegisteredUser{
     static registeredUsers = [
         {username:"Alice", password:"1234", email: "alice@foo.com",
         phone: null, dateOfBirth: null, nickname: "Alice", secretQuestions: null, gender: "female", verCode: "111222",
-            img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR"},
+            img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR", lastSeen: new Date()},
         {username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
+            lastSeen: new Date()},
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
             secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
-        contacts: ["Alice", "Bob", "Beb", "Bab", "Blob", "Brob", "Bdob", "Baob", "Badob"]},
+        contacts: ["Alice", "Bob", "Beb", "Bab", "Blob", "Brob", "Bdob", "Baob", "Badob"], lastSeen: new Date()},
         {username: "Beb", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
+            lastSeen: new Date()},
         {username: "Bab", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
+            lastSeen: new Date()},
         {username: "Blob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
+            lastSeen: new Date()},
         {username: "Brob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
+            lastSeen: new Date()},
         {username: "Bdob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
+            lastSeen: new Date()},
         {username: "Baob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
+            lastSeen: new Date()},
         {username: "Badob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"}];
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
+            lastSeen: new Date()}];
 
     constructor(pendingUser) {
         this.username = pendingUser.username;
@@ -53,6 +61,11 @@ class RegisteredUser{
         return this.registeredUsers.find((user) => {
             return user.username === username
         })
+    }
+
+    static getLastSeen(username){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        return Date.parse(user.lastSeen);
     }
 
     static canVerify(username, input){

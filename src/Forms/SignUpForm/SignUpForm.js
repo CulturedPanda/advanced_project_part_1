@@ -14,6 +14,7 @@ import PrivacyPolicyField from "./SignUpComponents/PrivacyPolicyField";
 import $ from "jquery";
 import PendingUser from "../../Users/PendingUser";
 import {useNavigate} from "react-router";
+import BaseForm from "../BaseForm";
 
 function SignUpForm({props}) {
 
@@ -49,50 +50,53 @@ function SignUpForm({props}) {
                 let secretAnswer = $("#secret-answer").val();
                 props.username(username);
                 props.from(true);
-                new PendingUser({username: username, password: password,
+                new PendingUser({
+                    username: username, password: password,
                     email: email, phone: phone, dateOfBirth: dob, nickname: nickname,
-                    secretQuestions: {question: secretQuestion, answer: secretAnswer}});
+                    secretQuestions: {question: secretQuestion, answer: secretAnswer}
+                });
                 nav("/verify_email");
             }
-        }
-        else{
-            if(!isTos) {
+        } else {
+            if (!isTos) {
                 $("#invalid-tos").show();
             }
-            if (!isPrivacyPolicy){
+            if (!isPrivacyPolicy) {
                 $("#invalid-pp").show();
             }
         }
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <EmailField props={{setConfirm: emailConfirmSet}}/>
-                <UsernameSignupField props={{setConfirm: userConfirmSet}}/>
-                <PasswordSignupField props={{
-                    setConfirmPass: passConfirmSet,
-                    setConfirmationConfirm: passConfirmationConfirmSet,
-                    renderRequired: true
-                }}/>
-                <NicknameField props={{setConfirm: nicknameConfirmSet}}/>
-                <PhoneNumberField props={{setConfirm: phoneConfirmSet}}/>
-                <DateOfBirthField/>
-                <SecretQuestionsField props={{
-                    setConfirm: secretQuestionConfirmSet,
-                    children: <SecretQuestionDescriptor/>,
-                    renderRequired: true
-                }}/>
-                <SecretQuestionAnswerField props={{setConfirm: secretAnswerConfirmSet, renderRequired: true}}/>
-                <TermOfServiceField/>
-                <PrivacyPolicyField/>
-                <div className="d-grid gap-2 col-6 mx-auto mb-3">
-                    <button className="btn btn-primary">Submit</button>
+        <BaseForm>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <EmailField props={{setConfirm: emailConfirmSet}}/>
+                    <UsernameSignupField props={{setConfirm: userConfirmSet}}/>
+                    <PasswordSignupField props={{
+                        setConfirmPass: passConfirmSet,
+                        setConfirmationConfirm: passConfirmationConfirmSet,
+                        renderRequired: true
+                    }}/>
+                    <NicknameField props={{setConfirm: nicknameConfirmSet}}/>
+                    <PhoneNumberField props={{setConfirm: phoneConfirmSet}}/>
+                    <DateOfBirthField/>
+                    <SecretQuestionsField props={{
+                        setConfirm: secretQuestionConfirmSet,
+                        children: <SecretQuestionDescriptor/>,
+                        renderRequired: true
+                    }}/>
+                    <SecretQuestionAnswerField props={{setConfirm: secretAnswerConfirmSet, renderRequired: true}}/>
+                    <TermOfServiceField/>
+                    <PrivacyPolicyField/>
+                    <div className="d-grid gap-2 col-6 mx-auto mb-3">
+                        <button className="btn btn-primary">Submit</button>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <Link to="/">I already have an account</Link>
-            </div>
-        </form>
+                <div>
+                    <Link to="/">I already have an account</Link>
+                </div>
+            </form>
+        </BaseForm>
     )
 }
 

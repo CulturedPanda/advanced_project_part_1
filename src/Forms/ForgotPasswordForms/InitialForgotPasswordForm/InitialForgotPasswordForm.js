@@ -7,6 +7,7 @@ import RegisteredUser from "../../../Users/RegisteredUser";
 import $ from "jquery"
 import InitialForgotPasswordFormText from "./InitialForgotPasswordComponents/InitialForgotPasswordFormText";
 import {useNavigate} from "react-router";
+import BaseForm from "../../BaseForm";
 
 function InitialForgotPasswordForm({props}) {
 
@@ -16,7 +17,7 @@ function InitialForgotPasswordForm({props}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(questionConfirm && answerConfirm) {
+        if (questionConfirm && answerConfirm) {
             if (RegisteredUser.VerifySecretQuestion($("#login-username").val(),
                 $("#secret-questions").val(), $("#secret-answer").val())) {
                 nav("/forgot_password/verify");
@@ -33,32 +34,36 @@ function InitialForgotPasswordForm({props}) {
         }
     }
 
-    const clearText = ()=>{
+    const clearText = () => {
         props.usernameSetter("");
     }
 
     return (
-        <form id="forgot-password-form" onSubmit={handleSubmit}>
-            <InitialForgotPasswordFormText/>
-            <div className="row">
-                <UsernameField props={{
-                    username: props.usernameSetter, toggle: props.toggleSetter, current: props.username,
-                    usernameDefault: props.toggle}}/>
-            </div>
-            <div className="row">
-                <SecretQuestionsField props={{children: null, setConfirm: questionConfirmSet, renderRequired: false}}/>
-            </div>
-            <div className="row">
-                <SecretQuestionAnswerField props={{setConfirm: answerConfirmSet, renderRequired: false}}/>
-            </div>
-            <div className="col text-center mb-2">
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </div>
-            <div id="wrong-details-text" className="row mb-3 error-text"/>
-            <div className="row">
-                <Link to="/" onClick={clearText}>I remember my password</Link>
-            </div>
-        </form>
+        <BaseForm>
+            <form id="forgot-password-form" onSubmit={handleSubmit}>
+                <InitialForgotPasswordFormText/>
+                <div className="row">
+                    <UsernameField props={{
+                        username: props.usernameSetter, toggle: props.toggleSetter, current: props.username,
+                        usernameDefault: props.toggle
+                    }}/>
+                </div>
+                <div className="row">
+                    <SecretQuestionsField
+                        props={{children: null, setConfirm: questionConfirmSet, renderRequired: false}}/>
+                </div>
+                <div className="row">
+                    <SecretQuestionAnswerField props={{setConfirm: answerConfirmSet, renderRequired: false}}/>
+                </div>
+                <div className="col text-center mb-2">
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </div>
+                <div id="wrong-details-text" className="row mb-3 error-text"/>
+                <div className="row">
+                    <Link to="/" onClick={clearText}>I remember my password</Link>
+                </div>
+            </form>
+        </BaseForm>
     )
 }
 
