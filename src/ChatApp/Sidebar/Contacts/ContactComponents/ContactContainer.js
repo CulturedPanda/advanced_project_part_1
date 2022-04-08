@@ -12,20 +12,26 @@ class ContactContainer extends Component {
         };
     }
 
-    focusHandler() {
+    focusHandler = ()=> {
         let thisItem = $("#contact" + this.props.username);
         thisItem.addClass("active");
+    }
+
+    blurHandler = ()=> {
+        let thisItem = $("#contact" + this.props.username);
+        thisItem.removeClass("active");
     }
 
     render() {
         return (
             <li className="d-grid list-group-item bg-light" id={"contact" + this.props.username}>
-                <button onFocus={this.focusHandler} className="btn btn-flex justify-content-left">
+                <button onFocus={this.focusHandler} onBlur={this.blurHandler}
+                        className="btn text-start btn-flex justify-content-left">
                     <div>
                         <ImageNameContainer props={{username: this.props.username}}/>
-                    </div>
-                    <div className="small-text">
-                        {RegisteredUser.getDescription(this.props.username)}
+                        <div className="small-text">
+                            {RegisteredUser.getDescription(this.props.username)}
+                        </div>
                     </div>
                 </button>
             </li>
