@@ -8,6 +8,7 @@ class UserProfileContainer extends Component {
         return (
             <div className="row bg-success rounded-2">
                 <ImageNameContainer props={{username: this.props.username}}/>
+                {this.props.children}
             </div>
         )
     }

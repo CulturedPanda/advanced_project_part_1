@@ -11,7 +11,21 @@ class RegisteredUser{
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
             secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
-        contacts: ["Alice", "Bob"]}];
+        contacts: ["Alice", "Bob", "Beb", "Bab", "Blob", "Brob", "Bdob", "Baob", "Badob"]},
+        {username: "Beb", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+        {username: "Bab", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+        {username: "Blob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+        {username: "Brob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+        {username: "Bdob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+        {username: "Baob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"},
+        {username: "Badob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this"}];
 
     constructor(pendingUser) {
         this.username = pendingUser.username;
