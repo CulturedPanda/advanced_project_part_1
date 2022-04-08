@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar/Sidebar";
 
 function MainApp() {
     return (
-        <div className="container-fluid">
+        <div className="container-fluid p-5 pb-2">
             <div className="row">
                 <Sidebar></Sidebar>
                 <Conversation></Conversation>

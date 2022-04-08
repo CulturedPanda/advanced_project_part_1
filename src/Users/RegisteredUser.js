@@ -48,6 +48,10 @@ class RegisteredUser{
         RegisteredUser.updateUser(user);
     }
 
+    static getImage(username){
+
+    }
+
     static updateUser(user){
         sessionStorage.removeItem(user.username + "log");
         sessionStorage.removeItem(user.email + "log");
