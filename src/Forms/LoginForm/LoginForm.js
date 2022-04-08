@@ -12,32 +12,40 @@ import BaseForm from "../BaseForm";
 
 function LoginForm({props}) {
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let username = $("#login-username").val();
-        let password = $("#login-pass").val();
+    const nav = useNavigate();
+
+    const handleVerification = (username, password) => {
         let isUsername = $("#username-radio").is(":checked");
         if (username === "" && password === "") {
             return
         }
+        const onSuccess = ()=>{
+            wrongDetails.hide();
+            props.setLogIn(true);
+            let current = new Date();
+            nav("/chat");
+        }
         let wrongDetails = $("#wrong-details-text");
         if (isUsername) {
             if (RegisteredUser.DoUserAndPasswordMatch(username, password)) {
-                wrongDetails.hide();
-                $("#log-in-form").submit();
+                onSuccess();
             } else {
                 wrongDetails.text("Incorrect username or password");
                 wrongDetails.show();
             }
         } else {
             if (RegisteredUser.doEmailAndPasswordMatch(username.toLowerCase(), password)) {
-                wrongDetails.hide();
-                $("#log-in-form").submit();
+                onSuccess();
             } else {
                 wrongDetails.text("Incorrect Email or password");
                 wrongDetails.show();
             }
         }
+    }
+
+    const handleSubmit = (e, username, password)=>{
+        e.preventDefault()
+        handleVerification(username, password)
     }
 
     const resetFrom = () => {
@@ -47,7 +55,7 @@ function LoginForm({props}) {
 
     return (
         <BaseForm>
-            <form onSubmit={handleSubmit} id="log-in-form">
+            <form onSubmit={event => handleSubmit(event, $("#login-username").val(), $("#login-pass").val())} id="log-in-form">
                 {props.passReset && <div className="
             col-8 border border-success rounded mb-4 padding-5 shadow-sm bg-light p-2 text-success">
                     Password reset successfully. You may now log in.
