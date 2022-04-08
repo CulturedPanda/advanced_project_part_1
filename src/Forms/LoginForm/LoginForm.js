@@ -22,7 +22,8 @@ function LoginForm({props}) {
         const onSuccess = ()=>{
             wrongDetails.hide();
             props.setLogIn(true);
-            let current = new Date();
+            Utils.setCookie("username", username, 7);
+            Utils.setCookie("password", password, 7);
             nav("/chat");
         }
         let wrongDetails = $("#wrong-details-text");

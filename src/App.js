@@ -16,6 +16,8 @@ import ForgotPasswordFormResetPassword
 import MainApp from "./ChatApp/MainApp";
 import React, {useState} from "react";
 import Router from "./Router";
+import Utils from "./Utils";
+import registeredUser from "./Users/RegisteredUser";
 
 function App() {
 
@@ -31,13 +33,22 @@ function App() {
         sessionStorage.setItem(element.email + "log", JSON.stringify(element));
     });
 
-    const [username, setUsername] = useState("");
-    const [toggle, setToggle] = useState(true);
-    const [from, setFrom] = useState(false);
+    let cookie_verified = false;
+    const username = Utils.getCookie("username");
+    const password = Utils.getCookie("password");
+    if (username && password){
+        if (registeredUser.DoUserAndPasswordMatch(username, password)
+            || registeredUser.doEmailAndPasswordMatch(username, password)){
+            cookie_verified = true;
+        }
+    }
+
+    const [userLoggedIn, setUserLoggedIn] = useState(cookie_verified);
+
     return (
         <SharedDesign>
             <BrowserRouter>
-                <Router/>
+                <Router props={{loggedIn: userLoggedIn, setLoggedIn: setUserLoggedIn}}/>
             </BrowserRouter>
         </SharedDesign>
     );

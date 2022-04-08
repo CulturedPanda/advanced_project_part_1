@@ -12,20 +12,19 @@ import ForgotPasswordFormResetPassword
 import MainApp from "./ChatApp/MainApp";
 import React, {useState} from "react";
 
-function Router(){
+function Router({props}){
 
     const [username, setUsername] = useState("");
     const [toggle, setToggle] = useState(true);
     const [from, setFrom] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(false);
 
     const auth = ()=>{
-        if (!loggedIn){
+        if (!props.loggedIn){
             return(
                 <>
                     <Route path="/log_in" element={<LoginForm props={{
                         username: setUsername, toggle: setToggle,
-                        fromSetter: setFrom, passReset: from, setLogIn: setLoggedIn
+                        fromSetter: setFrom, passReset: from, setLogIn: props.setLoggedIn
                     }}/>}/>
                     <Route path="/sign_up" element={<SignUpForm props={{username: setUsername, from: setFrom}}/>}/>
                     <Route path="/forgot_password" element={<InitialForgotPasswordForm
@@ -37,7 +36,7 @@ function Router(){
                         }}/>}/>
                     <Route path="*" element={<LoginForm props={{
                         username: setUsername, toggle: setToggle,
-                        fromSetter: setFrom, passReset: from, setLogIn: setLoggedIn
+                        fromSetter: setFrom, passReset: from, setLogIn: props.setLoggedIn
                     }}/>}/>
                     <Route path="/verify_email" element={
                         <EmailVerificationForm props={{username: username, fromSignup: from, setFrom: setFrom}}/>}/>
