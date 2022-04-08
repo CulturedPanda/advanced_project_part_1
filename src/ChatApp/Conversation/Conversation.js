@@ -1,9 +1,12 @@
 import InputBar from "./InputBar/InputBar";
+import AttachMenu from "./InputBar/AttachMenu";
+import attachMenu from "./InputBar/AttachMenu";
 
 function Conversation(){
     return(
         <div className="col-8">
-        <InputBar></InputBar>
+            <AttachMenu/>
+            <InputBar props={{attachMenu: attachMenu}}/>
         </div>
     )
 
