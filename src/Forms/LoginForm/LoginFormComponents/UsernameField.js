@@ -5,10 +5,10 @@ function UsernameField({props}) {
 
     let text = ()=>{
         if (props.usernameDefault){
-            return "Username:";
+            return "Username";
         }
         else{
-            return "Email:";
+            return "Email";
         }
     }
 
@@ -17,7 +17,8 @@ function UsernameField({props}) {
             <label htmlFor="login-username" className="col-form-label col-2" id="username-label">{text()}</label>
             <div className="col-8">
                 <input name="username" onKeyUp={()=>props.username($("#login-username").val())}
-                       defaultValue={props.current} type="text" id="login-username" className="form-control"/>
+                       defaultValue={props.current} type="text" id="login-username"
+                       className="form-control"/>
             </div>
             <UsernameEmailRadio props={{toggle: props.toggle, usernameDefault: props.usernameDefault}}/>
         </div>

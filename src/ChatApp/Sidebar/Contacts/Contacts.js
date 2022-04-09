@@ -28,12 +28,12 @@ class Contacts extends Component {
 
     render() {
         return (
-            <>
+            <div>
                 <SearchBar props={{update: this.filterContacts}}/>
-                <div className="vh-100 bg-light overflow-auto list-group btn-group">
+                <div className="bg-light overflow-auto list-group btn-group overflow-case">
                     {this.createContacts()}
                 </div>
-            </>
+            </div>
         )
     }
 }

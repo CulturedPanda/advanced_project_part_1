@@ -4,11 +4,16 @@
     height: 100vh;
     position: absolute;
     width: 100%;
+    background-size: 100% 100%;
 }
 /*for id */
 #wrong-details-text{
     display: none;
     color: red;
+}
+
+.overflow-case{
+    height: 77vh;
 }
 
 #base-form{

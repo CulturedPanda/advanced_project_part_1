@@ -9,6 +9,7 @@ import Utils from "../../Misc/Utils";
 import {useNavigate} from "react-router";
 import ShowPasswordButton from "./LoginFormComponents/ShowPasswordButton";
 import BaseForm from "../BaseForm";
+import RememberMeCheckbox from "./LoginFormComponents/RememberMeCheckbox";
 
 function LoginForm({props}) {
 
@@ -19,11 +20,13 @@ function LoginForm({props}) {
         if (username === "" && password === "") {
             return
         }
-        const onSuccess = ()=>{
+        const onSuccess = () => {
             wrongDetails.hide();
             props.setLogIn(true);
-            Utils.setCookie("username", username, 7);
-            Utils.setCookie("password", password, 7);
+            if ($("#remember-me-checkbox").is(":checked")) {
+                Utils.setCookie("username", username, 7);
+                Utils.setCookie("password", password, 7);
+            }
             props.username("");
             nav("/chat");
         }
@@ -45,7 +48,7 @@ function LoginForm({props}) {
         }
     }
 
-    const handleSubmit = (e, username, password)=>{
+    const handleSubmit = (e, username, password) => {
         e.preventDefault()
         handleVerification(username, password)
     }
@@ -57,12 +60,16 @@ function LoginForm({props}) {
 
     return (
         <BaseForm>
-            <form onSubmit={event => handleSubmit(event, $("#login-username").val(), $("#login-pass").val())} id="log-in-form">
+            <div className="text-center">
+                <p className="fs-3">Log in</p>
+            </div>
+            <form onSubmit={event => handleSubmit(event, $("#login-username").val(), $("#login-pass").val())}
+                  id="log-in-form">
+
                 {props.passReset && <div className="
             col-8 border border-success rounded mb-4 padding-5 shadow-sm bg-light p-2 text-success">
                     Password reset successfully. You may now log in.
                 </div>}
-
                 <UsernameField
                     props={{username: props.username, toggle: props.toggle, current: "", usernameDefault: true}}/>
                 <PasswordField/>
@@ -70,7 +77,8 @@ function LoginForm({props}) {
                 <div className="col text-center">
                     <button type="submit" className="btn btn-primary mb-3 col-2">Log in</button>
                 </div>
-                <div className="mb-3">
+                <RememberMeCheckbox/>
+                <div className="mb-3 float-end">
                     New user?
                     <Link to="/sign_up" onClick={resetFrom}> Sign up here</Link>
                 </div>
