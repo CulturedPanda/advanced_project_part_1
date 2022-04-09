@@ -15,8 +15,8 @@ import ForgotPasswordFormResetPassword
     from "./Forms/ForgotPasswordForms/ForgotPasswordFormResetPassword/ForgotPasswordFormResetPassword";
 import MainApp from "./ChatApp/MainApp";
 import React, {useState} from "react";
-import Router from "./Router";
-import Utils from "./Utils";
+import Router from "./Misc/Router";
+import Utils from "./Misc/Utils";
 import registeredUser from "./Users/RegisteredUser";
 
 function App() {

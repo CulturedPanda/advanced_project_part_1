@@ -22,8 +22,9 @@ class Utils{
         return "";
     }
 
-    static checkCookie(){
-
+    static deleteCookie(cname){
+        const cvalue = Utils.getCookie(cname);
+        document.cookie = cname + "=" + cvalue + ";expires=Thu, 01 Jan 1970 00:00:01 GMT"
     }
 }
 

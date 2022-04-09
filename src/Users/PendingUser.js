@@ -16,7 +16,6 @@ class PendingUser{
         this.secretQuestions = user.secretQuestions;
         this.timeCreated = new Date();
         this.verString = PendingUser.generateVerificationCode();
-        PendingUser.pendingUsers.push(this);
         sessionStorage.setItem(this.username + "pend", JSON.stringify(this));
         sessionStorage.setItem(this.email + "pend", JSON.stringify(this));
     }

@@ -1,7 +1,7 @@
 import VerifierField from "./EmailVerificationComponents/VerifierField";
 import {useRef} from "react";
 import PendingUser from "../../Users/PendingUser";
-import Utils from "../../Utils";
+import Utils from "../../Misc/Utils";
 import $ from "jquery";
 import VerificationFormText from "./EmailVerificationComponents/VerificationFormText";
 import RegisteredUser from "../../Users/RegisteredUser";
@@ -32,6 +32,7 @@ function EmailVerificationForm({props}) {
             if (PendingUser.canVerify(props.username, code)) {
                 PendingUser.addUser(props.username);
                 props.setFrom(false);
+                props.setLogIn(true);
                 nav("/")
             } else {
                 onError();

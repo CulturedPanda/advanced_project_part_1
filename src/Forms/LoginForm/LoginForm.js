@@ -5,7 +5,7 @@ import PasswordField from "./LoginFormComponents/PasswordField";
 import {useRef} from "react";
 import RegisteredUser from "../../Users/RegisteredUser";
 import $ from "jquery";
-import Utils from "../../Utils";
+import Utils from "../../Misc/Utils";
 import {useNavigate} from "react-router";
 import ShowPasswordButton from "./LoginFormComponents/ShowPasswordButton";
 import BaseForm from "../BaseForm";
@@ -24,6 +24,7 @@ function LoginForm({props}) {
             props.setLogIn(true);
             Utils.setCookie("username", username, 7);
             Utils.setCookie("password", password, 7);
+            props.username("");
             nav("/chat");
         }
         let wrongDetails = $("#wrong-details-text");

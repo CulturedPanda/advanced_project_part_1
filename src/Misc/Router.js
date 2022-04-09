@@ -1,15 +1,15 @@
 import {Redirect, Switch, Routes} from "react-router";
 import {Route} from "react-router-dom";
-import BaseForm from "./Forms/BaseForm";
-import LoginForm from "./Forms/LoginForm/LoginForm";
-import SignUpForm from "./Forms/SignUpForm/SignUpForm";
-import InitialForgotPasswordForm from "./Forms/ForgotPasswordForms/InitialForgotPasswordForm/InitialForgotPasswordForm";
-import EmailVerificationForm from "./Forms/EmailVerificationForm/EmailVerificationForm";
+import BaseForm from "../Forms/BaseForm";
+import LoginForm from "../Forms/LoginForm/LoginForm";
+import SignUpForm from "../Forms/SignUpForm/SignUpForm";
+import InitialForgotPasswordForm from "../Forms/ForgotPasswordForms/InitialForgotPasswordForm/InitialForgotPasswordForm";
+import EmailVerificationForm from "../Forms/EmailVerificationForm/EmailVerificationForm";
 import ForgotPasswordFormVerificationScreen
-    from "./Forms/ForgotPasswordForms/ForgotPasswordFormVerificationScreen/ForgotPasswordFormVerificationScreen";
+    from "../Forms/ForgotPasswordForms/ForgotPasswordFormVerificationScreen/ForgotPasswordFormVerificationScreen";
 import ForgotPasswordFormResetPassword
-    from "./Forms/ForgotPasswordForms/ForgotPasswordFormResetPassword/ForgotPasswordFormResetPassword";
-import MainApp from "./ChatApp/MainApp";
+    from "../Forms/ForgotPasswordForms/ForgotPasswordFormResetPassword/ForgotPasswordFormResetPassword";
+import MainApp from "../ChatApp/MainApp";
 import React, {useState} from "react";
 
 function Router({props}){
@@ -39,7 +39,8 @@ function Router({props}){
                         fromSetter: setFrom, passReset: from, setLogIn: props.setLoggedIn
                     }}/>}/>
                     <Route path="/verify_email" element={
-                        <EmailVerificationForm props={{username: username, fromSignup: from, setFrom: setFrom}}/>}/>
+                        <EmailVerificationForm props={{username: username, fromSignup: from,
+                            setFrom: setFrom, setLogIn: props.setLoggedIn}}/>}/>
                     <Route path="/forgot_password/verify" element={
                         <ForgotPasswordFormVerificationScreen props={{username: username}}/>}/>
                     <Route path="/forgot_password/reset_password" element={
@@ -50,8 +51,7 @@ function Router({props}){
         else{
             return(
                 <>
-                    <Route path="/chat" element={<MainApp/>}/>
-                    <Route path="*" element={<MainApp/>}/>
+                    <Route path="*" element={<MainApp props={{setLogIn: props.setLoggedIn}}/>}/>
                 </>
             )
         }
