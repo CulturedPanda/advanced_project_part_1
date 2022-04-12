@@ -12,7 +12,7 @@ class AddContactModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            radioValue: "2"
+            radioValue: "username"
         };
     }
 
