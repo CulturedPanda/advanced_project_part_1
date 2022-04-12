@@ -1,6 +1,6 @@
 /*for class */
 .background {
-    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+    background-image: url(https://colorlib.com/etc/lf/Login_v5/images/bg-01.jpg);
     height: 100vh;
     position: absolute;
     width: 100%;
@@ -118,7 +118,6 @@
 }
 
 .chat-container{
-    overflow: scroll;
     max-height: 78%;
     background: burlywood;
 }
