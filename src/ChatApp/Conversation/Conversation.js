@@ -6,7 +6,7 @@ import UserProfileContainer from "../Sidebar/UserProfileContainer/UserProfileCon
 
 function Conversation() {
     return (
-        <div className="col" id="conversation">
+        <div className="col-8" id="conversation">
             <UserProfileContainer username="Alice" renderButtons={false} renderNum={false}/>
             <ConversationContainer/>
             <InputBar props={{attachMenu: attachMenu}}>

@@ -82,7 +82,7 @@ function ConversationContainer() {
                 <div className="row no-gutters">
                     <div className="col-md-3">
                         <div className="chat-bubble chat-bubble-left">
-                            Maseratti
+                            FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
                         </div>
                     </div>
                 </div>

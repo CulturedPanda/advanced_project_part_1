@@ -85,6 +85,7 @@
     border-radius: 10px;
     position: relative;
     animation: fadeIn 1s ease-in;
+    word-wrap: break-word;
 }
 .chat-bubble-left{
     left: 0;
@@ -103,7 +104,7 @@
 
 .input-message-pad{
     background: lightgrey;
-    padding: 15px 15px;
+    padding: 10px 15px;
 }
 
 .bi-input{
@@ -116,9 +117,6 @@
     background: burlywood;
 }
 
-.end-padded{
-    padding-right: 40%;
-}
 #conversation{
     height: 92vh;
 }
@@ -130,8 +128,3 @@
 .overflow-case{
     height: 75vh;
 }
-
-.overflow-lesser{
-    height: 100vh;
-}
-
