@@ -103,7 +103,7 @@
 
 .input-message-pad{
     background: lightgrey;
-    padding: 15px 15px;
+    padding: 10px 15px;
 }
 
 .bi-input{
@@ -124,7 +124,7 @@
 }
 
 #sidebar-div{
-    height: 85vh
+    min-height: 100%;
 }
 
 .overflow-case{
@@ -134,4 +134,5 @@
 .overflow-lesser{
     height: 100vh;
 }
+
 
