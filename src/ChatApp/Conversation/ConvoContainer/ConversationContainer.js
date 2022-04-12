@@ -11,7 +11,7 @@ function ConversationContainer() {
                 </div>
                 <div className="row no-gutters">
                     <div className="col-md-3 offset-md-9">
-                        <div class="chat-bubble  chat-bubble-right">
+                        <div className="chat-bubble  chat-bubble-right">
                             I hate my life man
                         </div>
                     </div>

@@ -9,8 +9,7 @@ function Conversation() {
         <div className="col-8" id="conversation">
             <UserProfileContainer username="Alice" renderButtons={false} renderNum={false}/>
             <ConversationContainer/>
-            <InputBar props={{attachMenu: attachMenu}}>
-            </InputBar>
+            <InputBar props={{attachMenu: attachMenu}}/>
         </div>
     )
 
