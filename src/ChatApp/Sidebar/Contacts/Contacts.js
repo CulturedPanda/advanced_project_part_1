@@ -36,7 +36,7 @@ class Contacts extends Component {
 
     render() {
         return (
-            <div>
+            <div className="row">
                 <SearchBar props={{update: this.filterContacts}}/>
                 <div className="bg-light overflow-auto list-group btn-group overflow-case">
                     {this.createContacts()}
