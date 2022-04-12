@@ -7,7 +7,7 @@ class UserProfileContainer extends Component {
 
     render() {
         return (
-            <div className="row bg-success border-end border-secondary pe-3 align-items-center">
+            <div className="row bg-success border-end border-dark pe-3 align-items-center">
                 <div className="col-8">
                     <ImageNameContainer props={{username: this.props.username, renderNum: this.props.renderNum}}/>
                 </div>

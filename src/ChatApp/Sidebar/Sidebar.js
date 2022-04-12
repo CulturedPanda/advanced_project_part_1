@@ -18,7 +18,7 @@ class Sidebar extends Component{
 
     render() {
         return(
-            <div className="col-3 ms-5 mh-75 pe-0" id="sidebar-div">
+            <div className="col-3 ms-5 mh-75 pe-0 border-end border-dark border-1" id="sidebar-div">
                 <UserProfileContainer username="Panda" setLogIn={this.props.setLogIn} renderButtons={true}
                                       renderNum={true} setUpdate={this.setShouldUpdate}/>
                 <Contacts username="Panda" shouldUpdate={this.state.shouldUpdate}/>
