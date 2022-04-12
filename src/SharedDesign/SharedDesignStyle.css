@@ -85,6 +85,7 @@
     border-radius: 10px;
     position: relative;
     animation: fadeIn 1s ease-in;
+    word-wrap: break-word;
 }
 .chat-bubble-left{
     left: 0;
