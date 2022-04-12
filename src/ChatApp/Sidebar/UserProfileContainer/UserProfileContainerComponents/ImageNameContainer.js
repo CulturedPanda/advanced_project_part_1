@@ -5,7 +5,8 @@ function ImageNameContainer({props}){
         <span>
             <img className="user-profile-img border-circle p-1 m-2"
                    src={RegisteredUser.getImage(props.username)} alt="User profile image"/>
-            {props.username}
+            {RegisteredUser.getNickname(props.username)}
+            {props.renderNum && ("#" + RegisteredUser.getNickNum(props.username))}
                 </span>
     )
 }

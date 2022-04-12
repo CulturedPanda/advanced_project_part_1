@@ -6,34 +6,34 @@ class RegisteredUser{
     static registeredUsers = [
         {username:"Alice", password:"1234", email: "alice@foo.com",
         phone: null, dateOfBirth: null, nickname: "Alice", secretQuestions: null, gender: "female", verCode: "111222",
-            img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR", lastSeen: new Date()},
+            img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR", lastSeen: new Date(), nickNum: "4512"},
         {username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date()},
+            lastSeen: new Date(), nickNum: "3532"},
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
             secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
-        contacts: ["Alice", "Bob", "Beb", "Bab", "Blob", "Brob", "Bdob", "Baob", "Badob"], lastSeen: new Date()},
+        contacts: ["Alice", "Bob", "Beb", "Bab", "Blob", "Brob", "Bdob", "Baob", "Badob"], lastSeen: new Date(), nickNum: "5113"},
         {username: "Beb", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date()},
+            lastSeen: new Date(), nickNum: "6167"},
         {username: "Bab", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date()},
+            lastSeen: new Date(), nickNum: "8667"},
         {username: "Blob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date()},
+            lastSeen: new Date(), nickNum: "4677"},
         {username: "Brob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date()},
+            lastSeen: new Date(), nickNum: "1245"},
         {username: "Bdob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date()},
+            lastSeen: new Date(), nickNum: "7124"},
         {username: "Baob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date()},
+            lastSeen: new Date(), nickNum: "3789"},
         {username: "Badob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date()}];
+            lastSeen: new Date(), nickNum: "1852"}];
 
     constructor(pendingUser) {
         this.username = pendingUser.username;
@@ -44,9 +44,32 @@ class RegisteredUser{
         this.nickname = pendingUser.nickname;
         this.secretQuestions = pendingUser.secretQuestions;
         this.verCode = null;
+        this.description = "I just made my account!";
         this.img = null;
+        this.contacts = [];
+        this.lastSeen = new Date();
         sessionStorage.setItem(this.username + "log", JSON.stringify(this));
         sessionStorage.setItem(this.email + "log", JSON.stringify(this));
+    }
+
+    static generateNickNum(){
+        let nickNum = '';
+        let chars = '0123456789';
+        let length = chars.length;
+        for (let i = 0; i < 4; i++) {
+            nickNum += chars.charAt(Math.floor(Math.random() * length));
+        }
+        return nickNum;
+    }
+
+    static getNickNum(username){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        return user.nickNum;
+    }
+
+    static getNickname(username){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        return user.nickname;
     }
 
     static getDescription(username){

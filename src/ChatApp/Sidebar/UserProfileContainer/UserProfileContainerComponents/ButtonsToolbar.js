@@ -1,15 +1,13 @@
 import {Component} from "react";
 import LogOutButton from "./ToolbarButtons/LogOutButton";
+import AddContactButton from "./ToolbarButtons/AddContactButton";
 
 class ButtonsToolbar extends Component {
     render() {
         return (
             <div className="btn-group me-1 pe-3" role="group">
                 <div>
-                    <button type="button" className="btn no-effect-button btn-lg pe-0"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add contact">
-                        <i className="bi bi-person-plus float-end"/>
-                    </button>
+                    <AddContactButton/>
                 </div>
                 <div className="me-2">
                     <LogOutButton props={{setLogIn: this.props.setLogIn}}/>

@@ -9,11 +9,11 @@ class UserProfileContainer extends Component {
         return (
             <div className="row bg-success rounded-2 pe-3 align-items-center">
                 <div className="col-8">
-                    <ImageNameContainer props={{username: this.props.username}}/>
+                    <ImageNameContainer props={{username: this.props.username, renderNum: true}}/>
                 </div>
                 <div className="col-4">
                     <div className="row justify-content-end me-2" role="toolbar">
-                    <ButtonsToolbar setLogIn={this.props.setLogIn}/>
+                        {this.props.renderButtons && <ButtonsToolbar setLogIn={this.props.setLogIn}/>}
                     </div>
                 </div>
             </div>

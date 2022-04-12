@@ -58,7 +58,7 @@ class ContactContainer extends Component {
                         className="btn no-effect-button text-start btn-flex justify-content-left">
                     <div className="col">
                         <div>
-                            <ImageNameContainer props={{username: this.props.username}}/>
+                            <ImageNameContainer props={{username: this.props.username, renderNum: false}}/>
                             <span className="float-end small-text">
                                 {this.timeFromLast()}
                             </span>
