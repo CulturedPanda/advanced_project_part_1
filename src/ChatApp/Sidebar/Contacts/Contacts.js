@@ -25,7 +25,8 @@ class Contacts extends Component {
     filterContacts = (val)=>{
         let contacts = this.state.contacts;
         this.setState({
-            filteredContacts: contacts.filter(element => element.toLowerCase().includes(val.toLowerCase()))
+            filteredContacts: contacts.filter(
+                element => RegisteredUser.getNickname(element).toLowerCase().includes(val.toLowerCase()))
         });
     }
 

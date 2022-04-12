@@ -12,13 +12,7 @@
     color: red;
 }
 
-.overflow-case{
-    height: 77vh;
-}
 
-.overflow-lesser{
-    height: 75vh;
-}
 
 #base-form{
     padding: 14px;
@@ -131,6 +125,14 @@
 }
 
 #sidebar-div{
-    height: 90vh
+    height: 85vh
+}
+
+.overflow-case{
+    height: 75vh;
+}
+
+.overflow-lesser{
+    height: 75vh;
 }
 
