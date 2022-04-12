@@ -14,6 +14,14 @@ class Contacts extends Component {
         }
     }
 
+    updateContacts(){
+        let contactsTemp = RegisteredUser.getContacts(this.props.username);
+        this.setState = {
+            contacts: contactsTemp,
+            filteredContacts: contactsTemp
+        }
+    }
+
     filterContacts = (val)=>{
         let contacts = this.state.contacts;
         this.setState({

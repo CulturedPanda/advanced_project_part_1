@@ -5,6 +5,8 @@ import ModalEmailField from "./ModalComponents/ModalEmailField";
 import ModalUsernameField from "./ModalComponents/ModalUsernameField";
 import ModalNicknameField from "./ModalComponents/ModalNicknameField";
 import ModalPhoneField from "./ModalComponents/ModalPhoneField";
+import RegisteredUser from "../../../../../Users/RegisteredUser";
+import $ from "jquery";
 
 class AddContactModal extends Component {
     constructor(props) {
@@ -15,13 +17,13 @@ class AddContactModal extends Component {
     }
 
     renderField = ()=>{
-        if (this.state.radioValue === "1"){
+        if (this.state.radioValue === "nickname"){
             return(<ModalNicknameField/>)
         }
-        else if (this.state.radioValue === "2"){
+        else if (this.state.radioValue === "username"){
             return(<ModalUsernameField/>)
         }
-        else if (this.state.radioValue === "3"){
+        else if (this.state.radioValue === "email"){
             return(<ModalEmailField/>)
         }
         else{
@@ -35,8 +37,15 @@ class AddContactModal extends Component {
         });
     }
 
-    handleSubmit = ()=>{
-
+    handleSubmit = (e)=>{
+        e.preventDefault();
+        if (this.state.radioValue === "username" || this.state.radioValue === "username"){
+            let val = $("#modal-field").val()
+            if (RegisteredUser.DoesUserExist(val)){
+                RegisteredUser.addContact(this.props.username, val);
+                this.props.setUpdate(true);
+            }
+        }
     }
 
 

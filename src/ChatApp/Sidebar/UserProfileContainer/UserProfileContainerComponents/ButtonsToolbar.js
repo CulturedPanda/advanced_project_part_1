@@ -9,7 +9,7 @@ class ButtonsToolbar extends Component {
             <div className="btn-group me-1 pe-3" role="group">
                 <div>
                     <AddContactButton/>
-                    <AddContactModal username={this.props.username}/>
+                    <AddContactModal username={this.props.username} setUpdate={this.setUpdate}/>
                 </div>
                 <div className="me-2">
                     <LogOutButton props={{setLogIn: this.props.setLogIn}}/>
