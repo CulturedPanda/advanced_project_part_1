@@ -12,11 +12,11 @@ function InputBar({props}) {
     }
 
     return (
-        <div className="row col-9 mt-1 ">
-            <div className="input-group mb-3" >
+        <div className="row col-12">
+            <div className="input-group mb-3 chat-box-tray" >
                 <button type="button" className="btn btn-success" id="paperclip-click" onFocus={handleFocus} >
-                    <i className="bi bi-paperclip"/>
                     <AttachMenu/>
+                    <i className="bi bi-input bi-paperclip"/>
                 </button>
                 <input type="text" className="form-control" placeholder="New message here..." aria-label="Example text with button addon"
                        aria-describedby="button-addon1"/>
