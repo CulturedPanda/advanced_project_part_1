@@ -143,8 +143,3 @@
 .end-padded{
     padding-right: 40%;
 }
-
-.centered{
-    margin-top: 50%;
-    transform: translateY(-50%);
-}
