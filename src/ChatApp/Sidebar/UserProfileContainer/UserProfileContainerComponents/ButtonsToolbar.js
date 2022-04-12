@@ -1,6 +1,7 @@
 import {Component} from "react";
 import LogOutButton from "./ToolbarButtons/LogOutButton";
 import AddContactButton from "./ToolbarButtons/AddContactButton";
+import AddContactModal from "./ToolbarButtons/AddContactModal";
 
 class ButtonsToolbar extends Component {
     render() {
@@ -8,6 +9,7 @@ class ButtonsToolbar extends Component {
             <div className="btn-group me-1 pe-3" role="group">
                 <div>
                     <AddContactButton/>
+                    <AddContactModal username={this.props.username}/>
                 </div>
                 <div className="me-2">
                     <LogOutButton props={{setLogIn: this.props.setLogIn}}/>

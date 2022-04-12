@@ -13,7 +13,8 @@ class UserProfileContainer extends Component {
                 </div>
                 <div className="col-4">
                     <div className="row justify-content-end me-2" role="toolbar">
-                        {this.props.renderButtons && <ButtonsToolbar setLogIn={this.props.setLogIn}/>}
+                        {this.props.renderButtons && <ButtonsToolbar setLogIn={this.props.setLogIn}
+                                                                     username={this.props.username}/>}
                     </div>
                 </div>
             </div>

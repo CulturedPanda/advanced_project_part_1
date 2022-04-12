@@ -62,6 +62,15 @@ class RegisteredUser{
         return nickNum;
     }
 
+    static addContact(username, contact){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        user.contacts.append(contact);
+        RegisteredUser.updateUser(user);
+        let contactUser = JSON.parse(sessionStorage.getItem(contact + "log"));
+        contactUser.contacts.append(username);
+        RegisteredUser.updateUser(contactUser);
+    }
+
     static getNickNum(username){
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
         return user.nickNum;
@@ -79,11 +88,6 @@ class RegisteredUser{
 
     static DoesUserExist(username){
         return (sessionStorage.getItem(username + "log"));
-    }
-    static CheckIfUserNameExists(username){ // Bob
-        return this.registeredUsers.find((user) => {
-            return user.username === username
-        })
     }
 
     static getLastSeen(username){
