@@ -1,6 +1,6 @@
 function ConversationContainer() {
     return (
-        <div className="container-fluid bg-light chat-container">
+        <div className="container-fluid bg-light chat-container overflow-case">
             <div className="chat-panel">
                 <div className="row no-gutters">
                     <div className="col-md-3">
