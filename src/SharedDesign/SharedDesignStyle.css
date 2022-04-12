@@ -120,6 +120,7 @@
 .chat-container{
     overflow: scroll;
     max-height: 78%;
+    background: burlywood;
 }
 
 .end-padded{
