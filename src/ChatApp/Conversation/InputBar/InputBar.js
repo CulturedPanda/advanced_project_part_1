@@ -4,7 +4,7 @@ import {OverlayTrigger, Popover} from "react-bootstrap";
 function InputBar({props}) {
     return (
         <div>
-            <div className="input-group mb-3 chat-box-tray" >
+            <div className="input-group mb-3 input-message-pad" >
                 <OverlayTrigger trigger="click" placemnt="top" rootClose={true} overlay={
  <Popover id="attach-menu-popover">
      <Popover.Body>

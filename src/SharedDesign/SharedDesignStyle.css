@@ -107,7 +107,7 @@
     background: lawngreen;
 }
 
-.chat-box-tray{
+.input-message-pad{
     background: lightgrey;
     padding: 10px 15px;
 }
@@ -125,3 +125,4 @@
 .end-padded{
     padding-right: 40%;
 }
+
