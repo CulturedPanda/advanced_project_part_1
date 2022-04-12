@@ -127,6 +127,10 @@
 }
 
 #conversation{
-    height: 75vh;
+    height: 92vh;
+}
+
+#sidebar-div{
+    height: 90vh
 }
 
