@@ -1,6 +1,6 @@
-function ChatBox() {
+function ConversationContainer() {
     return (
-        <div className="container-fluid bg-light">
+        <div className="container-fluid bg-light chat-container">
             <div className="chat-panel">
                 <div className="row no-gutters">
                     <div className="col-md-3">
@@ -79,4 +79,4 @@ function ChatBox() {
     )
 }
 
-export default ChatBox;
+export default ConversationContainer;
