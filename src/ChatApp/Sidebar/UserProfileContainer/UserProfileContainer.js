@@ -9,7 +9,7 @@ class UserProfileContainer extends Component {
         return (
             <div className="row bg-success rounded-2 pe-3 align-items-center">
                 <div className="col-8">
-                    <ImageNameContainer props={{username: this.props.username, renderNum: true}}/>
+                    <ImageNameContainer props={{username: this.props.username, renderNum: this.props.renderNum}}/>
                 </div>
                 <div className="col-4">
                     <div className="row justify-content-end me-2" role="toolbar">
