@@ -1,14 +1,13 @@
+import VideoButton from "./VideoButton";
+import CameraButton from "./CameraButton";
+import MicButton from "./MicButton";
+
 function AttachMenu() {
     return (
-        <span id="other-text">
-            <label htmlFor="image-input" className="padding form-label"> <i className="bi bi-input bi-image"/></label>
-            <input type="file" className="hide-stuff filename" id="image-input"/>
-
-            <label htmlFor="video-input" className="padding form-label"> <i className="bi bi-input bi-camera-reels"/></label>
-            <input type="file" className="hide-stuff filename" id="video-input"/>
-
-            <label htmlFor="mic-input" className="padding form-label">  <i className="bi bi-input bi-mic"/></label>
-            <input type="file" className="hide-stuff filename" id="mic-input"/>
+        <span>
+            <VideoButton/>
+            <CameraButton/>
+            <MicButton/>
         </span>
     )
 }
