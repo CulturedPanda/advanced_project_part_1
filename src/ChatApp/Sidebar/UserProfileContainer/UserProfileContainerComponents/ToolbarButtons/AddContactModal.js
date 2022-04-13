@@ -1,12 +1,14 @@
 import {Component} from "react";
 import EmailField from "../../../../../Forms/SignUpForm/SignUpComponents/EmailField";
 import ModalSelectionButtons from "./ModalComponents/ModalSelectionButtons";
+import {Modal, Button} from "react-bootstrap";
 import ModalEmailField from "./ModalComponents/ModalEmailField";
 import ModalUsernameField from "./ModalComponents/ModalUsernameField";
 import ModalNicknameField from "./ModalComponents/ModalNicknameField";
 import ModalPhoneField from "./ModalComponents/ModalPhoneField";
 import RegisteredUser from "../../../../../Users/RegisteredUser";
 import $ from "jquery";
+
 
 class AddContactModal extends Component {
     constructor(props) {
@@ -43,7 +45,8 @@ class AddContactModal extends Component {
             let val = $("#modal-field").val()
             if (RegisteredUser.DoesUserExist(val)){
                 RegisteredUser.addContact(this.props.username, val);
-                this.props.setUpdate(true);
+                this.props.updateContacts();
+                this.props.setShow(false);
             }
         }
     }
@@ -52,31 +55,32 @@ class AddContactModal extends Component {
 
     render() {
         return (
-            <div className="modal centered fade" id="add-contact-modal" tabIndex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Add contact</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
-                        </div>
-                        <div className="modal-body">
-                            <form>
-                                <div>
-                                    <ModalSelectionButtons props={{set: this.setRadioVal}}/>
-                                    <div className="m-5">
-                                        {this.renderField()}
-                                    </div>
+            <Modal
+                show={this.props.show}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton onClick={()=>{this.props.setShow(false)}}>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Add contact
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                        <form>
+                            <div>
+                                <ModalSelectionButtons props={{set: this.setRadioVal}}/>
+                                <div className="m-5">
+                                    {this.renderField()}
                                 </div>
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Add</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </div>
+                        </form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button className="btn-danger" onClick={()=>this.props.setShow(false)}>Close</Button>
+                    <Button onClick={this.handleSubmit}>Add contact</Button>
+                </Modal.Footer>
+            </Modal>
         )
     }
 }

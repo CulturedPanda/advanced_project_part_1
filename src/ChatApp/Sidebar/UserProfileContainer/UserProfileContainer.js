@@ -5,6 +5,18 @@ import ButtonsToolbar from "./UserProfileContainerComponents/ButtonsToolbar";
 
 class UserProfileContainer extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state={showModal: false};
+    }
+
+    setShowModal = (val)=>{
+        this.setState({
+            showModal: val
+        })
+    }
+
+
     render() {
         return (
             <div className="row bg-success pe-3 align-items-center">
@@ -15,7 +27,9 @@ class UserProfileContainer extends Component {
                     <div className="row justify-content-end me-2" role="toolbar">
                         {this.props.renderButtons && <ButtonsToolbar setLogIn={this.props.setLogIn}
                                                                      username={this.props.username}
-                                                                     setUpdate={this.props.setUpdate}/>}
+                                                                     updateContacts={this.props.updateContacts}
+                                                                     setShow={this.setShowModal}
+                                                                     show={this.state.showModal}/>}
                     </div>
                 </div>
             </div>

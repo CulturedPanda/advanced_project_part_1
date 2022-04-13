@@ -6,34 +6,34 @@ class RegisteredUser{
     static registeredUsers = [
         {username:"Alice", password:"1234", email: "alice@foo.com",
         phone: null, dateOfBirth: null, nickname: "Alice", secretQuestions: null, gender: "female", verCode: "111222",
-            img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR", lastSeen: new Date(), nickNum: "4512"},
+            img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR", contacts: [], lastSeen: new Date(), nickNum: "4512"},
         {username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "3532"},
+            lastSeen: new Date(), contacts: [], nickNum: "3532"},
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
             secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
-        contacts: ["Alice", "Bob", "Beb", "Bab", "Blob", "Brob", "Bdob", "Baob", "Badob"], lastSeen: new Date(), nickNum: "5113"},
-        {username: "Beb", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+        contacts: ["Alice", "Bob", "Beb", "Brob", "Bdob", "Baob", "Badob"], lastSeen: new Date(), nickNum: "5113"},
+        {username: "Beb", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Beb",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "6167"},
-        {username: "Bab", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            lastSeen: new Date(), contacts: [], nickNum: "6167"},
+        {username: "Bab", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bab",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "8667"},
-        {username: "Blob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            lastSeen: new Date(), nickNum: "8667" ,contacts: []},
+        {username: "Blob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Blob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "4677"},
-        {username: "Brob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            lastSeen: new Date(), nickNum: "4677", contacts: []},
+        {username: "Brob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Brob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "1245"},
-        {username: "Bdob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            lastSeen: new Date(), nickNum: "1245" , contacts: []},
+        {username: "Bdob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bdob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "7124"},
-        {username: "Baob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            lastSeen: new Date(), nickNum: "7124" , contacts: []},
+        {username: "Baob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Baob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "3789"},
-        {username: "Badob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
+            lastSeen: new Date(), nickNum: "3789" , contacts: []},
+        {username: "Badob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Badob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "1852"}];
+            lastSeen: new Date(), nickNum: "1852" , contacts: []}];
 
     constructor(pendingUser) {
         this.username = pendingUser.username;
@@ -64,10 +64,10 @@ class RegisteredUser{
 
     static addContact(username, contact){
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        user.contacts.append(contact);
+        user.contacts.push(contact);
         RegisteredUser.updateUser(user);
         let contactUser = JSON.parse(sessionStorage.getItem(contact + "log"));
-        contactUser.contacts.append(username);
+        contactUser.contacts.push(username);
         RegisteredUser.updateUser(contactUser);
     }
 

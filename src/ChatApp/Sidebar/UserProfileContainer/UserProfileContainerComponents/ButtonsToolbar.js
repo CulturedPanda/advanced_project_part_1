@@ -8,8 +8,9 @@ class ButtonsToolbar extends Component {
         return (
             <div className="btn-group me-1 pe-3" role="group">
                 <div>
-                    <AddContactButton/>
-                    <AddContactModal username={this.props.username} setUpdate={this.setUpdate}/>
+                    <AddContactButton props={{setShow: this.props.setShow}}/>
+                    <AddContactModal show={this.props.show} username={this.props.username}
+                                     updateContacts={this.props.updateContacts} setShow={this.props.setShow}/>
                 </div>
                 <div className="me-2">
                     <LogOutButton props={{setLogIn: this.props.setLogIn}}/>
