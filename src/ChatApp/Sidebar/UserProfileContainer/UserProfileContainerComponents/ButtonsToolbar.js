@@ -5,6 +5,9 @@ import AddContactModal from "./AddContactModal";
 import MoreOptionsDropdown from "./ToolbarButtons/MoreOptionsDropdown";
 import ChangePictureButton from "./ToolbarButtons/MoreOptionsDropdownButtons/ChangePictureButton";
 
+
+// Used to be more complex, so it's a class even though it should be a function component.
+// We just did not want to re-write anything.
 class ButtonsToolbar extends Component {
     render() {
         return (
@@ -18,7 +21,8 @@ class ButtonsToolbar extends Component {
                     <LogOutButton props={{setLogIn: this.props.setLogIn}}/>
                 </div>
                 <div className="text-center">
-                    <MoreOptionsDropdown/>
+                    <MoreOptionsDropdown props={{username: this.props.username,
+                        updateProfilePicture: this.props.updateProfilePicture}}/>
                 </div>
             </div>
         )

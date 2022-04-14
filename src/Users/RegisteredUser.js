@@ -13,7 +13,7 @@ class RegisteredUser{
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
             secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
         contacts: ["Alice", "Bob", "Beb", "Brob", "Bdob", "Baob", "Badob"], lastSeen: new Date(), nickNum: "5113",
-        conversations: {with: "Alice", message: [{sender: true, content: "Hello"}]}},
+        conversations: [{with: "Alice", messages: [{sender: true, content: "Hello"},{sender: false, content: "Yoooo"}]}]},
         {username: "Beb", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Beb",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
             lastSeen: new Date(), contacts: [], nickNum: "6167"},
@@ -63,6 +63,11 @@ class RegisteredUser{
         return nickNum;
     }
 
+    static getConvo(username, convoWith){
+        let user= JSON.parse(sessionStorage.getItem(username+"log"))
+        return user.conversations.find(x=>x.with===convoWith).messages;
+    }
+
     static addContact(username, contact){
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
         user.contacts.push(contact);
@@ -70,6 +75,25 @@ class RegisteredUser{
         let contactUser = JSON.parse(sessionStorage.getItem(contact + "log"));
         contactUser.contacts.push(username);
         RegisteredUser.updateUser(contactUser);
+    }
+
+    static updateProfileImg(username, url){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        user.img = url;
+        RegisteredUser.updateUser(user);
+    }
+
+    static getImage(username){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        if (!user){
+            return person;
+        }
+        if (user.img){
+            return user.img;
+        }
+        else{
+            return person;
+        }
     }
 
     static getNickNum(username){
@@ -117,19 +141,6 @@ class RegisteredUser{
         RegisteredUser.updateUser(user);
     }
 
-    static getImage(username){
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        if (!user){
-            return person;
-        }
-        if (user.img){
-            return user.img;
-        }
-        else{
-            return person;
-        }
-    }
-
     static updateUser(user){
         sessionStorage.removeItem(user.username + "log");
         sessionStorage.removeItem(user.email + "log");
@@ -156,11 +167,6 @@ class RegisteredUser{
     static doEmailAndPasswordMatch(email, password){
         let user = JSON.parse(sessionStorage.getItem(email + "log"));
         return (user && user.password === password);
-    }
-
-    static getConvo(username, convoWith){
-        let user= JSON.parse(sessionStorage.getItem(username+"log"))
-        return(user.conversations.find(x=>x.with=convoWith))
     }
 
 }

@@ -1,12 +1,12 @@
-import VideoButton from "./VideoButton";
 import CameraButton from "./CameraButton";
+import VideoButton from "./VideoButton";
 import MicButton from "./MicButton";
 
 function AttachMenu() {
     return (
         <span>
-            <VideoButton/>
             <CameraButton/>
+            <VideoButton/>
             <MicButton/>
         </span>
     )
