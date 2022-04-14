@@ -43,13 +43,13 @@ class ContactContainer extends Component {
 
     focusHandler = () => {
         let thisItem = $("#contact" + this.props.username);
-        thisItem.addClass("active");
+        thisItem.addClass("active border-primary border-3");
         this.props.setConvo(this.props.username);
     }
 
     blurHandler = () => {
         let thisItem = $("#contact" + this.props.username);
-        thisItem.removeClass("active");
+        thisItem.removeClass("active border-primary border-3");
     }
 
     render() {
