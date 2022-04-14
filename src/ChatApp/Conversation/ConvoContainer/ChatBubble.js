@@ -46,6 +46,7 @@ class ChatBubble extends Component {
     }
 
     // TODO: Fix needing to scroll down when sending messages, auto scroll down instead.
+    // TODO: Auto scroll to last message when switching contacts.
     render() {
         return (
             <>
