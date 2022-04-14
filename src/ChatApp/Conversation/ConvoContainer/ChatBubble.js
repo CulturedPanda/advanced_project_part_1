@@ -10,13 +10,13 @@ class ChatBubble extends Component {
     }
 
     determineSide = () => {
-        let side = this.props.sender ? "left" : "right"
-        return "chat-bubble chat-bubble-" + side;
+        let side = this.props.sender ? "right" : "left"
+        return "chat-bubble chat-bubble-" + side +" chat-bubble-" + this.props.type;
     }
 
     // TODO: Fill class type
     determineMargin = () => {
-        let side = this.props.sender ? "" : "offset-md-9"
+        let side = this.props.sender ? "offset-md-9" : ""
         let classType;
         if (this.props.type === "text"){
             //classType = "small-text";
