@@ -1,7 +1,7 @@
 import {Component} from "react";
 import RegisteredUser from "../../../Users/RegisteredUser";
 
-class ChateBubble extends Component{
+class ChatBubble extends Component{
     generateContent = () =>{
         if (this.props.sender){
             return(<div className="chat-bubble chat-bubble-right"</div>)
