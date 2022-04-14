@@ -13,7 +13,7 @@ class RegisteredUser{
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
             secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
         contacts: ["Alice", "Bob", "Beb", "Brob", "Bdob", "Baob", "Badob"], lastSeen: new Date(), nickNum: "5113"},
-        {username: "Beb", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Beb",
+        {username: "Beb", password: "5678", email: "beb@bmail.com", phone: null, dateOfBirth: null, nickname: "Beb",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
             lastSeen: new Date(), contacts: [], nickNum: "6167"},
         {username: "Bab", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bab",

@@ -1,7 +1,7 @@
 import {Component} from "react";
 import LogOutButton from "./ToolbarButtons/LogOutButton";
 import AddContactButton from "./ToolbarButtons/AddContactButton";
-import AddContactModal from "./ToolbarButtons/AddContactModal";
+import AddContactModal from "./AddContactModal";
 
 class ButtonsToolbar extends Component {
     render() {

@@ -44,6 +44,7 @@ class ContactContainer extends Component {
     focusHandler = () => {
         let thisItem = $("#contact" + this.props.username);
         thisItem.addClass("active");
+        this.props.setConvo(this.props.username);
     }
 
     blurHandler = () => {

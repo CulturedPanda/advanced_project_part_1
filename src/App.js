@@ -34,11 +34,11 @@ function App() {
     });
 
     let cookie_verified = false;
-    const username = Utils.getCookie("username");
+    const cUsername = Utils.getCookie("username");
     const password = Utils.getCookie("password");
-    if (username && password){
-        if (registeredUser.DoUserAndPasswordMatch(username, password)
-            || registeredUser.doEmailAndPasswordMatch(username, password)){
+    if (cUsername && password){
+        if (registeredUser.DoUserAndPasswordMatch(cUsername, password)
+            || registeredUser.doEmailAndPasswordMatch(cUsername, password)){
             cookie_verified = true;
         }
     }
@@ -48,7 +48,7 @@ function App() {
     return (
         <SharedDesign>
             <BrowserRouter>
-                <Router props={{loggedIn: userLoggedIn, setLoggedIn: setUserLoggedIn}}/>
+                <Router props={{loggedIn: userLoggedIn, setLoggedIn: setUserLoggedIn, username: cUsername}}/>
             </BrowserRouter>
         </SharedDesign>
     );

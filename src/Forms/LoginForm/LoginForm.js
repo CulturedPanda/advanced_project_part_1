@@ -27,7 +27,6 @@ function LoginForm({props}) {
                 Utils.setCookie("username", username, 7);
                 Utils.setCookie("password", password, 7);
             }
-            props.username("");
             nav("/chat");
         }
         let wrongDetails = $("#wrong-details-text");
