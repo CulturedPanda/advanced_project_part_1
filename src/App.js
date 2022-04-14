@@ -16,7 +16,7 @@ import ForgotPasswordFormResetPassword
 import MainApp from "./ChatApp/MainApp";
 import React, {useState} from "react";
 import Router from "./Misc/Router";
-import Utils from "./Misc/Utils";
+import CookieHandling from "./Misc/CookieHandling";
 import registeredUser from "./Users/RegisteredUser";
 
 function App() {
@@ -34,8 +34,8 @@ function App() {
     });
 
     let cookie_verified = false;
-    const cUsername = Utils.getCookie("username");
-    const password = Utils.getCookie("password");
+    const cUsername = CookieHandling.getCookie("username");
+    const password = CookieHandling.getCookie("password");
     if (cUsername && password){
         if (registeredUser.DoUserAndPasswordMatch(cUsername, password)
             || registeredUser.doEmailAndPasswordMatch(cUsername, password)){

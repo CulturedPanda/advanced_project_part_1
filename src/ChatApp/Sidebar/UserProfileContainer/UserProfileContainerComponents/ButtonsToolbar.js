@@ -2,6 +2,8 @@ import {Component} from "react";
 import LogOutButton from "./ToolbarButtons/LogOutButton";
 import AddContactButton from "./ToolbarButtons/AddContactButton";
 import AddContactModal from "./AddContactModal";
+import MoreOptionsDropdown from "./ToolbarButtons/MoreOptionsDropdown";
+import ChangePictureButton from "./ToolbarButtons/MoreOptionsDropdownButtons/ChangePictureButton";
 
 class ButtonsToolbar extends Component {
     render() {
@@ -15,11 +17,8 @@ class ButtonsToolbar extends Component {
                 <div className="me-2">
                     <LogOutButton props={{setLogIn: this.props.setLogIn}}/>
                 </div>
-                <div>
-                    <button type="button" className="btn no-effect-button btn-lg ps-0"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="More options">
-                        <i className="bi bi-three-dots-vertical float-end"/>
-                    </button>
+                <div className="text-center">
+                    <MoreOptionsDropdown/>
                 </div>
             </div>
         )

@@ -1,4 +1,4 @@
-import Utils from "../../../../../Misc/Utils";
+import CookieHandling from "../../../../../Misc/CookieHandling";
 import {useNavigate} from "react-router";
 
 function LogOutButton({props}){
@@ -6,8 +6,8 @@ function LogOutButton({props}){
     const nav = useNavigate();
 
     const clickHandler = ()=>{
-        Utils.deleteCookie("username");
-        Utils.deleteCookie("password");
+        CookieHandling.deleteCookie("username");
+        CookieHandling.deleteCookie("password");
         props.setLogIn(false);
         nav('/log_in')
     }
