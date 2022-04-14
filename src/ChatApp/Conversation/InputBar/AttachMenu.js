@@ -6,7 +6,7 @@ function AttachMenu({props}) {
     return (
         <span>
             <CameraButton props={{username: props.username, convo: props.convo, setConvo: props.setConvo}}/>
-            <VideoButton/>
+            <VideoButton props={{username: props.username, convo: props.convo, setConvo: props.setConvo}}/>
             <MicButton/>
         </span>
     )

@@ -5,7 +5,6 @@ function CameraButton({props}) {
 
     const handleChange = (e)=>{
         let url = URL.createObjectURL(e.target.files[0]);
-        console.log(url);
         RegisteredUser.addMessageToConvo(props.username, props.convo, {
             sender: true, type: "img", time: new Date(), content: url
         });
