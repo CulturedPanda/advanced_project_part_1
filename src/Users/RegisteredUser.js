@@ -9,7 +9,7 @@ class RegisteredUser{
             img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR", contacts: [], lastSeen: new Date(), nickNum: "4512"},
         {username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), contacts: [], nickNum: "3532"},
+            lastSeen: new Date(), contacts: [], nickNum: "3532", conversations: []},
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
             secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
         contacts: ["Alice", "Bob", "Beb", "Brob", "Bdob", "Baob", "Badob"], lastSeen: new Date(), nickNum: "5113",
@@ -19,25 +19,25 @@ class RegisteredUser{
                     {sender: false, type:"text", time: new Date(), content: "YES I AM"}]}]},
         {username: "Beb", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Beb",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), contacts: [], nickNum: "6167"},
+            lastSeen: new Date(), contacts: [], nickNum: "6167", conversations: []},
         {username: "Bab", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bab",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "8667" ,contacts: []},
+            lastSeen: new Date(), nickNum: "8667" ,contacts: [], conversations: []},
         {username: "Blob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Blob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "4677", contacts: []},
+            lastSeen: new Date(), nickNum: "4677", contacts: [], conversations: []},
         {username: "Brob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Brob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "1245" , contacts: []},
+            lastSeen: new Date(), nickNum: "1245" , contacts: [], conversations: []},
         {username: "Bdob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bdob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "7124" , contacts: []},
+            lastSeen: new Date(), nickNum: "7124" , contacts: [], conversations: []},
         {username: "Baob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Baob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "3789" , contacts: []},
+            lastSeen: new Date(), nickNum: "3789" , contacts: [], conversations: []},
         {username: "Badob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Badob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "1852" , contacts: []}];
+            lastSeen: new Date(), nickNum: "1852" , contacts: [], conversations: []}];
 
     constructor(pendingUser) {
         this.username = pendingUser.username;
@@ -75,9 +75,11 @@ class RegisteredUser{
     static addContact(username, contact){
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
         user.contacts.push(contact);
+        user.conversations.push({with: contact, messages: []});
         RegisteredUser.updateUser(user);
         let contactUser = JSON.parse(sessionStorage.getItem(contact + "log"));
         contactUser.contacts.push(username);
+        contactUser.conversations.push({with: username, messages: []});
         RegisteredUser.updateUser(contactUser);
     }
 

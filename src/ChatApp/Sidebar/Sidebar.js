@@ -29,8 +29,6 @@ class Sidebar extends Component{
                 contacts: this.state.contacts.concat(newContact[0]),
                 filteredContacts: this.state.contacts.concat(newContact[0]),
                 shouldUpdate: false
-            }, () => {
-                console.log(this.state.contacts)
             })
         }
     }

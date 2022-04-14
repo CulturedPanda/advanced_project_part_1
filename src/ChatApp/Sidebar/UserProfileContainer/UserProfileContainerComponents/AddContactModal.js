@@ -73,7 +73,7 @@ class AddContactModal extends Component {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <div>
                                 <ModalSelectionButtons props={{set: this.setRadioVal}}/>
                                 <div className="m-5">
