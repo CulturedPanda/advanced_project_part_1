@@ -152,13 +152,12 @@
 
 /*TODO*/
 .chat-bubble-video{
-    background: red;
+    margin-left: -150px;
+    right: 0;
 }
 
 .chat-bubble-img{
-    background: #61dafb;
-    margin-right: 5px;
-    margin-bottom: 100px;
-    size: 200px;
+    margin-left: -150px;
+    right: 0;
 }
 
