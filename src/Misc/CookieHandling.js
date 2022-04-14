@@ -1,4 +1,4 @@
-class Utils{
+class CookieHandling {
     static setCookie(cname, cvalue, exdays) {
         const d = new Date();
         d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -23,9 +23,9 @@ class Utils{
     }
 
     static deleteCookie(cname){
-        const cvalue = Utils.getCookie(cname);
+        const cvalue = CookieHandling.getCookie(cname);
         document.cookie = cname + "=" + cvalue + ";expires=Thu, 01 Jan 1970 00:00:01 GMT"
     }
 }
 
-export default Utils;
+export default CookieHandling;

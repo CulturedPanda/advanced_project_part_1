@@ -7,7 +7,7 @@ class Sidebar extends Component{
 
     constructor(props) {
         super(props);
-        let contactsTemp = RegisteredUser.getContacts("Panda");
+        let contactsTemp = RegisteredUser.getContacts(this.props.username);
         this.state = {
             contacts: contactsTemp,
             filteredContacts: contactsTemp};
@@ -22,7 +22,7 @@ class Sidebar extends Component{
     }
 
     updateContacts = ()=>{
-        let contactsTemp = RegisteredUser.getContacts("Panda");
+        let contactsTemp = RegisteredUser.getContacts(this.props.username);
         let newContact = contactsTemp.filter(x => !this.state.contacts.includes(x));
         if (newContact[0]) {
             this.setState({
@@ -40,11 +40,11 @@ class Sidebar extends Component{
     render() {
         return(
             <div className="col-3 ms-5 mh-75 pe-0" id="sidebar-div">
-                <UserProfileContainer username="Panda" setLogIn={this.props.setLogIn} renderButtons={true}
+                <UserProfileContainer username={this.props.username} setLogIn={this.props.setLogIn} renderButtons={true}
                                       renderNum={true} updateContacts={this.updateContacts}/>
                 <Contacts username="Panda" shouldUpdate={this.state.shouldUpdate}
                           contacts={this.state.contacts} filteredContacts={this.state.filteredContacts}
-                          filterContacts={this.filterContacts}/>
+                          filterContacts={this.filterContacts} setConvo={this.props.setConvo}/>
             </div>
         )
     }

@@ -5,7 +5,7 @@ import PasswordField from "./LoginFormComponents/PasswordField";
 import {useRef} from "react";
 import RegisteredUser from "../../Users/RegisteredUser";
 import $ from "jquery";
-import Utils from "../../Misc/Utils";
+import CookieHandling from "../../Misc/CookieHandling";
 import {useNavigate} from "react-router";
 import ShowPasswordButton from "./LoginFormComponents/ShowPasswordButton";
 import BaseForm from "../BaseForm";
@@ -24,10 +24,9 @@ function LoginForm({props}) {
             wrongDetails.hide();
             props.setLogIn(true);
             if ($("#remember-me-checkbox").is(":checked")) {
-                Utils.setCookie("username", username, 7);
-                Utils.setCookie("password", password, 7);
+                CookieHandling.setCookie("username", username, 7);
+                CookieHandling.setCookie("password", password, 7);
             }
-            props.username("");
             nav("/chat");
         }
         let wrongDetails = $("#wrong-details-text");

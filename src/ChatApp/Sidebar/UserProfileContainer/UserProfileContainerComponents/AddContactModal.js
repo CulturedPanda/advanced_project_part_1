@@ -1,12 +1,12 @@
 import {Component} from "react";
-import EmailField from "../../../../../Forms/SignUpForm/SignUpComponents/EmailField";
+import EmailField from "../../../../Forms/SignUpForm/SignUpComponents/EmailField";
 import ModalSelectionButtons from "./ModalComponents/ModalSelectionButtons";
 import {Modal, Button} from "react-bootstrap";
 import ModalEmailField from "./ModalComponents/ModalEmailField";
 import ModalUsernameField from "./ModalComponents/ModalUsernameField";
 import ModalNicknameField from "./ModalComponents/ModalNicknameField";
 import ModalPhoneField from "./ModalComponents/ModalPhoneField";
-import RegisteredUser from "../../../../../Users/RegisteredUser";
+import RegisteredUser from "../../../../Users/RegisteredUser";
 import $ from "jquery";
 
 
@@ -37,16 +37,22 @@ class AddContactModal extends Component {
         this.setState({
             radioValue: val
         });
+        $("#modal-field-error").hide();
     }
 
     handleSubmit = (e)=>{
         e.preventDefault();
-        if (this.state.radioValue === "username" || this.state.radioValue === "username"){
+        if (this.state.radioValue === "username" || this.state.radioValue === "email"){
             let val = $("#modal-field").val()
             if (RegisteredUser.DoesUserExist(val)){
                 RegisteredUser.addContact(this.props.username, val);
                 this.props.updateContacts();
                 this.props.setShow(false);
+            }
+            else{
+                let errText = $("#modal-field-error");
+                errText.text("Error: A user with this " + this.state.radioValue + " does not exist")
+                errText.show();
             }
         }
     }
@@ -72,6 +78,7 @@ class AddContactModal extends Component {
                                 <ModalSelectionButtons props={{set: this.setRadioVal}}/>
                                 <div className="m-5">
                                     {this.renderField()}
+                                    <div className="error-text" id="modal-field-error"/>
                                 </div>
                             </div>
                         </form>

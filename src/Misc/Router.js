@@ -14,7 +14,7 @@ import React, {useState} from "react";
 
 function Router({props}){
 
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState(props.username);
     const [toggle, setToggle] = useState(true);
     const [from, setFrom] = useState(false);
 
@@ -51,7 +51,7 @@ function Router({props}){
         else{
             return(
                 <>
-                    <Route path="*" element={<MainApp props={{setLogIn: props.setLoggedIn}}/>}/>
+                    <Route path="*" element={<MainApp props={{setLogIn: props.setLoggedIn, username: username}}/>}/>
                 </>
             )
         }
