@@ -149,3 +149,16 @@
     max-width: 100%;
 }
 
+
+/*TODO*/
+.chat-bubble-video{
+    background: red;
+}
+
+.chat-bubble-img{
+    background: #61dafb;
+    margin-right: 5px;
+    margin-bottom: 100px;
+    size: 200px;
+}
+

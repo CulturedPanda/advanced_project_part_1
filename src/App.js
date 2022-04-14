@@ -48,7 +48,7 @@ function App() {
     return (
         <SharedDesign>
             <BrowserRouter>
-                <Router props={{loggedIn: userLoggedIn, setLoggedIn: setUserLoggedIn, username: cUsername}}/>
+                <Router props={{loggedIn: userLoggedIn, setLoggedIn: setUserLoggedIn, username: "Panda"}}/>
             </BrowserRouter>
         </SharedDesign>
     );
