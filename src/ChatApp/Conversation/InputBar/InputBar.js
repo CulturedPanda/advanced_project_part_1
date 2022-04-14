@@ -24,10 +24,10 @@ class InputBar extends Component {
                         <OverlayTrigger trigger="click" placemnt="top" rootClose={true} overlay={
                             <Popover id="attach-menu-popover">
                                 <Popover.Body>
-                                    <AttachMenu/>
+                                    <AttachMenu props={{username: this.props.username,
+                                        convo: this.props.convo, setConvo: this.props.setConvo}}/>
                                 </Popover.Body>
                             </Popover>
-
                         }>
                             <button type="button" className="btn btn-success" id="paperclip-click">
                                 <i className="bi bi-input bi-paperclip"/>

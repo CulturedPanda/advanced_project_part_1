@@ -17,6 +17,15 @@ class ChatBubble extends Component {
         return "col-md-3 " + side;
     }
 
+    createContent = ()=>{
+        if (this.props.type === "text"){
+            return this.props.content;
+        }
+        else if (this.props.type === "img"){
+            return (<img className="chat-img" src={this.props.content}/>)
+        }
+    }
+
     render() {
         return (
             <>
@@ -25,7 +34,7 @@ class ChatBubble extends Component {
                         <div className={this.determineSide()}>
                                 <span>
                                     <span>
-                                        {this.props.content}
+                                        {this.createContent()}
                                     </span>
                                     <span className="very-small-text float-end">
                                         {this.parseTime()}

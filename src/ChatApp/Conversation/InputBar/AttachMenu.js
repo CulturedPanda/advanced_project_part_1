@@ -2,10 +2,10 @@ import CameraButton from "./CameraButton";
 import VideoButton from "./VideoButton";
 import MicButton from "./MicButton";
 
-function AttachMenu() {
+function AttachMenu({props}) {
     return (
         <span>
-            <CameraButton/>
+            <CameraButton props={{username: props.username, convo: props.convo, setConvo: props.setConvo}}/>
             <VideoButton/>
             <MicButton/>
         </span>
