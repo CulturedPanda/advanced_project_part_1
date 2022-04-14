@@ -5,8 +5,9 @@ import ChatBubble from "./ChatBubble";
 class ConversationContainer extends Component {
     generateChatBubbles =() =>{
         return(
-            RegisteredUser.getConvo("Panda", "Alice").map((message)=>
-                <ChatBubble key={message.content} content={message.content} sender={message.sender}/>
+            this.props.convo.map((message)=>
+                <ChatBubble key={message.content} content={message.content} time={message.time}
+                            sender={message.sender} type={message.type}/>
         ))
     }
     render(){

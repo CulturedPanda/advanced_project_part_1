@@ -31,6 +31,10 @@
     display: none;
 }
 
+.very-small-text{
+    font-size: 10px;
+}
+
 .error-text{
     display: none;
     color: red;

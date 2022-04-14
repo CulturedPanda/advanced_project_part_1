@@ -51,7 +51,7 @@ function Router({props}){
         else{
             return(
                 <>
-                    <Route path="*" element={<MainApp props={{setLogIn: props.setLoggedIn, username: username}}/>}/>
+                    <Route path="*" element={<MainApp setLogIn={props.setLoggedIn} username={username}/>}/>
                 </>
             )
         }
