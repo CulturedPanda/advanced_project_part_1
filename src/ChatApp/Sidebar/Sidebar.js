@@ -40,7 +40,7 @@ class Sidebar extends Component{
             <div className="col-3 ms-5 mh-75 pe-0" id="sidebar-div">
                 <UserProfileContainer username={this.props.username} setLogIn={this.props.setLogIn} renderButtons={true}
                                       renderNum={true} updateContacts={this.updateContacts}/>
-                <Contacts username="Panda" shouldUpdate={this.state.shouldUpdate}
+                <Contacts username={this.props.username} shouldUpdate={this.state.shouldUpdate}
                           contacts={this.state.contacts} filteredContacts={this.state.filteredContacts}
                           filterContacts={this.filterContacts} setConvo={this.props.setConvo}/>
             </div>

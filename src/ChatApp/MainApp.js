@@ -7,7 +7,7 @@ class MainApp extends Component{
 
     constructor(props) {
         super(props);
-        this.state = {currentConvo: "Alice", convoContent: RegisteredUser.getConvo(this.props.username, "Alice")}
+        this.state = {currentConvo: "", convoContent: RegisteredUser.getConvo(this.props.username, "")}
     }
 
     setConvo = (convoWith)=>{

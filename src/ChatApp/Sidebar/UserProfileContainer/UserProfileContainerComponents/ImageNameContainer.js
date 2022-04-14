@@ -1,13 +1,17 @@
 import RegisteredUser from "../../../../Users/RegisteredUser";
 
-function ImageNameContainer({props}){
-    return(
-        <span>
+function ImageNameContainer({props}) {
+    return (
+        <>
+            {props.username &&
+                <span>
             <img className="user-profile-img rounded-circle p-1 m-2"
-                   src={props.profilePicture} alt="User profile image"/>
-            {RegisteredUser.getNickname(props.username)}
-            {props.renderNum && ("#" + RegisteredUser.getNickNum(props.username))}
-                </span>
+                 src={props.profilePicture} alt="User profile image"/>
+                    {RegisteredUser.getNickname(props.username)}
+                    {props.renderNum && ("#" + RegisteredUser.getNickNum(props.username))}
+        </span>
+            }
+        </>
     )
 }
 

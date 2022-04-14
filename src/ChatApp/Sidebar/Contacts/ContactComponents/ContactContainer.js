@@ -8,13 +8,13 @@ class ContactContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastMessageDate: RegisteredUser.getLastSeen(this.props.username)
+            lastMessageDate: RegisteredUser.getLastSeen(this.props.user, this.props.username)
         };
     }
 
     updateTime = ()=>{
         this.setState(
-            {lastMessageDate: RegisteredUser.getLastSeen(this.props.username)}
+            {lastMessageDate: RegisteredUser.getLastSeen(this.props.user, this.props.username)}
         );
     }
 

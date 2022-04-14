@@ -8,7 +8,7 @@ class Contacts extends Component {
 
     createContacts = ()=> {
         return this.props.filteredContacts.map((contact) =>
-            <ContactContainer username={contact} setConvo={this.props.setConvo} key={contact}/>)
+            <ContactContainer username={contact} user={this.props.username} setConvo={this.props.setConvo} key={contact}/>)
     }
 
     render() {

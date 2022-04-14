@@ -27,6 +27,7 @@ class UserProfileContainer extends Component {
         return (
             <div className="row bg-success pe-3 align-items-center">
                 <div className="col-8">
+
                     <ImageNameContainer props={{
                         username: this.props.username,
                         renderNum: this.props.renderNum, profilePicture: this.state.profilePicture

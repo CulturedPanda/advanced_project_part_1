@@ -45,9 +45,16 @@ class AddContactModal extends Component {
         if (this.state.radioValue === "username" || this.state.radioValue === "email"){
             let val = $("#modal-field").val()
             if (RegisteredUser.DoesUserExist(val)){
-                RegisteredUser.addContact(this.props.username, val);
-                this.props.updateContacts();
-                this.props.setShow(false);
+                if (!RegisteredUser.isAlreadyContact(this.props.username, val)) {
+                    RegisteredUser.addContact(this.props.username, val);
+                    this.props.updateContacts();
+                    this.props.setShow(false);
+                }
+                else{
+                    let errText= $("#modal-field-error");
+                    errText.text("Error: " + val + " is already your contact");
+                    errText.show();
+                }
             }
             else{
                 let errText = $("#modal-field-error");

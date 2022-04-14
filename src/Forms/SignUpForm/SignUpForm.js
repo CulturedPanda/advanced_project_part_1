@@ -43,7 +43,7 @@ function SignUpForm({props}) {
                 let username = $("#username-signup-field").val();
                 let email = $("#email-signup-field").val();
                 let password = $("#new-pass1").val();
-                let nickname = $("#nickname").val();
+                let nickname = $("#nickname-signup-field").val();
                 let phone = $("#phone").val();
                 let dob = $("#birthday").val();
                 let secretQuestion = $("#secret-questions").val();
