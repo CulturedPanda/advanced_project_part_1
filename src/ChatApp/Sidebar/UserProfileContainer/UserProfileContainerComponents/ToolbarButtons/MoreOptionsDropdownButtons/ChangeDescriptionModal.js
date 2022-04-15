@@ -15,7 +15,7 @@ class ChangeDescriptionModal extends Component{
         e.preventDefault();
         let val = $("#new-desc-input").val();
         let errText = $("#desc-choose-error");
-        if (val.length < 200){
+        if (val.match("^[\\w\\s]+$")){
             RegisteredUser.changeDescription(this.props.username, val);
             this.handleClose(e);
         }
