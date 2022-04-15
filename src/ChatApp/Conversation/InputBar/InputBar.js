@@ -5,50 +5,61 @@ import $ from "jquery"
 import RegisteredUser from "../../../Users/RegisteredUser";
 import Mic from "./Mic";
 
-const audioChunks = [];
+const audioChunks=[];
+let mediaRecorder;
 
 function RecordMessageModal(props) {
-    const [mediaStream, setMediaStream] = React.useState(null);
-    const [mediaRecorder, setMediaRecorder] = React.useState(null);
+    // const [mediaStream, setMediaStream] = React.useState(null);
+    // const [mediaRecorder, setMediaRecorder] = React.useState(null);
     const [isRecording, setIsRecording] = React.useState(false);
 
-    useEffect(() => {
-        navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-            const mediaRecorder = new MediaRecorder(stream);
-
-            setMediaStream(stream);
-            setMediaRecorder(mediaRecorder);
-        });
-    }, [])
-
-    useEffect(() => {
-        if (mediaRecorder){
-            mediaRecorder.ondataavailable = e => {
-                audioChunks.push(e.data);
-            }
-        }
-    }, [mediaRecorder])
+    // useEffect(() => {
+    //     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+    //         const mediaRecorder = new MediaRecorder(stream);
+    //
+    //         setMediaStream(stream);
+    //         setMediaRecorder(mediaRecorder);
+    //     });
+    // }, [])
+    //
+    // useEffect(() => {
+    //     if (mediaRecorder){
+    //         mediaRecorder.ondataavailable = e => {
+    //             audioChunks.push(e.data);
+    //         }
+    //     }
+    // }, [mediaRecorder])
 
     function onClick() {
         if (isRecording) {
             // stop record
             mediaRecorder.stop()
             setIsRecording(false);
-            console.log(audioChunks);
-            const audioBlob = new Blob(audioChunks[0], {type: "audio/webm; codecs=opus"});
-            const audioUrl = URL.createObjectURL(audioBlob);
-            console.log(audioUrl);
-            RegisteredUser.addMessageToConvo(props.username, props.convo, {
-                sender: true, type: "audio", time: new Date(), content: audioUrl
-            });
-            props.setConvo();
-
-            console.log(audioBlob);
-            audioChunks.length=0;
             // send message to chat
         } else {
             setIsRecording(true);
-            mediaRecorder.start();
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    navigator.mediaDevices.getUserMedia({ audio: true })
+                        .then(stream => {
+                            mediaRecorder = new MediaRecorder(stream);
+                            mediaRecorder.start();
+
+                            const audioChunks = [];
+                            mediaRecorder.addEventListener("dataavailable", event => {
+                                audioChunks.push(event.data);
+                            });
+
+                            mediaRecorder.addEventListener("stop", () => {
+                                const audioBlob = new Blob(audioChunks);
+                                const audioUrl = URL.createObjectURL(audioBlob);
+                                RegisteredUser.addMessageToConvo(props.username, props.convo, {
+                                    sender: true, type: "audio", time: new Date(), content: audioUrl
+                                });
+                                props.setConvo();
+                            });
+                        });
+                });
         }
     }
 
