@@ -3,6 +3,7 @@ import {Button, Modal, OverlayTrigger, Popover} from "react-bootstrap";
 import React, {useEffect} from "react";
 import $ from "jquery"
 import RegisteredUser from "../../../Users/RegisteredUser";
+import Mic from "./Mic";
 
 const audioChunks = [];
 
@@ -33,13 +34,17 @@ function RecordMessageModal(props) {
             // stop record
             mediaRecorder.stop()
             setIsRecording(false);
-
-            console.log(audioChunks)
-            const audioBlob = new Blob(audioChunks, {type: "audio/ogg; codecs=opus"});
+            console.log(audioChunks);
+            const audioBlob = new Blob(audioChunks[0], {type: "audio/webm; codecs=opus"});
             const audioUrl = URL.createObjectURL(audioBlob);
-            console.log(audioUrl)
-            const audio = new Audio(audioUrl)
-            audio.play();
+            console.log(audioUrl);
+            RegisteredUser.addMessageToConvo(props.username, props.convo, {
+                sender: true, type: "audio", time: new Date(), content: audioUrl
+            });
+            props.setConvo();
+
+            console.log(audioBlob);
+            audioChunks.length=0;
             // send message to chat
         } else {
             setIsRecording(true);
@@ -106,6 +111,9 @@ const InputBar =  (props) => {
                 <RecordMessageModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
+                    username={props.username}
+                    convo={props.convo}
+                    setConvo={props.setConvo}
                 />
                 </>
         )
