@@ -76,7 +76,7 @@ class AddContactModal extends Component {
             >
                 <Modal.Header closeButton onClick={()=>{this.props.setShow(false)}}>
                     <Modal.Title id="add-contact-modal">
-                        Add contact
+                        Add contact'
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

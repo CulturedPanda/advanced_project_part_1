@@ -1,10 +1,10 @@
-function MicButton() {
-    return (
-        <span>
-            <label htmlFor="mic-input" className="padding form-label hover-pointer"> <i className="bi bi-input bi-mic"/></label>
-            <input type="file" className="hide-stuff filename" id="mic-input"/>
-        </span>
-    )
+import {Button, Modal, OverlayTrigger, Popover} from "react-bootstrap";
+import React from 'react';
+
+function MicButton({ openRecordMessageModal }) {
+       return  <label onClick={openRecordMessageModal} className="padding form-label hover-pointer">
+            <i className="bi bi-input bi-mic"/>
+        </label>
 }
 
 export default MicButton;
