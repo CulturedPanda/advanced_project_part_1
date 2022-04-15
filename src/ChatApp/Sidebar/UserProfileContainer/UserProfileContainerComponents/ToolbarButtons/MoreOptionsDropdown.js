@@ -4,6 +4,7 @@ import DropdownItem from "react-bootstrap/DropdownItem";
 import {forwardRef} from "react";
 import ChangePictureButton from "./MoreOptionsDropdownButtons/ChangePictureButton";
 import CameraButton from "../../../../Conversation/InputBar/CameraButton";
+import ChangeDescriptionButton from "./MoreOptionsDropdownButtons/ChangeDescriptionButton";
 
 function MoreOptionsDropdown({props}) {
 
@@ -30,6 +31,7 @@ function MoreOptionsDropdown({props}) {
                 <DropdownMenu>
                     <DropdownItem as="form"><ChangePictureButton
                         username={props.username} updateProfilePicture={props.updateProfilePicture}/></DropdownItem>
+                    <DropdownItem as="div"><ChangeDescriptionButton username={props.username}/></DropdownItem>
                 </DropdownMenu>
             </Dropdown>
         </>

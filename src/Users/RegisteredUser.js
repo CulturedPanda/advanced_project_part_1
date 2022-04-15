@@ -20,6 +20,7 @@ class RegisteredUser{
                     key: "0" + Hashing.cyrb53("YOU ARE BOB")},
                     {sender: true, type:"text", time: new Date(), content: "YES I AM", key: "1" + Hashing.cyrb53("YES I AM")}]}]},
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
+            description: "Please give bamboo",
             secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
         contacts: [{name: "Alice", lastSeen: new Date()}, {name: "Bob", lastSeen: new Date()},], lastSeen: new Date(), nickNum: "5113",
         conversations: [{with: "Alice", messages: [{sender: true, type:"text", time: new Date(), content: "Hello",
@@ -56,6 +57,12 @@ class RegisteredUser{
             nickNum += chars.charAt(Math.floor(Math.random() * length));
         }
         return nickNum;
+    }
+
+    static changeDescription(username, newDesc){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        user.description = newDesc;
+        RegisteredUser.updateUser(user);
     }
 
     static getConvo(username, convoWith){

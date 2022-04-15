@@ -71,11 +71,11 @@ class AddContactModal extends Component {
             <Modal
                 show={this.props.show}
                 size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
+                aria-labelledby="add-contact-modal"
                 centered
             >
                 <Modal.Header closeButton onClick={()=>{this.props.setShow(false)}}>
-                    <Modal.Title id="contained-modal-title-vcenter">
+                    <Modal.Title id="add-contact-modal">
                         Add contact
                     </Modal.Title>
                 </Modal.Header>
