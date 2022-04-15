@@ -1,45 +1,33 @@
 import PendingUser from "./PendingUser";
 import person from "../Resources/person-circle.svg"
+import Hashing from "../Misc/Hashing";
 
 class RegisteredUser{
 
     static registeredUsers = [
         {username:"Alice", password:"1234", email: "alice@foo.com",
         phone: null, dateOfBirth: null, nickname: "Alice", secretQuestions: null, gender: "female", verCode: "111222",
-            img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR", contacts: [], lastSeen: new Date(), nickNum: "4512"},
+            img:null, description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRR",
+            contacts: [{name: "Panda", lastSeen: new Date()}]
+            , lastSeen: new Date(), nickNum: "4512",
+            conversations: [{with: "Panda", messages: [{sender: false, type:"text", time: new Date(), content: "Hello",
+                    key: "0" + Hashing.cyrb53("Hello")},
+                    {sender: true, type:"text", time: new Date(), content: "Yoooo", key: "1" + Hashing.cyrb53("Yoooo")}]}]},
         {username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), contacts: [], nickNum: "3532", conversations: []},
+            lastSeen: new Date(), contacts: [{name: "Panda", lastSeen: new Date()}], nickNum: "3532",
+            conversations: [{with: "Panda", messages: [{sender: false, type:"text", time: new Date(), content: "YOU ARE BOB",
+                    key: "0" + Hashing.cyrb53("YOU ARE BOB")},
+                    {sender: true, type:"text", time: new Date(), content: "YES I AM", key: "1" + Hashing.cyrb53("YES I AM")}]}]},
         {username: "Panda", password: "2468", email: null, phone: null, dateOfBirth: null, nickname: "Panda",
             secretQuestions: {question: "1",answer: "PandaES"}, gender: null, verCode: "445566", img:null,
-        contacts: [{name: "Alice", lastSeen: new Date()}, {name: "Bob", lastSeen: new Date()}, {name: "Beb", lastSeen: new Date()},
-            {name: "Brob", lastSeen: new Date()}, {name: "Bdob", lastSeen: new Date()}, {name: "Baob", lastSeen: new Date()},
-            {name: "Baob", lastSeen: new Date()}], lastSeen: new Date(), nickNum: "5113",
-        conversations: [{with: "Alice", messages: [{sender: true, type:"text", time: new Date(), content: "Hello"},
-                {sender: false, type:"text", time: new Date(), content: "Yoooo"}]},
-            {with: "Bob", messages: [{sender: true, type:"text", time: new Date(), content: "YOU ARE BOB"},
-                    {sender: false, type:"text", time: new Date(), content: "YES I AM"}]}]},
-        {username: "Beb", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Beb",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), contacts: [], nickNum: "6167", conversations: []},
-        {username: "Bab", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bab",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "8667" ,contacts: [], conversations: []},
-        {username: "Blob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Blob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "4677", contacts: [], conversations: []},
-        {username: "Brob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Brob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "1245" , contacts: [], conversations: []},
-        {username: "Bdob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bdob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "7124" , contacts: [], conversations: []},
-        {username: "Baob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Baob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "3789" , contacts: [], conversations: []},
-        {username: "Badob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Badob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), nickNum: "1852" , contacts: [], conversations: []}];
+        contacts: [{name: "Alice", lastSeen: new Date()}, {name: "Bob", lastSeen: new Date()},], lastSeen: new Date(), nickNum: "5113",
+        conversations: [{with: "Alice", messages: [{sender: true, type:"text", time: new Date(), content: "Hello",
+                key: "0" + Hashing.cyrb53("Hello")},
+                {sender: false, type:"text", time: new Date(), content: "Yoooo", key: "1" + Hashing.cyrb53("Yoooo")}]},
+            {with: "Bob", messages: [{sender: true, type:"text", time: new Date(), content: "YOU ARE BOB",
+                    key: "0" + Hashing.cyrb53("YOU ARE BOB")},
+                    {sender: false, type:"text", time: new Date(), content: "YES I AM", key: "1" + Hashing.cyrb53("YES I AM")}]}]},];
 
     constructor(pendingUser) {
         this.username = pendingUser.username;
@@ -116,11 +104,15 @@ class RegisteredUser{
 
     static addMessageToConvo(username, convoWith, message){
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        user.conversations.find(x=>x.with===convoWith).messages.push(message);
+        let convo = user.conversations.find(x=>x.with===convoWith).messages;
+        message.key = Hashing.cyrb53(convo.length.toString() + message.content);
+        convo.push(message);
         RegisteredUser.updateUser(user);
         let otherUser = JSON.parse(sessionStorage.getItem(convoWith + "log"));
         message.sender = !message.sender;
-        otherUser.conversations.find(x=>x.with===username).messages.push(message)
+        let otherConvo = otherUser.conversations.find(x=>x.with===username).messages;
+        message.key = Hashing.cyrb53(otherConvo.length.toString() + message.content);
+        otherConvo.push(message)
         otherUser.contacts.find(x=>x.name===username).lastSeen = new Date();
         RegisteredUser.updateUser(otherUser)
     }

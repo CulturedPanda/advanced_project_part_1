@@ -6,7 +6,7 @@ class ConversationContainer extends Component {
     generateChatBubbles =() =>{
         return(
             this.props.convo.map((message)=>
-                <ChatBubble key={message.content} content={message.content} time={message.time}
+                <ChatBubble key={message.key} content={message.content} time={message.time}
                             sender={message.sender} type={message.type}/>
         ))
     }
