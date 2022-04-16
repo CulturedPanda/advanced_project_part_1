@@ -15,7 +15,7 @@ function EmailField({props}){
             text.show();
             props.setConfirm(false);
         }
-        else if(current.length < 3 || !current.includes("@")){
+        else if(current.length < 3 || !current.includes("@") || current.length > 300){
             emailField.removeClass("border-success");
             emailField.addClass("border-danger");
             text.text("Error: Invalid email address");

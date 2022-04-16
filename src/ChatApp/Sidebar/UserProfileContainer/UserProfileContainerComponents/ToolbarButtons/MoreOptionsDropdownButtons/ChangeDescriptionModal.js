@@ -15,7 +15,7 @@ class ChangeDescriptionModal extends Component{
         e.preventDefault();
         let val = $("#new-desc-input").val();
         let errText = $("#desc-choose-error");
-        if (val.match("^[\\w\\s]+$")){
+        if (val.match("^[\\w\\s]{1,100}$")){
             RegisteredUser.changeDescription(this.props.username, val);
             this.handleClose(e);
         }
@@ -49,7 +49,7 @@ class ChangeDescriptionModal extends Component{
                         <div className="col-auto input-group mt-2">
                             <span className="input-group-text"><i className="bi bi-person-fill"/></span>
                             <input type="text" placeholder="description" className="form-control" id="new-desc-input"/>
-                            <div className="error-text" id="desc-choose-error">Error: Description must be 1-200 characters
+                            <div className="error-text" id="desc-choose-error">Error: Description must be 1-100 characters
                                 long and contain no special characters</div>
                         </div>
                     </form>

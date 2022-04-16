@@ -8,11 +8,15 @@ function UsernameSignupField({props}){
 
     const handleBlur = ()=>{
         let usernameField = $("#username-signup-field");
-        if (usernameField.val() === ""){
-            return;
-        }
         let text = $("#username-error");
-        if (RegisteredUser.DoesUserExist(usernameField.val()) || PendingUser.doesUserExist(usernameField.val())){
+        if (usernameField.val() === "" || !usernameField.val().match("^[\\w\\s]{1,50}$")){
+            usernameField.removeClass("border-success");
+            usernameField.addClass("border-danger");
+            text.text("Error: Username must be between 1-50 characters and must not contain any special characters")
+            text.show();
+            props.setConfirm(false);
+        }
+        else if (RegisteredUser.DoesUserExist(usernameField.val()) || PendingUser.doesUserExist(usernameField.val())){
             usernameField.removeClass("border-success");
             usernameField.addClass("border-danger");
             text.text("Error: Username already exists")
