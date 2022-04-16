@@ -5,7 +5,6 @@ import $ from "jquery"
 import RegisteredUser from "../../../Users/RegisteredUser";
 import Mic from "./Mic";
 
-const audioChunks=[];
 let mediaRecorder;
 
 function RecordMessageModal(props) {
@@ -37,27 +36,29 @@ function RecordMessageModal(props) {
             setIsRecording(false);
             // send message to chat
         } else {
-            setIsRecording(true);
             navigator.mediaDevices.getUserMedia({ audio: true })
                 .then(stream => {
                     navigator.mediaDevices.getUserMedia({ audio: true })
                         .then(stream => {
                             mediaRecorder = new MediaRecorder(stream);
-                            mediaRecorder.start();
-
-                            const audioChunks = [];
-                            mediaRecorder.addEventListener("dataavailable", event => {
-                                audioChunks.push(event.data);
-                            });
-
-                            mediaRecorder.addEventListener("stop", () => {
-                                const audioBlob = new Blob(audioChunks);
-                                const audioUrl = URL.createObjectURL(audioBlob);
-                                RegisteredUser.addMessageToConvo(props.username, props.convo, {
-                                    sender: true, type: "audio", time: new Date(), content: audioUrl
+                            if (mediaRecorder) {
+                                setIsRecording(true);
+                                mediaRecorder.start();
+                                const audioChunks = [];
+                                mediaRecorder.addEventListener("dataavailable", event => {
+                                    audioChunks.push(event.data);
                                 });
-                                props.setConvo();
-                            });
+
+                                mediaRecorder.addEventListener("stop", () => {
+                                    const audioBlob = new Blob(audioChunks);
+                                    const audioUrl = URL.createObjectURL(audioBlob);
+                                    RegisteredUser.addMessageToConvo(props.username, props.convo, {
+                                        sender: true, type: "audio", time: new Date(), content: audioUrl
+                                    });
+                                    mediaRecorder = null;
+                                    props.setConvo();
+                                });
+                            }
                         });
                 });
         }
