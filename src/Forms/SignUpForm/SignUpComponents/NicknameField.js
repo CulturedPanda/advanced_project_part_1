@@ -1,7 +1,4 @@
-import {useRef} from "react";
 import $ from "jquery";
-import RegisteredUser from "../../../Users/RegisteredUser";
-import PendingUser from "../../../Users/PendingUser";
 
 function NicknameField({props}){
 

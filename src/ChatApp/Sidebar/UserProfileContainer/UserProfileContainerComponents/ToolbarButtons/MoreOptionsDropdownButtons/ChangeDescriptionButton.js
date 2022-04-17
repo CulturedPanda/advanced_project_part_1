@@ -1,5 +1,4 @@
 import {Component} from "react";
-import {Button} from "react-bootstrap";
 import ChangeDescriptionModal from "./ChangeDescriptionModal";
 
 class ChangeDescriptionButton extends Component {

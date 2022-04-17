@@ -3,7 +3,6 @@ import LogOutButton from "./ToolbarButtons/LogOutButton";
 import AddContactButton from "./ToolbarButtons/AddContactButton";
 import AddContactModal from "./AddContactModal";
 import MoreOptionsDropdown from "./ToolbarButtons/MoreOptionsDropdown";
-import ChangePictureButton from "./ToolbarButtons/MoreOptionsDropdownButtons/ChangePictureButton";
 
 
 // Used to be more complex, so it's a class even though it should be a function component.

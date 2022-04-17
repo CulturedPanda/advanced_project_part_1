@@ -43,28 +43,29 @@ class ContactContainer extends Component {
 
     focusHandler = () => {
         let thisItem = $("#contact" + this.props.username);
-        thisItem.addClass("active border-primary border-3");
+        thisItem.addClass("active border-primary border-primary border-2");
         this.props.setConvo(this.props.username);
     }
 
     blurHandler = () => {
         let thisItem = $("#contact" + this.props.username);
-        thisItem.removeClass("active border-primary border-3");
+        thisItem.removeClass("active border-primary border-2");
     }
+
 
     render() {
         return (
-            <li className="d-grid list-group-item bg-light hover-pointer" id={"contact" + this.props.username}>
+            <li className="d-grid list-group-item bg-light hover-pointer mw-50" id={"contact" + this.props.username}>
                 <button onFocus={this.focusHandler} onBlur={this.blurHandler}
-                        className="btn no-effect-button text-start btn-flex justify-content-left">
+                        className="btn no-effect-button text-start btn-flex justify-content-left break-text">
                     <div className="col">
-                        <div>
+                        <div className="break-text">
                             <ImageNameContainer props={{username: this.props.username,
                                 renderNum: false, profilePicture: RegisteredUser.getImage(this.props.username)}}/>
                             <span className="float-end small-text">
                                 {this.timeFromLast()}
                             </span>
-                            <div className="small-text">
+                            <div className="small-text break-text">
                                 {RegisteredUser.getDescription(this.props.username)}
                             </div>
                         </div>

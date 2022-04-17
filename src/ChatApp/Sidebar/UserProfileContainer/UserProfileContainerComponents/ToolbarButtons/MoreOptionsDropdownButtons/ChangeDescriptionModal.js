@@ -1,6 +1,5 @@
 import {Component} from "react";
 import {Button, Modal} from "react-bootstrap";
-import ModalSelectionButtons from "../../ModalComponents/ModalSelectionButtons";
 import $ from "jquery";
 import RegisteredUser from "../../../../../../Users/RegisteredUser";
 

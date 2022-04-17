@@ -1,7 +1,6 @@
 import VerifierField from "./EmailVerificationComponents/VerifierField";
 import {useRef} from "react";
 import PendingUser from "../../Users/PendingUser";
-import CookieHandling from "../../Misc/CookieHandling";
 import $ from "jquery";
 import VerificationFormText from "./EmailVerificationComponents/VerificationFormText";
 import RegisteredUser from "../../Users/RegisteredUser";

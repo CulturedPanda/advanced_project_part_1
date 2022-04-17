@@ -22,28 +22,37 @@ class UserProfileContainer extends Component {
         });
     }
 
+    determineClasses = ()=>{
+        if (this.props.renderButtons){
+            return "row bg-success pe-3 align-items-center";
+        }
+        else{
+            return "row bg-success col-12 ms-0";
+        }
+    }
+
 
     render() {
         return (
-            <div className="row bg-success pe-3 align-items-center">
-                <div className="col-8">
-
+            <div className={this.determineClasses()}>
+                <div className={this.props.renderButtons ? "col-8" : ""}>
                     <ImageNameContainer props={{
                         username: this.props.username,
                         renderNum: this.props.renderNum, profilePicture: this.state.profilePicture
                     }}/>
                 </div>
+                {this.props.renderButtons &&
                 <div className="col-4">
                     <div className="row justify-content-end me-2" role="toolbar">
-                        {this.props.renderButtons &&
+
                             <ButtonsToolbar setLogIn={this.props.setLogIn}
                                             username={this.props.username}
                                             updateContacts={this.props.updateContacts}
                                             setShow={this.setShowModal}
                                             show={this.state.showModal}
-                                            updateProfilePicture={this.updateProfilePicture}/>}
+                                            updateProfilePicture={this.updateProfilePicture}/>
                     </div>
-                </div>
+                </div>}
             </div>
         )
     }

@@ -1,6 +1,5 @@
 import {Component} from "react";
 import ContactContainer from "./ContactComponents/ContactContainer";
-import RegisteredUser from "../../../Users/RegisteredUser";
 import SearchBar from "./ContactComponents/ContainerComponents/SearchBar";
 
 class Contacts extends Component {

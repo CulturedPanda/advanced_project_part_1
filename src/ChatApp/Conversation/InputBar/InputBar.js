@@ -1,91 +1,13 @@
-import AttachMenu from "./AttachMenu";
-import {Button, Modal, OverlayTrigger, Popover} from "react-bootstrap";
-import React, {useEffect} from "react";
+import AttachMenu from "./InputBarComponents/AttachMenu";
+import {OverlayTrigger, Popover} from "react-bootstrap";
 import $ from "jquery"
 import RegisteredUser from "../../../Users/RegisteredUser";
-import Mic from "./Mic";
+import RecordMessageModal from "./InputBarComponents/RecordMessageModal";
+import {useState} from "react";
 
-let mediaRecorder;
-
-function RecordMessageModal(props) {
-    // const [mediaStream, setMediaStream] = React.useState(null);
-    // const [mediaRecorder, setMediaRecorder] = React.useState(null);
-    const [isRecording, setIsRecording] = React.useState(false);
-
-    // useEffect(() => {
-    //     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-    //         const mediaRecorder = new MediaRecorder(stream);
-    //
-    //         setMediaStream(stream);
-    //         setMediaRecorder(mediaRecorder);
-    //     });
-    // }, [])
-    //
-    // useEffect(() => {
-    //     if (mediaRecorder){
-    //         mediaRecorder.ondataavailable = e => {
-    //             audioChunks.push(e.data);
-    //         }
-    //     }
-    // }, [mediaRecorder])
-
-    function onClick() {
-        if (isRecording) {
-            // stop record
-            mediaRecorder.stop()
-            setIsRecording(false);
-            // send message to chat
-        } else {
-            navigator.mediaDevices.getUserMedia({ audio: true })
-                .then(stream => {
-                    navigator.mediaDevices.getUserMedia({ audio: true })
-                        .then(stream => {
-                            mediaRecorder = new MediaRecorder(stream);
-                            if (mediaRecorder) {
-                                setIsRecording(true);
-                                mediaRecorder.start();
-                                const audioChunks = [];
-                                mediaRecorder.addEventListener("dataavailable", event => {
-                                    audioChunks.push(event.data);
-                                });
-
-                                mediaRecorder.addEventListener("stop", () => {
-                                    const audioBlob = new Blob(audioChunks);
-                                    const audioUrl = URL.createObjectURL(audioBlob);
-                                    RegisteredUser.addMessageToConvo(props.username, props.convo, {
-                                        sender: true, type: "audio", time: new Date(), content: audioUrl
-                                    });
-                                    mediaRecorder = null;
-                                    props.setConvo();
-                                });
-                            }
-                        });
-                });
-        }
-    }
-
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Record message
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Button onClick={onClick}>{isRecording ? 'Stop' : 'Record'}</Button>
-            </Modal.Body>
-
-        </Modal>
-    );
-}
 
 const InputBar =  (props) => {
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow, setModalShow] = useState(false);
 
     const handleSend = (e) => {
         e.preventDefault();

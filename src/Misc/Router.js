@@ -1,6 +1,5 @@
-import {Redirect, Switch, Routes} from "react-router";
+import {Routes} from "react-router";
 import {Route} from "react-router-dom";
-import BaseForm from "../Forms/BaseForm";
 import LoginForm from "../Forms/LoginForm/LoginForm";
 import SignUpForm from "../Forms/SignUpForm/SignUpForm";
 import InitialForgotPasswordForm from "../Forms/ForgotPasswordForms/InitialForgotPasswordForm/InitialForgotPasswordForm";
@@ -12,6 +11,12 @@ import ForgotPasswordFormResetPassword
 import MainApp from "../ChatApp/MainApp";
 import React, {useState} from "react";
 
+/**
+ * A hack used for putting the whole app in one place and maintaining session storage, as well as controlling where
+ * users can go when logged in and when not logged in.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function Router({props}){
 
     const [username, setUsername] = useState(props.username);
@@ -19,6 +24,7 @@ function Router({props}){
     const [from, setFrom] = useState(false);
 
     const auth = ()=>{
+        // If user is not logged in, limit access to only the forms.
         if (!props.loggedIn){
             return(
                 <>
@@ -48,6 +54,7 @@ function Router({props}){
                 </>
             )
         }
+        // Otherwise, limit access to only the chat.
         else{
             return(
                 <>

@@ -1,9 +1,8 @@
-import {Button, Dropdown} from "react-bootstrap";
+import {Dropdown} from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import {forwardRef} from "react";
 import ChangePictureButton from "./MoreOptionsDropdownButtons/ChangePictureButton";
-import CameraButton from "../../../../Conversation/InputBar/CameraButton";
 import ChangeDescriptionButton from "./MoreOptionsDropdownButtons/ChangeDescriptionButton";
 
 function MoreOptionsDropdown({props}) {

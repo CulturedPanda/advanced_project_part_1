@@ -1,6 +1,6 @@
 import {Component} from "react";
-import RegisteredUser from "../../../Users/RegisteredUser";
 import ChatBubble from "./ChatBubble";
+import Utils from "../../../Misc/Utils";
 
 class ConversationContainer extends Component {
     generateChatBubbles =() =>{
@@ -10,9 +10,14 @@ class ConversationContainer extends Component {
                             sender={message.sender} type={message.type}/>
         ))
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        Utils.scrollToBottom("convo-container");
+    }
+
     render(){
         return(
-            <div className="container-fluid chat-container overflow-lesser overflow-auto">
+            <div className="container-fluid chat-container overflow-lesser overflow-auto" id="convo-container">
                 <div className="chat-panel">
                     {this.generateChatBubbles()}
                 </div>

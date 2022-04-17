@@ -1,4 +1,4 @@
-import {Link, useSearchParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import EmailField from "./SignUpComponents/EmailField";
 import UsernameSignupField from "./SignUpComponents/UsernameSignupField";
 import PasswordSignupField from "./SignUpComponents/PasswordSignupField";
@@ -6,7 +6,7 @@ import NicknameField from "./SignUpComponents/NicknameField";
 import PhoneNumberField from "./SignUpComponents/PhoneNumberField";
 import DateOfBirthField from "./SignUpComponents/DateOfBirthField";
 import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
-import {useRef, useState} from "react";
+import {useState} from "react";
 import SecretQuestionDescriptor from "./SignUpComponents/SecretQuestionDescriptor";
 import SecretQuestionAnswerField from "./SignUpComponents/SecretQuestionAnswerField";
 import TermOfServiceField from "./SignUpComponents/TermsOfServiceField";

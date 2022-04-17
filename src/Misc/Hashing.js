@@ -1,6 +1,14 @@
+/**
+ * All hashing related methods go here.
+ */
 class Hashing{
-    // Shamelessly stolen from https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
-
+    /**
+     * Shamelessly stolen from https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript.
+     * 53 bit hashing used for generating unique keys for the messages sent in the chat.
+     * @param str the string to hash.
+     * @param seed a seed. Generally, no touch, touch bad.
+     * @returns {number} the hashed string.
+     */
     static cyrb53 = function(str, seed = 0) {
         let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
         for (let i = 0, ch; i < str.length; i++) {

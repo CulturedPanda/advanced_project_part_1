@@ -1,5 +1,4 @@
-import {useEffect, useState} from "react";
-import RegisteredUser from "../../../Users/RegisteredUser";
+import RegisteredUser from "../../../../Users/RegisteredUser";
 
 function CameraButton({props}) {
 

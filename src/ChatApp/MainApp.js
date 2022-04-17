@@ -1,6 +1,6 @@
 import Conversation from "./Conversation/Conversation";
 import Sidebar from "./Sidebar/Sidebar";
-import {Component, useState} from "react";
+import {Component} from "react";
 import RegisteredUser from "../Users/RegisteredUser";
 
 class MainApp extends Component{

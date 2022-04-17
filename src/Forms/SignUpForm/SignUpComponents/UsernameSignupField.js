@@ -1,4 +1,3 @@
-import {useRef} from "react";
 import RegisteredUser from "../../../Users/RegisteredUser";
 import $ from "jquery";
 import PendingUser from "../../../Users/PendingUser";

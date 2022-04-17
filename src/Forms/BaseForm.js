@@ -1,24 +1,5 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import LoginForm from "./LoginForm/LoginForm";
-import SignUpForm from "./SignUpForm/SignUpForm";
-import InitialForgotPasswordForm from "./ForgotPasswordForms/InitialForgotPasswordForm/InitialForgotPasswordForm";
-import EmailVerificationForm from "./EmailVerificationForm/EmailVerificationForm";
-import VerificationFormText from "./EmailVerificationForm/EmailVerificationComponents/VerificationFormText";
-import $ from "jquery";
-import React, {useRef, useState} from "react";
-import ForgotPasswordFormResetPassword
-    from "./ForgotPasswordForms/ForgotPasswordFormResetPassword/ForgotPasswordFormResetPassword";
-import ForgotPasswordFormVerificationScreen
-    from "./ForgotPasswordForms/ForgotPasswordFormVerificationScreen/ForgotPasswordFormVerificationScreen";
-import MainApp from "../ChatApp/MainApp";
-
 function BaseForm({children}) {
 
-    // Temporary fixes for passing data between the forms - needs to be redone when we have a server as this is
-    // just straight up abuse.
-    const [username, setUsername] = useState("");
-    const [toggle, setToggle] = useState(true);
-    const [from, setFrom] = useState(false);
 
     return (
         // Keeping this temporarily as get method. Need to work with this in mind.

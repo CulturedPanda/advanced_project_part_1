@@ -1,4 +1,3 @@
-import {Button, Modal, OverlayTrigger, Popover} from "react-bootstrap";
 import React from 'react';
 
 function MicButton({ openRecordMessageModal }) {

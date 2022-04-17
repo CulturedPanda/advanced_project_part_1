@@ -1,6 +1,6 @@
-import {Link, Prompt} from "react-router-dom";
+import {Link} from "react-router-dom";
 import UsernameField from "../../LoginForm/LoginFormComponents/UsernameField";
-import {useRef, useState} from "react";
+import {useState} from "react";
 import SecretQuestionsField from "../../SignUpForm/SignUpComponents/SecretQuestionsField";
 import SecretQuestionAnswerField from "../../SignUpForm/SignUpComponents/SecretQuestionAnswerField";
 import RegisteredUser from "../../../Users/RegisteredUser";

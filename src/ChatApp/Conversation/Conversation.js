@@ -1,10 +1,7 @@
 import InputBar from "./InputBar/InputBar";
-import AttachMenu from "./InputBar/AttachMenu";
-import attachMenu from "./InputBar/AttachMenu";
 import ConversationContainer from "./ConvoContainer/ConversationContainer";
 import UserProfileContainer from "../Sidebar/UserProfileContainer/UserProfileContainer";
 import {Component} from "react";
-import RegisteredUser from "../../Users/RegisteredUser";
 
 class Conversation extends Component {
 

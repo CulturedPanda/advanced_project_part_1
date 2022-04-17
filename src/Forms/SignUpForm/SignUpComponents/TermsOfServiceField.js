@@ -1,4 +1,3 @@
-import {Link} from "react-router-dom";
 import pdf from "../../../Policies/tos.pdf";
 
 function TermOfServiceField() {

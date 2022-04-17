@@ -1,4 +1,3 @@
-import CameraButton from "../../../../../Conversation/InputBar/CameraButton";
 import {Component} from "react";
 import RegisteredUser from "../../../../../../Users/RegisteredUser";
 

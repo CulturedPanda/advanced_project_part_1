@@ -1,4 +1,4 @@
-import RegisteredUser from "../../../Users/RegisteredUser";
+import RegisteredUser from "../../../../Users/RegisteredUser";
 
 function VideoButton({props}) {
 

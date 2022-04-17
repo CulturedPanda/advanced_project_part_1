@@ -1,5 +1,4 @@
 import {Component} from "react";
-import EmailField from "../../../../Forms/SignUpForm/SignUpComponents/EmailField";
 import ModalSelectionButtons from "./ModalComponents/ModalSelectionButtons";
 import {Modal, Button} from "react-bootstrap";
 import ModalEmailField from "./ModalComponents/ModalEmailField";

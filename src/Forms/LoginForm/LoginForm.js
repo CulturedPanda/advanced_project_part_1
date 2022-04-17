@@ -1,13 +1,10 @@
-import {Link, Prompt} from "react-router-dom";
-import {Navigate} from "react-router";
+import {Link} from "react-router-dom";
 import UsernameField from "./LoginFormComponents/UsernameField";
 import PasswordField from "./LoginFormComponents/PasswordField";
-import {useRef} from "react";
 import RegisteredUser from "../../Users/RegisteredUser";
 import $ from "jquery";
 import CookieHandling from "../../Misc/CookieHandling";
 import {useNavigate} from "react-router";
-import ShowPasswordButton from "./LoginFormComponents/ShowPasswordButton";
 import BaseForm from "../BaseForm";
 import RememberMeCheckbox from "./LoginFormComponents/RememberMeCheckbox";
 
