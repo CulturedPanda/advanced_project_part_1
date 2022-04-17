@@ -61,6 +61,7 @@ class ContactContainer extends Component {
                     <div className="col">
                         <div className="break-text">
                             <ImageNameContainer props={{username: this.props.username,
+                                nickname: RegisteredUser.getNickname(this.props.username),
                                 renderNum: false, profilePicture: RegisteredUser.getImage(this.props.username)}}/>
                             <span className="float-end small-text">
                                 {this.timeFromLast()}

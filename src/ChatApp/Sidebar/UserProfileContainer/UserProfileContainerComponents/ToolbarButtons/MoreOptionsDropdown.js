@@ -3,7 +3,7 @@ import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import {forwardRef} from "react";
 import ChangePictureButton from "./MoreOptionsDropdownButtons/ChangePictureButton";
-import ChangeDescriptionButton from "./MoreOptionsDropdownButtons/ChangeDescriptionButton";
+import ChangeTextDataButton from "./MoreOptionsDropdownButtons/ChangeTextDataButton";
 
 function MoreOptionsDropdown({props}) {
 
@@ -30,7 +30,9 @@ function MoreOptionsDropdown({props}) {
                 <DropdownMenu>
                     <DropdownItem as="form"><ChangePictureButton
                         username={props.username} updateProfilePicture={props.updateProfilePicture}/></DropdownItem>
-                    <DropdownItem as="div"><ChangeDescriptionButton username={props.username}/></DropdownItem>
+                    <DropdownItem as="div"><ChangeTextDataButton textData={"description"} username={props.username}/></DropdownItem>
+                    <DropdownItem as="div"><ChangeTextDataButton textData={"nickname"} username={props.username}
+                                                                 updateNickname={props.updateNickname}/></DropdownItem>
                 </DropdownMenu>
             </Dropdown>
         </>

@@ -5,10 +5,10 @@ function NicknameField({props}){
     const handleBlur = ()=>{
         let text = $("#nickname-error");
         let nicknameField = $("#nickname-signup-field");
-        if (nicknameField.val() === "" || !nicknameField.val().match("^[\\w\\s]{1,100}$")){
+        if (nicknameField.val() === "" || !nicknameField.val().match("^[\\w\\s]{1,10}$")){
             nicknameField.removeClass("border-success");
             nicknameField.addClass("border-danger");
-            text.text("Error: Nickname must be between 1-100 characters and can not contain any special characters")
+            text.text("Error: Nickname must be between 1-10 characters and can not contain any special characters")
             text.show();
             props.setConfirm(false);
         }

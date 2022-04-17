@@ -21,7 +21,7 @@ class ButtonsToolbar extends Component {
                 </div>
                 <div className="text-center">
                     <MoreOptionsDropdown props={{username: this.props.username,
-                        updateProfilePicture: this.props.updateProfilePicture}}/>
+                        updateProfilePicture: this.props.updateProfilePicture, updateNickname: this.props.updateNickname}}/>
                 </div>
             </div>
         )

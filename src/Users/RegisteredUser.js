@@ -182,6 +182,17 @@ class RegisteredUser{
     }
 
     /**
+     * Updates a user's nickname to a new one chosen by them.
+     * @param username
+     * @param newNickname
+     */
+    static updateNickname(username, newNickname){
+        let user = JSON.parse(sessionStorage.getItem(username + "log"));
+        user.nickname = newNickname;
+        RegisteredUser.updateUser(user);
+    }
+
+    /**
      * Gets a user's nickname.
      * @param username
      * @returns {string|*}
