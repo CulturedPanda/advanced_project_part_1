@@ -11,26 +11,13 @@ class ChatBubble extends Component {
 
     determineSide = () => {
         let side = this.props.sender ? "right" : "left"
-        return "chat-bubble chat-bubble-" + side +" chat-bubble-" + this.props.type;
+        return "chat-bubble chat-bubble-" + side +" chat-bubble-" + this.props.type + "-" + side;
     }
 
     // TODO: Fill class type
     determineMargin = () => {
         let side = this.props.sender ? "offset-md-9" : ""
-        let classType;
-        if (this.props.type === "text"){
-            //classType = "small-text";
-        }
-        else if(this.props.type === "video"){
-            // Fill
-        }
-        else if(this.props.type === "img"){
-            // Fill
-        }
-        else{
-            // Fill for audio
-        }
-        return "col-md-3 " + side + " " + classType;
+        return "col-md-3 " + side;
     }
 
     createContent = () => {

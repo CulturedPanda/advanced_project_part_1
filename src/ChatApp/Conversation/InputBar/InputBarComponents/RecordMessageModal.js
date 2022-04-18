@@ -60,7 +60,7 @@ function RecordMessageModal(props) {
                     Record message
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="text-center">
                 <Button onClick={onClick}>{isRecording ? 'Stop' : 'Record'}</Button>
             </Modal.Body>
         </Modal>
