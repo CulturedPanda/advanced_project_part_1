@@ -1,49 +1,51 @@
-# Getting Started with Create React App
+# Whatsapp-like web-client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Submitters:
 
-## Available Scripts
+Yuval Uner, ID: 322558842, Github: OddPanda.\
+Nadav Elgrabli, ID: 316082791, Github: ZycleXx.
 
-In the project directory, you can run:
+To run the project, use "npm start".
 
-### `npm start`
+### `dependencies`
+1. React
+2. React-Bootstrap
+3. React-router / React-router-dom
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Main Components
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Mandatory components
 
-### `npm test`
+### `Log-in form`
+The home screen of the app when a user is not logged in.
+![img.png](src/Resources/log-in-screen.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Verifies the validity of the username on log-in and directs them to the main chat app,
+or allows them to go to the sign-up form or the forgot password form.
 
-### `npm run build`
+Also lets the user know if they have an error when trying to log in, allows switching between
+logging in via username or password, enabling or disabling 
+the "remember me" feature, and toggling "show password".
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `Sign-up form`
+The form for a new user to sign up.
+![img.png](src/Resources/sign-up-screen.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Allows for inputting all of the vital information, as well as some non-vital information.\
+Performs basic checks while the user inputs their information.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `Main app`
+The main part of the project. Allows for conversations between users.
+![img.png](src/Resources/main-app.png)
 
-### `npm run eject`
+The main app supports sending text, video, image and audio between users.\
+It also allows for a user to change their profile picture, description and nickname, as well as 
+add contacts to their contacts list, all via the buttons' toolbar to the right of their nickname.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The right side of the screen (the conversation itself) will appear once a contact is chosen.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Additional, non-mandatory components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Code Splitting
 

@@ -1,6 +1,7 @@
 import PendingUser from "./PendingUser";
 import person from "../Resources/person-circle.svg"
 import Hashing from "../Misc/Hashing";
+import logInScreen from "../Resources/log-in-screen.png"
 
 
 /**
@@ -183,6 +184,19 @@ class RegisteredUser {
         this.lastSeen = new Date();
         sessionStorage.setItem(this.username + "log", JSON.stringify(this));
         sessionStorage.setItem(this.email + "log", JSON.stringify(this));
+        RegisteredUser.addContact(this.username, "Alice");
+        RegisteredUser.addMessageToConvo(this.username, "Alice", {
+            sender: false, type: "text", time: new Date(), content: "Hellooooooooooo",
+            key: "0" + Hashing.cyrb53 ("Hellooooooooooo")
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Alice", {
+            sender: false, type: "text", time: new Date(), content: "Check this amazing app out!",
+            key: "0" + Hashing.cyrb53 ("Check this amazing app out!")
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Alice", {
+            sender: false, type: "img", time: new Date(), content: logInScreen,
+            key: "0" + Hashing.cyrb53 ("logInScreen" + PendingUser.generateVerificationCode())
+        });
     }
 
     /**
