@@ -1,5 +1,9 @@
 import pdf from "../../../Policies/tos.pdf";
 
+/**
+ * terms of service check-box in signup form.
+ * @returns {JSX.Element}
+ */
 function TermOfServiceField() {
     return (
         <div className="form-check row mb-3">

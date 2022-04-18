@@ -1,6 +1,13 @@
 import $ from "jquery";
 
+/**
+ * Secret answer field in signup form.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function SecretQuestionAnswerField({props}){
+
+    //function checks that that secret answer isn't empty, if empty prints error.
     const handleBlur = ()=>{
         let secretAnswerField = $("#secret-answer");
         let text = $("#secret-answer-error");
@@ -11,6 +18,7 @@ function SecretQuestionAnswerField({props}){
             text.show();
             props.setConfirm(false);
         }
+        //else condition checks that answer isn't empty, and colors border in green.
         else{
             secretAnswerField.removeClass("border-danger");
             secretAnswerField.addClass("border-success");

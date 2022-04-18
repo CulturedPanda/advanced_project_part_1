@@ -1,7 +1,13 @@
 import $ from "jquery";
 
+/**
+ * Secret question field of the sign-up form.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function SecretQuestionsField({props}) {
 
+    //function makes sure that the user picked a security question.
     const handleBlur = ()=>{
         let secretQuestionField = $("#secret-questions");
         if (secretQuestionField.val() === "0"){

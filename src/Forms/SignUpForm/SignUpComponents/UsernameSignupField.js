@@ -2,12 +2,19 @@ import RegisteredUser from "../../../Users/RegisteredUser";
 import $ from "jquery";
 import PendingUser from "../../../Users/PendingUser";
 
-
+/**
+ * username field in the signup form.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function UsernameSignupField({props}){
 
+    //function checks validity of username and makes sure it doesn't already exist.
     const handleBlur = ()=>{
         let usernameField = $("#username-signup-field");
         let text = $("#username-error");
+
+        //if condition checks validity of username.
         if (usernameField.val() === "" || !usernameField.val().match("^[\\w\\s]{1,50}$")){
             usernameField.removeClass("border-success");
             usernameField.addClass("border-danger");
@@ -15,6 +22,8 @@ function UsernameSignupField({props}){
             text.show();
             props.setConfirm(false);
         }
+
+        //else if condition checks user doesn't already exist, if already exists, pritns error message.
         else if (RegisteredUser.DoesUserExist(usernameField.val()) || PendingUser.doesUserExist(usernameField.val())){
             usernameField.removeClass("border-success");
             usernameField.addClass("border-danger");
@@ -22,6 +31,8 @@ function UsernameSignupField({props}){
             text.show();
             props.setConfirm(false);
         }
+
+        //username passed all tests and is valid, color border in green and hide error message.
         else{
             usernameField.removeClass("border-danger");
             usernameField.addClass("border-success");

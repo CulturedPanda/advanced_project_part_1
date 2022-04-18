@@ -4,7 +4,6 @@ import UsernameSignupField from "./SignUpComponents/UsernameSignupField";
 import PasswordSignupField from "./SignUpComponents/PasswordSignupField";
 import NicknameField from "./SignUpComponents/NicknameField";
 import PhoneNumberField from "./SignUpComponents/PhoneNumberField";
-import DateOfBirthField from "./SignUpComponents/DateOfBirthField";
 import SecretQuestionsField from "./SignUpComponents/SecretQuestionsField";
 import {useState} from "react";
 import SecretQuestionDescriptor from "./SignUpComponents/SecretQuestionDescriptor";

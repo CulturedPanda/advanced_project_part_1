@@ -1,3 +1,7 @@
+/**
+ * The descriptor underneath the secret question.
+ * @returns {JSX.Element}
+ */
 function SecretQuestionDescriptor(){
     return (
         <div className="col-auto">
