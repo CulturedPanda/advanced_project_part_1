@@ -9,6 +9,11 @@ import InitialForgotPasswordFormText from "./InitialForgotPasswordComponents/Ini
 import {useNavigate} from "react-router";
 import BaseForm from "../../BaseForm";
 
+/**
+ * The initial form for resetting password. Verifies basic user info.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function InitialForgotPasswordForm({props}) {
 
     const nav = useNavigate();

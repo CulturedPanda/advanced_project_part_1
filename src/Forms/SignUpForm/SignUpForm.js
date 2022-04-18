@@ -41,7 +41,7 @@ function SignUpForm({props}) {
             if (userConfirm && passConfirm && passConfirmationConfirm
                 && emailConfirm && nicknameConfirm && secretQuestionConfirm && secretAnswerConfirm) {
                 let username = $("#username-signup-field").val();
-                let email = $("#email-signup-field").val();
+                let email = $("#email-signup-field").val().toLowerCase();
                 let password = $("#new-pass1").val();
                 let nickname = $("#nickname-signup-field").val();
                 let phone = $("#phone").val();

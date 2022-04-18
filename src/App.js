@@ -24,10 +24,14 @@ function App() {
     let cookie_verified = false;
     const cUsername = CookieHandling.getCookie("username");
     const password = CookieHandling.getCookie("password");
+    // Log the user in automatically if cookie can be verified.
     if (cUsername && password){
         if (registeredUser.DoUserAndPasswordMatch(cUsername, password)
             || registeredUser.doEmailAndPasswordMatch(cUsername, password)){
             cookie_verified = true;
+            // Extend cookie TTL back to a week.
+            CookieHandling.setCookie("username", cUsername, 7);
+            CookieHandling.setCookie("password", password, 7);
         }
     }
 

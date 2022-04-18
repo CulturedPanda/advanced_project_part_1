@@ -1,3 +1,8 @@
+/**
+ * Simple text for the reset password form.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function ForgotPasswordFormResetPasswordText(){
     return(
         <div>

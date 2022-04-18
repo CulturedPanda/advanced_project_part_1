@@ -1,5 +1,9 @@
 import ShowPasswordButton from "./ShowPasswordButton";
 
+/**
+ * The password field for the log-in form.
+ * @returns {JSX.Element}
+ */
 function PasswordField(){
     return (
             <div className="row mb-3">

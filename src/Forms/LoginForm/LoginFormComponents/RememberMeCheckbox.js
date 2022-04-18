@@ -1,3 +1,7 @@
+/**
+ * A simple checkbox for the user to choose if to remember them or not.
+ * @returns {JSX.Element}
+ */
 function RememberMeCheckbox(){
     return(
         <div className="mb-3">

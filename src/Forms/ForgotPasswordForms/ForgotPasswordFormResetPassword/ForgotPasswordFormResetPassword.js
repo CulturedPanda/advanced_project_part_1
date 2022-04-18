@@ -7,8 +7,14 @@ import RegisteredUser from "../../../Users/RegisteredUser";
 import $ from "jquery";
 import BaseForm from "../../BaseForm";
 
+/**
+ * The reset password form.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function ForgotPasswordFormResetPassword({props}) {
 
+    // Using states to have the fields confirm validity.
     const [passwordConfirm, passwordConfirmSet] = useState(false);
     const [passwordConfirmationConfirm, passwordConfirmationConfirmSet] = useState(false);
     const nav = useNavigate();

@@ -1,6 +1,11 @@
 import UsernameEmailRadio from "./UsernameEmailRadio";
 import $ from "jquery";
 
+/**
+ * The field for inputting the username in the log-in form.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function UsernameField({props}) {
 
     let text = ()=>{

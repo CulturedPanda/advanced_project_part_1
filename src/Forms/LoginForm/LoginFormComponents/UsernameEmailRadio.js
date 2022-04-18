@@ -1,5 +1,10 @@
 import $ from "jquery"
 
+/**
+ * Radio buttons for switching between inputting username and inputting email.
+ * @param props which checkbox to toggle by default.
+ * @returns {JSX.Element}
+ */
 function UsernameEmailRadio({props}) {
 
     const onChange = (event, text, val)=>{
