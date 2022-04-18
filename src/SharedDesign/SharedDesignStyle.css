@@ -166,8 +166,8 @@
 
 .chat-bubble-audio-right{
     position: relative;
-    left: -70px;
-    margin-right: -85px;
+    left: -140px;
+    margin-right: -150px;
 }
 
 .chat-bubble-video-left{
@@ -182,5 +182,5 @@
 
 .chat-bubble-audio-left{
     left: 0;
-    margin-right: -40px;
+    margin-right: -100px;
 }

@@ -45,14 +45,13 @@ function SignUpForm({props}) {
                 let password = $("#new-pass1").val();
                 let nickname = $("#nickname-signup-field").val();
                 let phone = $("#phone").val();
-                let dob = $("#birthday").val();
                 let secretQuestion = $("#secret-questions").val();
                 let secretAnswer = $("#secret-answer").val();
                 props.username(username);
                 props.from(true);
                 new PendingUser({
                     username: username, password: password,
-                    email: email, phone: phone, dateOfBirth: dob, nickname: nickname,
+                    email: email, phone: phone, dateOfBirth: null, nickname: nickname,
                     secretQuestions: {question: secretQuestion, answer: secretAnswer}
                 });
                 nav("/verify_email");
@@ -79,7 +78,6 @@ function SignUpForm({props}) {
                     }}/>
                     <NicknameField props={{setConfirm: nicknameConfirmSet}}/>
                     <PhoneNumberField props={{setConfirm: phoneConfirmSet}}/>
-                    <DateOfBirthField/>
                     <SecretQuestionsField props={{
                         setConfirm: secretQuestionConfirmSet,
                         children: <SecretQuestionDescriptor/>,
