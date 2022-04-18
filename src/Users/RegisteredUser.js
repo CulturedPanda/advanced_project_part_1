@@ -248,6 +248,16 @@ class RegisteredUser {
             sender: true, type: "text", time: new Date(), content: "Yeah he was awesome",
             key: "0" + Hashing.cyrb53 ("Yeah he was awesome")
         });
+        RegisteredUser.addContact(this.username, "Emily");
+        RegisteredUser.addMessageToConvo(this.username, "Emily", {
+            sender: false, type: "text", time: new Date(), content: "I reserved for us a table for two for tonight at a Italian restaurant",
+            key: "0" + Hashing.cyrb53 ("I reserved for us a table for two for tonight at a Italian restaurant")
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Emily", {
+            sender: true, type: "text", time: new Date(), content: "Spaghetti Meat-balls night lets GOOOO!",
+            key: "0" + Hashing.cyrb53 ("Spaghetti Meat-balls night lets GOOOO!")
+        });
+
 
 
     }
