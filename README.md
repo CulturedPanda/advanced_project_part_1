@@ -22,9 +22,10 @@ To test our project, there are hardcoded users, defined as follows:
 5. Username: Dana, Password: 1234.
 6. Username: Mom, Password: 1234.
 
-Moreover, when signing up with a new user, 5 contacts will be added along with demo messages sent to 
-and from them.\
-We recommend signing up with a new user to test.
+Most contacts have some built in conversation, with Panda having 5 contacts.\
+All of them, however, have only text messages.\
+To text for other types of messages, please try sending them, as we were unclear whether 
+to include these hard coded types of  messages or not.
 
 # Main Components
 
