@@ -3,37 +3,55 @@ import RegisteredUser from "../../../Users/RegisteredUser";
 import ImageNameContainer from "./UserProfileContainerComponents/ImageNameContainer";
 import ButtonsToolbar from "./UserProfileContainerComponents/ButtonsToolbar";
 
+/**
+ * Container for a user's profile.
+ */
 class UserProfileContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {showModal: false, profilePicture: RegisteredUser.getImage(this.props.username),
-            nickname: RegisteredUser.getNickname(this.props.username)};
+        this.state = {
+            showModal: false, profilePicture: RegisteredUser.getImage(this.props.username),
+            nickname: RegisteredUser.getNickname(this.props.username)
+        };
     }
 
+    /**
+     * Setter for showing or hiding the add contact modal.
+     * @param val
+     */
     setShowModal = (val) => {
         this.setState({
             showModal: val
         })
     }
 
+    /**
+     * Updates the user's profile picture.
+     */
     updateProfilePicture = () => {
         this.setState({
             profilePicture: RegisteredUser.getImage(this.props.username)
         });
     }
 
-    updateNickname = ()=>{
+    /**
+     * Updates the user's nickname.
+     */
+    updateNickname = () => {
         this.setState({
             nickname: RegisteredUser.getNickname(this.props.username)
         });
     }
 
-    determineClasses = ()=>{
-        if (this.props.renderButtons){
+    /**
+     * Determines which classes one of the divs should have.
+     * @returns {string}
+     */
+    determineClasses = () => {
+        if (this.props.renderButtons) {
             return "row bg-success pe-3 align-items-center";
-        }
-        else{
+        } else {
             return "row bg-success col-12 ms-0";
         }
     }
@@ -49,9 +67,10 @@ class UserProfileContainer extends Component {
                         nickname: this.state.nickname
                     }}/>
                 </div>
+                {/*Only render this part if this profile container is for the active user and not a contact*/}
                 {this.props.renderButtons &&
-                <div className="col-4">
-                    <div className="row justify-content-end me-2" role="toolbar">
+                    <div className="col-4">
+                        <div className="row justify-content-end me-2" role="toolbar">
                             <ButtonsToolbar setLogIn={this.props.setLogIn}
                                             username={this.props.username}
                                             updateContacts={this.props.updateContacts}
@@ -59,8 +78,8 @@ class UserProfileContainer extends Component {
                                             show={this.state.showModal}
                                             updateProfilePicture={this.updateProfilePicture}
                                             updateNickname={this.updateNickname}/>
-                    </div>
-                </div>}
+                        </div>
+                    </div>}
             </div>
         )
     }

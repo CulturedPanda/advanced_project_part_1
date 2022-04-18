@@ -5,7 +5,7 @@ import EmailVerificationForm from "../../EmailVerificationForm/EmailVerification
  * @param props
  * @returns {JSX.Element}
  */
-function ForgotPasswordFormVerificationScreen({props}){
+function ForgotPasswordFormVerificationScreen({props}) {
     return (
         <EmailVerificationForm props={{username: props.username, from: "forgot_password"}}/>
     )

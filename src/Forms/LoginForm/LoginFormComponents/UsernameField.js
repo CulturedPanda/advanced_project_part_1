@@ -8,11 +8,10 @@ import $ from "jquery";
  */
 function UsernameField({props}) {
 
-    let text = ()=>{
-        if (props.usernameDefault){
+    let text = () => {
+        if (props.usernameDefault) {
             return "Username";
-        }
-        else{
+        } else {
             return "Email";
         }
     }
@@ -21,7 +20,7 @@ function UsernameField({props}) {
         <div className="row mb-3">
             <label htmlFor="login-username" className="col-form-label col-2" id="username-label">{text()}</label>
             <div className="col-8">
-                <input name="username" onKeyUp={()=>props.username($("#login-username").val())}
+                <input name="username" onKeyUp={() => props.username($("#login-username").val())}
                        defaultValue={props.current} type="text" id="login-username"
                        className="form-control"/>
             </div>

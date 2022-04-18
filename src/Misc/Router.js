@@ -2,7 +2,8 @@ import {Routes} from "react-router";
 import {Route} from "react-router-dom";
 import LoginForm from "../Forms/LoginForm/LoginForm";
 import SignUpForm from "../Forms/SignUpForm/SignUpForm";
-import InitialForgotPasswordForm from "../Forms/ForgotPasswordForms/InitialForgotPasswordForm/InitialForgotPasswordForm";
+import InitialForgotPasswordForm
+    from "../Forms/ForgotPasswordForms/InitialForgotPasswordForm/InitialForgotPasswordForm";
 import EmailVerificationForm from "../Forms/EmailVerificationForm/EmailVerificationForm";
 import ForgotPasswordFormVerificationScreen
     from "../Forms/ForgotPasswordForms/ForgotPasswordFormVerificationScreen/ForgotPasswordFormVerificationScreen";
@@ -17,16 +18,16 @@ import React, {useState} from "react";
  * @param props
  * @returns {JSX.Element}
  */
-function Router({props}){
+function Router({props}) {
 
     const [username, setUsername] = useState(props.username);
     const [toggle, setToggle] = useState(true);
     const [from, setFrom] = useState(false);
 
-    const auth = ()=>{
+    const auth = () => {
         // If user is not logged in, limit access to only the forms.
-        if (!props.loggedIn){
-            return(
+        if (!props.loggedIn) {
+            return (
                 <>
                     <Route path="/log_in" element={<LoginForm props={{
                         username: setUsername, toggle: setToggle,
@@ -45,8 +46,10 @@ function Router({props}){
                         fromSetter: setFrom, passReset: from, setLogIn: props.setLoggedIn
                     }}/>}/>
                     <Route path="/verify_email" element={
-                        <EmailVerificationForm props={{username: username, fromSignup: from,
-                            setFrom: setFrom, setLogIn: props.setLoggedIn}}/>}/>
+                        <EmailVerificationForm props={{
+                            username: username, fromSignup: from,
+                            setFrom: setFrom, setLogIn: props.setLoggedIn
+                        }}/>}/>
                     <Route path="/forgot_password/verify" element={
                         <ForgotPasswordFormVerificationScreen props={{username: username}}/>}/>
                     <Route path="/forgot_password/reset_password" element={
@@ -55,8 +58,8 @@ function Router({props}){
             )
         }
         // Otherwise, limit access to only the chat.
-        else{
-            return(
+        else {
+            return (
                 <>
                     <Route path="*" element={<MainApp setLogIn={props.setLoggedIn} username={username}/>}/>
                 </>
@@ -64,7 +67,7 @@ function Router({props}){
         }
     }
 
-    return(
+    return (
         <Routes>
             {auth()}
         </Routes>

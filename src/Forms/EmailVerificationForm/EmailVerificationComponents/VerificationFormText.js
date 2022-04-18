@@ -1,13 +1,17 @@
-function VerificationFormText({props}){
-    let title = ()=>{
-        if (props.fromSignup){
+/**
+ * Basic text for the verification form.
+ * @param props
+ * @returns {JSX.Element}
+ */
+function VerificationFormText({props}) {
+    let title = () => {
+        if (props.fromSignup) {
             return "Please verify your email to complete your registration";
-        }
-        else{
+        } else {
             return "Please verify your identity to reset your password";
         }
     }
-    return(
+    return (
         <div>
             <h4>
                 {title()}

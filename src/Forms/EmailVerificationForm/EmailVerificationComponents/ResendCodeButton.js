@@ -1,8 +1,14 @@
 import $ from "jquery"
 import PendingUser from "../../../Users/PendingUser";
 
+/**
+ * Button for re-sending code to the user's email.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function ResendCodeButton({props}) {
 
+    // Re-send the code, and then count down 60 seconds before re-enabling this.
     const reSend = () => {
         PendingUser.renewCode(props.username);
         let button = $("#re-send-button");

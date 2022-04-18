@@ -1,6 +1,9 @@
 import {Component} from "react";
 import ChangeTextDataModal from "./ChangeTextDataModal";
 
+/**
+ * A button for opening a modal for changing text related data of the user.
+ */
 class ChangeTextDataButton extends Component {
 
     constructor(props) {
@@ -8,6 +11,10 @@ class ChangeTextDataButton extends Component {
         this.state = {show: false}
     }
 
+    /**
+     * Updates whether the related modal should open or close.
+     * @param val true or false.
+     */
     handleClick = (val)=>{
         this.setState({
             show: val

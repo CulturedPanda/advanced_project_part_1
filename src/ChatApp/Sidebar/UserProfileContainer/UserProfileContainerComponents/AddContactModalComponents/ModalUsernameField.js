@@ -1,3 +1,7 @@
+/**
+ * A basic input field for the username in the modal.
+ * @returns {JSX.Element}
+ */
 function ModalUsernameField() {
     return (
         <div className="input-group">

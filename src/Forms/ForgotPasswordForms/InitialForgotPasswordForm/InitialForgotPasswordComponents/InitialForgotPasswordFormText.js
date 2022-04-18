@@ -1,5 +1,9 @@
-function InitialForgotPasswordFormText(){
-    return(
+/**
+ * Basic text for the forgot password initial form.
+ * @returns {JSX.Element}
+ */
+function InitialForgotPasswordFormText() {
+    return (
         <div className="row">
             <h3>
                 Some verifications...
@@ -13,4 +17,5 @@ function InitialForgotPasswordFormText(){
         </div>
     )
 }
+
 export default InitialForgotPasswordFormText;
