@@ -46,27 +46,58 @@ The right side of the screen (the conversation itself) will appear once a contac
 
 ## Additional, non-mandatory components
 
+### `Email verification form`
+![img.png](src/Resources/email-verification-screen.png)
 
-### Code Splitting
+Currently, all the front end parts of this screen are complete.\
+However, we are not sending out the email, as sending an email via the browser
+is nonsensical.\
+Instead, to bypass this feature, input 111111 (or have fun trying to guess the code).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `Forgot password form`
 
-### Analyzing the Bundle Size
+A three part process, starting from verifying some of the user's info:
+![img.png](src/Resources/intial-forgot-password-form.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Followed by verifying the user's email using the email verification form, then allowing the user to reset
+their password:
+![img.png](src/Resources/reset-password-screen.png)
 
-### Making a Progressive Web App
+After resetting password, the user will be redirected to the log-in screen and have an indication
+that they have successfully reset their password.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### `Error checking`
 
-### Advanced Configuration
+![img.png](src/Resources/error-checking.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Almost all fields have some manner of error checking to them, alerting 
+the user to any error right away.
 
-### Deployment
+### `Search contacts`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Allows for searching through contacts, and updates the displayed contacts while typing. 
 
-### `npm run build` fails to minify
+![img.png](src/Resources/all-contacts.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![img.png](src/Resources/filtered-contacts.png)
+
+## Known issues
+
+### `Form related`
+
+1. Going back from verifying email after registration to the log-in screen causes the 
+"Password changed successfully" text to mistakenly appear.\
+As this is a fairly uncommon and unlikely scenario which requires the user to use controls outside of those we designed for navigation
+, we did not try to fix it within our time constraints.
+
+### `Chat related`
+
+On trying to converse with the hard coded contacts (those hard coded in the RegisteredUsers.js file,
+the same ones added on sign-up for demonstration purposes), the following can occur:
+1. They will not display the sent messages on their end.
+2. If trying to converse with them after logging out once, errors will be caused.
+
+These issues are caused by the way the arrays containing the hard coded users are loaded.\
+However, everything done between 2 "real", that is, users actually created via the sign-up process
+works with no issues.\
+Therefore, we chose not to try and fix this as all the hard-coded users will be gone once a server is up.
