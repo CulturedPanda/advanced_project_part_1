@@ -13,8 +13,18 @@ class Sidebar extends Component {
         let contactsTemp = RegisteredUser.getContacts(this.props.username);
         this.state = {
             contacts: contactsTemp,
-            filteredContacts: contactsTemp
+            filteredContacts: contactsTemp,
+            nickname: RegisteredUser.getNickname(this.props.username)
         };
+    }
+
+    /**
+     * Updates the user's nickname.
+     */
+    updateNickname = () => {
+        this.setState({
+            nickname: RegisteredUser.getNickname(this.props.username)
+        });
     }
 
     /**
@@ -49,7 +59,8 @@ class Sidebar extends Component {
         return (
             <div className="col-3 ms-5 mh-75 pe-0" id="sidebar-div">
                 <UserProfileContainer username={this.props.username} setLogIn={this.props.setLogIn} renderButtons={true}
-                                      renderNum={true} updateContacts={this.updateContacts}/>
+                                      renderNum={true} updateContacts={this.updateContacts}
+                                      updateNickname={this.updateNickname} nickname={this.state.nickname}/>
                 <Contacts username={this.props.username} shouldUpdate={this.state.shouldUpdate}
                           contacts={this.state.contacts} filteredContacts={this.state.filteredContacts}
                           filterContacts={this.filterContacts} setConvo={this.props.setConvo}/>

@@ -35,14 +35,6 @@ class UserProfileContainer extends Component {
         });
     }
 
-    /**
-     * Updates the user's nickname.
-     */
-    updateNickname = () => {
-        this.setState({
-            nickname: RegisteredUser.getNickname(this.props.username)
-        });
-    }
 
     /**
      * Determines which classes one of the divs should have.
@@ -64,7 +56,7 @@ class UserProfileContainer extends Component {
                     <ImageNameContainer props={{
                         username: this.props.username,
                         renderNum: this.props.renderNum, profilePicture: this.state.profilePicture,
-                        nickname: this.state.nickname
+                        nickname: this.props.nickname
                     }}/>
                 </div>
                 {/*Only render this part if this profile container is for the active user and not a contact*/}
@@ -77,7 +69,7 @@ class UserProfileContainer extends Component {
                                             setShow={this.setShowModal}
                                             show={this.state.showModal}
                                             updateProfilePicture={this.updateProfilePicture}
-                                            updateNickname={this.updateNickname}/>
+                                            updateNickname={this.props.updateNickname}/>
                         </div>
                     </div>}
             </div>

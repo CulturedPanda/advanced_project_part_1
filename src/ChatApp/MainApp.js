@@ -10,7 +10,8 @@ class MainApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {currentConvo: "", convoContent: RegisteredUser.getConvo(this.props.username, "")}
+        this.state = {currentConvo: "", convoContent: RegisteredUser.getConvo(this.props.username, ""),
+            contactNickname: null}
     }
 
     /**
@@ -20,7 +21,8 @@ class MainApp extends Component {
     setConvo = (convoWith) => {
         this.setState({
             currentConvo: convoWith,
-            convoContent: RegisteredUser.getConvo(this.props.username, convoWith)
+            convoContent: RegisteredUser.getConvo(this.props.username, convoWith),
+            contactNickname: RegisteredUser.getNickname(convoWith)
         })
     }
 
@@ -42,7 +44,8 @@ class MainApp extends Component {
                     <Conversation convo={this.state.currentConvo}
                                   convoContent={this.state.convoContent}
                                   setConvo={this.convoContentSetter}
-                                  username={this.props.username}/>
+                                  username={this.props.username}
+                                  nickname={this.state.contactNickname}/>
                 </div>
             </div>
         )

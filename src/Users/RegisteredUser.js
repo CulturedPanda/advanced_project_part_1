@@ -165,7 +165,68 @@ class RegisteredUser {
                             key: "1" + Hashing.cyrb53("YES I AM")
                         }]
                 }]
-        },];
+        },
+        {
+            username: "Emily",
+            password: "1234",
+            email: "emily@foo.com",
+            phone: null,
+            dateOfBirth: null,
+            nickname: "Emily",
+            secretQuestions: null,
+            gender: "female",
+            verCode: "111222",
+            img: null,
+            description: "Mediation is health",
+            contacts: [{name: "Panda", lastSeen: new Date()}]
+            ,
+            lastSeen: new Date(),
+            nickNum: "4512",
+            conversations: [{
+                with: "Panda", messages: [{
+                    sender: false, type: "text", time: new Date(), content: "Hello",
+                    key: "0" + Hashing.cyrb53("Hello")
+                },
+                    {
+                        sender: true,
+                        type: "text",
+                        time: new Date(),
+                        content: "Yoooo",
+                        key: "1" + Hashing.cyrb53("Yoooo")
+                    }]
+            }]
+        },
+        {
+            username: "Mom",
+            password: "1234",
+            email: "mom@shoetoyourface.com",
+            phone: null,
+            dateOfBirth: null,
+            nickname: "Mom",
+            secretQuestions: null,
+            gender: "female",
+            verCode: "111222",
+            img: null,
+            description: "Busy",
+            contacts: [{name: "Panda", lastSeen: new Date()}]
+            ,
+            lastSeen: new Date(),
+            nickNum: "4512",
+            conversations: [{
+                with: "Panda", messages: [{
+                    sender: true, type: "text", time: new Date(), content: "GO CLEAN YOUR ROOM YOUNG MAN",
+                    key: "0" + Hashing.cyrb53("Hello")
+                },
+                    {
+                        sender: false,
+                        type: "text",
+                        time: new Date(),
+                        content: "NOOOOOOOOOOOOOOOOOOO",
+                        key: "1" + Hashing.cyrb53("NOOOOOOOOOOOOOOOOOOO")
+                    },]
+            }]
+        }
+    ];
 
     /**
      * Constructor. Puts all the information from the pending user, including new information needed into storage.
@@ -224,20 +285,20 @@ class RegisteredUser {
             key: "0" + Hashing.cyrb53 ("Did you clean your room?")
         });
         RegisteredUser.addMessageToConvo(this.username, "Mom", {
-            sender: true, type: "text", time: new Date(), content: "Ofcrouse mom!",
+            sender: true, type: "text", time: new Date(), content: "Ofcourse mom!",
             key: "0" + Hashing.cyrb53 ("Ofcrouse mom!")
         });
         RegisteredUser.addMessageToConvo(this.username, "Mom", {
-            sender: false, type: "video", time: new Date(), content: messyRoom,
+            sender: false, type: "img", time: new Date(), content: messyRoom,
             key: "0" + Hashing.cyrb53 ("messyRoom" + PendingUser.generateVerificationCode())
         });
         RegisteredUser.addMessageToConvo(this.username, "Mom", {
-            sender: true, type: "text", time: new Date(), content: "It doesnt look clean to me!!!",
+            sender: false, type: "text", time: new Date(), content: "It doesnt look clean to me!!!",
             key: "0" + Hashing.cyrb53 ("It doesnt look clean to me!!!")
         });
         RegisteredUser.addContact(this.username, "Bob");
         RegisteredUser.addMessageToConvo(this.username, "Bob", {
-            sender: false, type: "video", time: new Date(), content: yesWeCan,
+            sender: false, type: "audio", time: new Date(), content: yesWeCan,
             key: "0" + Hashing.cyrb53 ("yesWeCan" + PendingUser.generateVerificationCode())
         });
         RegisteredUser.addMessageToConvo(this.username, "Bob", {

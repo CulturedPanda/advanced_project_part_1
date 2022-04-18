@@ -1,6 +1,6 @@
 # Whatsapp-like web-client
 
-Submitters:
+### `Submitters`:
 
 Yuval Uner, ID: 322558842, Github: OddPanda.\
 Nadav Elgrabli, ID: 316082791, Github: ZycleXx.
@@ -11,6 +11,19 @@ To run the project, use "npm start".
 1. React
 2. React-Bootstrap
 3. React-router / React-router-dom
+
+### `testing`
+To test our project, there are hardcoded users, defined as follows:
+1. Username: Panda, Password: 2468.
+2. Username: Alice, Password: 1234.
+3. Username: Bob, Password: 5678.
+4. Username: Emily, Password: 1234.
+5. Username: Dana, Password: 1234.
+6. Username: Mom, Password: 1234.
+
+Moreover, when signing up with a new user, 5 contacts will be added along with demo messages sent to 
+and from them.\
+We recommend signing up with a new user to test.
 
 # Main Components
 
