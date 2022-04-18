@@ -5,10 +5,15 @@ import RegisteredUser from "../../../Users/RegisteredUser";
 import RecordMessageModal from "./InputBarComponents/RecordMessageModal";
 import {useState} from "react";
 
-
+/**
+ * input bar component of the chat.
+ * @param props
+ * @returns {JSX.Element}
+ */
 const InputBar =  (props) => {
     const [modalShow, setModalShow] = useState(false);
 
+    //function sends the text message typed into the input bar, and adds it to the conversation.
     const handleSend = (e) => {
         e.preventDefault();
         let inputField = $("#message-input");
@@ -25,6 +30,8 @@ const InputBar =  (props) => {
                 <div>
                     <div className="input-group mb-3 input-message-pad">
                         <OverlayTrigger trigger="click" placemnt="top" rootClose={true} overlay={
+
+                            // popover for the modal when trying to record an audio in chat.
                             <Popover id="attach-menu-popover">
                                 <Popover.Body>
                                     <AttachMenu openRecordMessageModal={() => setModalShow(true)} props={{username: props.username, convo: props.convo, setConvo: props.setConvo}}/>

@@ -5,24 +5,33 @@ import {Button, Modal} from "react-bootstrap";
 let mediaRecorder;
 let mediaStream;
 
+/**
+ * a modal that pops up for clicking the audio recording button.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function RecordMessageModal(props) {
 
     const [isRecording, setIsRecording] = useState(false);
 
+    //if condition that stops recording if we click the stop button
     function onClick() {
         if (isRecording) {
             // stop record
             mediaRecorder.stop()
             mediaStream.getTracks()[0].stop();
             setIsRecording(false);
-            // send message to chat
+
+            //else condition that keeps the recording going if user doesn't push the stop button.
         } else {
-            navigator.mediaDevices.getUserMedia({ audio: true })
+            navigator.mediaDevices.getUserMedia({audio: true})
                 .then(stream => {
-                    navigator.mediaDevices.getUserMedia({ audio: true })
+                    navigator.mediaDevices.getUserMedia({audio: true})
                         .then(stream => {
                             mediaStream = stream;
                             mediaRecorder = new MediaRecorder(stream);
+
+                            //while we record, we store the audio data in chunks.
                             if (mediaRecorder) {
                                 setIsRecording(true);
                                 mediaRecorder.start();
@@ -31,8 +40,11 @@ function RecordMessageModal(props) {
                                     audioChunks.push(event.data);
                                 });
 
+                                //Convert the audio data chunks to a single audio data blob
                                 mediaRecorder.addEventListener("stop", () => {
                                     const audioBlob = new Blob(audioChunks);
+
+                                    //Create a URL for that single audio data blob
                                     const audioUrl = URL.createObjectURL(audioBlob);
                                     RegisteredUser.addMessageToConvo(props.username, props.convo, {
                                         sender: true, type: "audio", time: new Date(), content: audioUrl

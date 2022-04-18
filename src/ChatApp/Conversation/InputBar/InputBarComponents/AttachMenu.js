@@ -2,6 +2,12 @@ import CameraButton from "./CameraButton";
 import VideoButton from "./VideoButton";
 import MicButton from "./MicButton";
 
+/**
+ * attach menu for the button clicked to attach picture, video or voice recording.
+ * @param props
+ * @param openRecordMessageModal
+ * @returns {JSX.Element}
+ */
 function AttachMenu({props, openRecordMessageModal}) {
     return (
         <span>

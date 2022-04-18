@@ -1,7 +1,13 @@
 import RegisteredUser from "../../../../Users/RegisteredUser";
 
+/**
+ * camera button to send picture in chat.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function CameraButton({props}) {
 
+    //function receives the picture and adds it as message to the conversation.
     const handleChange = (e)=>{
         let url = URL.createObjectURL(e.target.files[0]);
         RegisteredUser.addMessageToConvo(props.username, props.convo, {

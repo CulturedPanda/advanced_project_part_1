@@ -1,7 +1,13 @@
 import RegisteredUser from "../../../../Users/RegisteredUser";
 
+/**
+ * Video button to send a video in chat.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function VideoButton({props}) {
 
+    //function receives adds the video to the conversation
     const handleChange = (e)=>{
         let url = URL.createObjectURL(e.target.files[0]);
         RegisteredUser.addMessageToConvo(props.username, props.convo, {
