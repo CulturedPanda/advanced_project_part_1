@@ -1,7 +1,11 @@
 import PendingUser from "./PendingUser";
 import person from "../Resources/person-circle.svg"
 import Hashing from "../Misc/Hashing";
-import logInScreen from "../Resources/log-in-screen.png"
+import ferrariPic from "../Resources/ferrari.jpg"
+import polarBearVideo from "../Resources/polar-bears.webm"
+import messyRoom from "../Resources/messy-room.webp"
+import yesWeCan from "../Resources/Yes-we-can.mp3"
+
 
 
 /**
@@ -186,17 +190,66 @@ class RegisteredUser {
         sessionStorage.setItem(this.email + "log", JSON.stringify(this));
         RegisteredUser.addContact(this.username, "Alice");
         RegisteredUser.addMessageToConvo(this.username, "Alice", {
-            sender: false, type: "text", time: new Date(), content: "Hellooooooooooo",
-            key: "0" + Hashing.cyrb53 ("Hellooooooooooo")
+            sender: false, type: "text", time: new Date(), content: "Yooooooooooooooooooo",
+            key: "0" + Hashing.cyrb53 ("Yooooooooooooooooooo")
         });
         RegisteredUser.addMessageToConvo(this.username, "Alice", {
-            sender: false, type: "text", time: new Date(), content: "Check this amazing app out!",
-            key: "0" + Hashing.cyrb53 ("Check this amazing app out!")
+            sender: false, type: "text", time: new Date(), content: "Check this amazing picture out! I freaking love fast cars!",
+            key: "0" + Hashing.cyrb53 ("Check this amazing picture out! I freaking love fast cars!")
         });
         RegisteredUser.addMessageToConvo(this.username, "Alice", {
-            sender: false, type: "img", time: new Date(), content: logInScreen,
-            key: "0" + Hashing.cyrb53 ("logInScreen" + PendingUser.generateVerificationCode())
+            sender: false, type: "img", time: new Date(), content: ferrariPic,
+            key: "0" + Hashing.cyrb53 ("ferrariPic" + PendingUser.generateVerificationCode())
         });
+        RegisteredUser.addMessageToConvo(this.username, "Alice", {
+            sender: true, type: "text", time: new Date(), content: "Fast&Furious4Life Baby!!!",
+            key: "0" + Hashing.cyrb53 ("Fast&Furious4Life Baby!!!")
+        });
+        RegisteredUser.addContact(this.username, "Charlie");
+        RegisteredUser.addMessageToConvo(this.username, "Charlie", {
+            sender: false, type: "text", time: new Date(), content: "Man you have to check this SICK video out!!, I LOVE bears.",
+            key: "0" + Hashing.cyrb53 ("Man you have to check this SICK video out!!, I LOVE bears.")
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Charlie", {
+            sender: false, type: "video", time: new Date(), content: polarBearVideo,
+            key: "0" + Hashing.cyrb53 ("polarBearVideo" + PendingUser.generateVerificationCode())
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Charlie", {
+            sender: true, type: "text", time: new Date(), content: "That's freaking awesome dude!!",
+            key: "0" + Hashing.cyrb53 ("That's freaking awesome dude!!")
+        });
+        RegisteredUser.addContact(this.username, "Mom");
+        RegisteredUser.addMessageToConvo(this.username, "Mom", {
+            sender: false, type: "text", time: new Date(), content: "Did you clean your room?",
+            key: "0" + Hashing.cyrb53 ("Did you clean your room?")
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Mom", {
+            sender: true, type: "text", time: new Date(), content: "Ofcrouse mom!",
+            key: "0" + Hashing.cyrb53 ("Ofcrouse mom!")
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Mom", {
+            sender: false, type: "video", time: new Date(), content: messyRoom,
+            key: "0" + Hashing.cyrb53 ("messyRoom" + PendingUser.generateVerificationCode())
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Mom", {
+            sender: true, type: "text", time: new Date(), content: "It doesnt look clean to me!!!",
+            key: "0" + Hashing.cyrb53 ("It doesnt look clean to me!!!")
+        });
+        RegisteredUser.addContact(this.username, "Bob");
+        RegisteredUser.addMessageToConvo(this.username, "Bob", {
+            sender: false, type: "video", time: new Date(), content: yesWeCan,
+            key: "0" + Hashing.cyrb53 ("yesWeCan" + PendingUser.generateVerificationCode())
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Bob", {
+            sender: false, type: "text", time: new Date(), content: "Obama was just so inspiring!",
+            key: "0" + Hashing.cyrb53 ("Obama was just so inspiring!")
+        });
+        RegisteredUser.addMessageToConvo(this.username, "Bob", {
+            sender: true, type: "text", time: new Date(), content: "Yeah he was awesome",
+            key: "0" + Hashing.cyrb53 ("Yeah he was awesome")
+        });
+
+
     }
 
     /**
