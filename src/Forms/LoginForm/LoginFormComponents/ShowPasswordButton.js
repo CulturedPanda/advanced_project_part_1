@@ -1,7 +1,13 @@
 import $ from "jquery"
 
+/**
+ * A general button for showing passwords for password input fields.
+ * @param props the id for the button and the id of the password field to affect.
+ * @returns {JSX.Element}
+ */
 function ShowPasswordButton({props}){
 
+    // Turns the password field onto a text field on check, and back to a password field on uncheck.
     const showPassword = ()=>{
         let passField = $("#" + props.passField);
         if ($("#" + props.id).is(":checked")){
