@@ -46,6 +46,9 @@ The right side of the screen (the conversation itself) will appear once a contac
 
 ## Additional, non-mandatory components
 
+There are other features added, however, they are mostly more obvious, and so they were not added 
+so as not to clutter this too much.
+
 ### `Email verification form`
 ![img.png](src/Resources/email-verification-screen.png)
 
@@ -80,6 +83,12 @@ Allows for searching through contacts, and updates the displayed contacts while 
 ![img.png](src/Resources/all-contacts.png)
 
 ![img.png](src/Resources/filtered-contacts.png)
+
+### `Automatic log-in`
+
+Using cookies, we implemented automatic log-in of users that already signed-in before using cookies.\
+If the user chose "remember me", they will be remembered for a period of a week, which will be renewed
+upon logging in again.
 
 ## Known issues
 
