@@ -5,11 +5,11 @@ import './SharedDesignStyle.css'
  * @param children
  * @returns {JSX.Element}
  */
-function SharedDesign( {children} ){
+function SharedDesign({children}) {
     return (
-            <div className="background container-fluid vw-100 vh-100">
-                {children}
-            </div>
+        <div className="background container-fluid vw-100 vh-100">
+            {children}
+        </div>
     )
 }
 

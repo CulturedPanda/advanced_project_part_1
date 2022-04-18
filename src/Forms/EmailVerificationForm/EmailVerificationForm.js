@@ -7,6 +7,11 @@ import RegisteredUser from "../../Users/RegisteredUser";
 import {useNavigate} from "react-router";
 import BaseForm from "../BaseForm";
 
+/**
+ * Email verification form for when the user is sent a code to their email.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function EmailVerificationForm({props}) {
 
     const textFormRef = useRef("");
@@ -18,6 +23,7 @@ function EmailVerificationForm({props}) {
         let code = textFormRef.current.value;
         let field = $("#verification-code-input");
         let text = $("#format-error");
+        // Check code structure validity.
         if (code.length !== 6) {
             field.addClass("border-danger");
             text.show();
@@ -27,6 +33,7 @@ function EmailVerificationForm({props}) {
             text.hide();
             $("#verification-error").show();
         }
+        // If fromSignup, log the user in.
         if (props.fromSignup) {
             if (PendingUser.canVerify(props.username, code)) {
                 PendingUser.addUser(props.username);
@@ -36,6 +43,7 @@ function EmailVerificationForm({props}) {
             } else {
                 onError();
             }
+            // Otherwise, continue to reset password form.
         } else {
             if (RegisteredUser.canVerify(props.username, code)) {
                 nav("/forgot_password/reset_password");

@@ -3,8 +3,8 @@
  * @returns {JSX.Element}
  * @constructor
  */
-function ForgotPasswordFormResetPasswordText(){
-    return(
+function ForgotPasswordFormResetPasswordText() {
+    return (
         <div>
             <p>
                 To finish resetting your password, please input your new password and then hit submit.

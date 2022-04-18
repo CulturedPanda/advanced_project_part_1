@@ -3,26 +3,35 @@ import Sidebar from "./Sidebar/Sidebar";
 import {Component} from "react";
 import RegisteredUser from "../Users/RegisteredUser";
 
-class MainApp extends Component{
+/**
+ * The main app class, holds all the components of the app and manages some of their states.
+ */
+class MainApp extends Component {
 
     constructor(props) {
         super(props);
         this.state = {currentConvo: "", convoContent: RegisteredUser.getConvo(this.props.username, "")}
     }
 
-    setConvo = (convoWith)=>{
+    /**
+     * Sets who the current conversation is with, and loads their messages.
+     * @param convoWith the user the current covnersation is with.
+     */
+    setConvo = (convoWith) => {
         this.setState({
             currentConvo: convoWith,
             convoContent: RegisteredUser.getConvo(this.props.username, convoWith)
         })
     }
 
-    convoContentSetter = ()=>{
+    /**
+     * Loads the messages in the conversation after they were updated.
+     */
+    convoContentSetter = () => {
         this.setState({
             convoContent: RegisteredUser.getConvo(this.props.username, this.state.currentConvo)
         })
     }
-
 
 
     render() {

@@ -3,6 +3,9 @@ import RegisteredUser from "../../../../Users/RegisteredUser";
 import ImageNameContainer from "../../UserProfileContainer/UserProfileContainerComponents/ImageNameContainer";
 import $ from "jquery"
 
+/**
+ * A container for all of a contact's information.
+ */
 class ContactContainer extends Component {
 
     constructor(props) {
@@ -12,27 +15,38 @@ class ContactContainer extends Component {
         };
     }
 
-    updateTime = ()=>{
+    /**
+     * Updates the contact's last seen on the screen.
+     */
+    updateTime = () => {
         this.setState(
             {lastMessageDate: RegisteredUser.getLastSeen(this.props.user, this.props.username)}
         );
     }
 
+    /**
+     * Make updates occur every minute.
+     */
     componentDidMount() {
         setInterval(this.updateTime, 60000);
     }
 
+    /**
+     * Determine which string to display for the "just seen" portion.
+     * @returns {string}
+     */
     timeFromLast = () => {
         let timeDelta = Math.floor((new Date() - this.state.lastMessageDate) / 60000);
         if (timeDelta === 0) {
             return "Just now";
+            // If less than an hour.
         } else if (timeDelta < 60) {
             return timeDelta + " minutes ago";
         }
-        else if(timeDelta < 1440){
+        // If less than a day but more than an hour.
+        else if (timeDelta < 1440) {
             return Math.floor(timeDelta / 60) + " hours ago";
-        }
-        else{
+        } else {
             let date = this.state.lastMessageDate;
             let day = date.getDate().toString().padStart(2, "0");
             let month = date.getMonth() + 1;
@@ -41,6 +55,9 @@ class ContactContainer extends Component {
         }
     }
 
+    /**
+     * Adds a clear indication to the user that they chose the contact, and changes to that contact.
+     */
     focusHandler = () => {
         let thisItem = $("#contact" + this.props.username);
         thisItem.addClass("active border-primary border-primary border-2");
@@ -60,9 +77,11 @@ class ContactContainer extends Component {
                         className="btn no-effect-button text-start btn-flex justify-content-left break-text">
                     <div className="col">
                         <div className="break-text">
-                            <ImageNameContainer props={{username: this.props.username,
+                            <ImageNameContainer props={{
+                                username: this.props.username,
                                 nickname: RegisteredUser.getNickname(this.props.username),
-                                renderNum: false, profilePicture: RegisteredUser.getImage(this.props.username)}}/>
+                                renderNum: false, profilePicture: RegisteredUser.getImage(this.props.username)
+                            }}/>
                             <span className="float-end small-text">
                                 {this.timeFromLast()}
                             </span>

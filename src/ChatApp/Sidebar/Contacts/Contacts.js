@@ -2,12 +2,16 @@ import {Component} from "react";
 import ContactContainer from "./ContactComponents/ContactContainer";
 import SearchBar from "./ContactComponents/ContainerComponents/SearchBar";
 
+/**
+ * Holds and generates all the contact containers, the part seen in the buttom of the sidebar.
+ */
 class Contacts extends Component {
 
 
-    createContacts = ()=> {
+    createContacts = () => {
         return this.props.filteredContacts.map((contact) =>
-            <ContactContainer username={contact} user={this.props.username} setConvo={this.props.setConvo} key={contact}/>)
+            <ContactContainer username={contact} user={this.props.username} setConvo={this.props.setConvo}
+                              key={contact}/>)
     }
 
     render() {

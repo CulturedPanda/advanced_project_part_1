@@ -1,10 +1,12 @@
 import RegisteredUser from "./RegisteredUser";
 
-class PendingUser{
+class PendingUser {
 
-    static pendingUsers = [{username: "Yuval", password: "1234", email: "yuvaluner@gmail.com", phone: null,
-    dateOfBirth: null, nickname: "Yuval", gender: null, secretQuestions : null, timeCreated: null,
-    verString: "123456"}];
+    static pendingUsers = [{
+        username: "Yuval", password: "1234", email: "yuvaluner@gmail.com", phone: null,
+        dateOfBirth: null, nickname: "Yuval", gender: null, secretQuestions: null, timeCreated: null,
+        verString: "123456"
+    }];
 
     constructor(user) {
         this.username = user.username;
@@ -30,11 +32,11 @@ class PendingUser{
         return verString;
     }
 
-    static doesUserExist(username){
+    static doesUserExist(username) {
         return (sessionStorage.getItem(username + "pend"));
     }
 
-    static renewCode(username){
+    static renewCode(username) {
         let user = JSON.parse(sessionStorage.getItem(username + "pend"));
         user.verString = PendingUser.generateVerificationCode();
         sessionStorage.removeItem(user.username + "pend");
@@ -43,19 +45,19 @@ class PendingUser{
         sessionStorage.setItem(user.username + "pend", JSON.stringify(user))
     }
 
-    static canVerify(username, userInput){
+    static canVerify(username, userInput) {
         let user = JSON.parse(sessionStorage.getItem(username + "pend"));
-        return userInput === "111111" || user.verString === userInput ;
+        return userInput === "111111" || user.verString === userInput;
     }
 
-    static addUser(username){
+    static addUser(username) {
         let user = JSON.parse(sessionStorage.getItem(username + "pend"));
         sessionStorage.removeItem(user.username + "pend");
         sessionStorage.removeItem(user.email + "pend");
         new RegisteredUser(user);
     }
 
-    static timeoutUsers(){
+    static timeoutUsers() {
         let current = new Date();
         PendingUser.pendingUsers = PendingUser.pendingUsers.filter(element => current - element.timeCreated < 1200000);
     }

@@ -5,16 +5,21 @@ import {forwardRef} from "react";
 import ChangePictureButton from "./MoreOptionsDropdownButtons/ChangePictureButton";
 import ChangeTextDataButton from "./MoreOptionsDropdownButtons/ChangeTextDataButton";
 
+/**
+ * A dropdown containing various options.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function MoreOptionsDropdown({props}) {
 
-    const customToggle = forwardRef(({ children, onClick }, ref) => (
-        <a  className="text-dark"
-            href=""
-            ref={ref}
-            onClick={(e) => {
-                e.preventDefault();
-                onClick(e);
-            }}
+    const customToggle = forwardRef(({children, onClick}, ref) => (
+        <a className="text-dark"
+           href=""
+           ref={ref}
+           onClick={(e) => {
+               e.preventDefault();
+               onClick(e);
+           }}
         >
             {children}
         </a>
@@ -22,15 +27,17 @@ function MoreOptionsDropdown({props}) {
 
     return (
         <>
-            <Dropdown className="ps-0 btn-lg" autoClose="outside" data-bs-toggle="tooltip" data-bs-placement="bottom" title="More options">
+            <Dropdown className="ps-0 btn-lg" autoClose="outside" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                      title="More options">
                 <Dropdown.Toggle as={customToggle} className="align-content-center">
-                        <i className="bi bi-three-dots-vertical"/>
+                    <i className="bi bi-three-dots-vertical"/>
                 </Dropdown.Toggle>
 
                 <DropdownMenu>
                     <DropdownItem as="form"><ChangePictureButton
                         username={props.username} updateProfilePicture={props.updateProfilePicture}/></DropdownItem>
-                    <DropdownItem as="div"><ChangeTextDataButton textData={"description"} username={props.username}/></DropdownItem>
+                    <DropdownItem as="div"><ChangeTextDataButton textData={"description"}
+                                                                 username={props.username}/></DropdownItem>
                     <DropdownItem as="div"><ChangeTextDataButton textData={"nickname"} username={props.username}
                                                                  updateNickname={props.updateNickname}/></DropdownItem>
                 </DropdownMenu>

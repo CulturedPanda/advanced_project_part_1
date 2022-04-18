@@ -1,3 +1,8 @@
+/**
+ * A basic email input field for the modal.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function ModalEmailField({props}) {
     return (
         <div className="input-group">

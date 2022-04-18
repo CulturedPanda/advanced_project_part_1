@@ -3,6 +3,9 @@ import {Button, Modal} from "react-bootstrap";
 import $ from "jquery";
 import RegisteredUser from "../../../../../../Users/RegisteredUser";
 
+/**
+ * A modal for changing text related data.
+ */
 class ChangeTextDataModal extends Component{
 
     handleClose = (e)=>{
@@ -10,6 +13,10 @@ class ChangeTextDataModal extends Component{
         this.props.hide(false);
     }
 
+    /**
+     * Updates data, depending on that data's rules.
+     * @param e
+     */
     handleSubmit = (e)=>{
         e.preventDefault();
         let val = $("#new-desc-input").val();
@@ -35,6 +42,10 @@ class ChangeTextDataModal extends Component{
         }
     }
 
+    /**
+     * Generates a description, depending on the type of data being changed.
+     * @returns {JSX.Element}
+     */
     generateDescription = ()=>{
         if (this.props.textData === "description"){
             return(
