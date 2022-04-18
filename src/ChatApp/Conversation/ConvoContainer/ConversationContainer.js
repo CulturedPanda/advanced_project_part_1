@@ -2,7 +2,12 @@ import {Component} from "react";
 import ChatBubble from "./ChatBubble";
 import Utils from "../../../Misc/Utils";
 
+/**
+ * Class of the container of the entire conversation.
+ */
 class ConversationContainer extends Component {
+
+    //function creates the bubbles based on all inputs.
     generateChatBubbles =() =>{
         return(
             this.props.convo.map((message)=>

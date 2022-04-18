@@ -1,7 +1,11 @@
 import {Component} from "react";
 
+/**
+ * class of the chat-bubble that holds all types of message.
+ */
 class ChatBubble extends Component {
 
+    //function puts the time sent of each message in chat bubble.
     parseTime = () => {
         let date = new Date(this.props.time);
         let minutes = date.getMinutes().toString().padStart(2, "0");
@@ -9,17 +13,19 @@ class ChatBubble extends Component {
         return hours + ":" + minutes;
     }
 
+    //function in charge of determining side of message depending on if the message is from sender or not.
     determineSide = () => {
         let side = this.props.sender ? "right" : "left"
         return "chat-bubble chat-bubble-" + side +" chat-bubble-" + this.props.type + "-" + side;
     }
 
-    // TODO: Fill class type
+    // function determines the margin of the message if its from sender or not.
     determineMargin = () => {
         let side = this.props.sender ? "offset-md-9" : ""
         return "col-md-3 " + side;
     }
 
+    // function determines the type of content being sent, and adds it accordingly.
     createContent = () => {
         if (this.props.type === "text") {
             return this.props.content;
@@ -37,8 +43,10 @@ class ChatBubble extends Component {
         }
     }
 
-    // TODO: Fix needing to scroll down when sending messages, auto scroll down instead.
-    // TODO: Auto scroll to last message when switching contacts.
+    /**
+     * render function that creates the bubble by determining the margin, side, time and content being sent.
+     * @returns {JSX.Element}
+     */
     render() {
         return (
             <>
@@ -48,7 +56,6 @@ class ChatBubble extends Component {
                             <span>
                                 {this.createContent()}
                             </span>
-                            {/*// TODO: Set time to the bottom right corner*/}
                             <span className="very-small-text float-end">
                                 {this.parseTime()}
                             </span>
