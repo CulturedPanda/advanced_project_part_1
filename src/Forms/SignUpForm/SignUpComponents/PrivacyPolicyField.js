@@ -1,5 +1,9 @@
 import pdf from "../../../Policies/privacy_policy.pdf"
 
+/**
+ * Privacy policy check box in signup form.
+ * @returns {JSX.Element}
+ */
 function PrivacyPolicyField() {
     return (
         <div className="form-check row mb-3">

@@ -1,7 +1,13 @@
 import $ from "jquery";
 
+/**
+ * Nickname field in the signup form.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function NicknameField({props}){
 
+    //function checks validity of nickname, if not valid, colors in red and prints error message.
     const handleBlur = ()=>{
         let text = $("#nickname-error");
         let nicknameField = $("#nickname-signup-field");
@@ -12,6 +18,7 @@ function NicknameField({props}){
             text.show();
             props.setConfirm(false);
         }
+        //else condition occurs if nickname is valid, and color the field in green.
         else{
             nicknameField.removeClass("border-danger");
             nicknameField.addClass("border-success");

@@ -1,18 +1,25 @@
 import {useRef} from "react";
-
 import $ from "jquery";
 import ShowPasswordButton from "../../LoginForm/LoginFormComponents/ShowPasswordButton";
 
+/**
+ * password field for signup form.
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function PasswordSignupField({props}) {
-
     const pass = useRef("");
     const passConfirm = useRef("");
 
+    //Function checks validity of password
     const handleBlur = ()=>{
         const currentVal = pass.current.value;
         const len = currentVal.length;
         let passField = $("#new-pass1");
         let error = $("#main-pass-error")
+
+        //if condition checks if password meets all requirements. if not, print error message and color in red.
         if (!currentVal.match("(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$")){
             passField.removeClass("border-success");
             passField.addClass("border-danger");
@@ -20,6 +27,7 @@ function PasswordSignupField({props}) {
             error.show();
             props.setConfirmPass(false);
         }
+        //if condition checks if password too short or too long, prints error message and colors border in red.
         else if(len > 20 || len < 8){
             passField.removeClass("border-success");
             passField.addClass("border-danger");
@@ -27,6 +35,7 @@ function PasswordSignupField({props}) {
             error.show();
             props.setConfirmPass(false);
         }
+        //else condition means all tests passed, and password is good. color border in green.
         else{
             passField.removeClass("border-danger");
             passField.addClass("border-success");
@@ -35,6 +44,7 @@ function PasswordSignupField({props}) {
         }
     }
 
+    //Checks if the "confirm password" matches the "password" field.
     const handleChange = ()=>{
         let confirmField = $("#new-pass2");
         let currentConfirm = passConfirm.current.value;
