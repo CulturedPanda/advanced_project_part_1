@@ -40,6 +40,68 @@ class RegisteredUser {
             }]
         },
         {
+            username: "Charlie",
+            password: "1234",
+            email: "charlie@foo.com",
+            phone: null,
+            dateOfBirth: null,
+            nickname: "Charlie",
+            secretQuestions: null,
+            gender: "male",
+            verCode: "111222",
+            img: null,
+            description: "I like trains.",
+            contacts: [{name: "Alice", lastSeen: new Date()}]
+            ,
+            lastSeen: new Date(),
+            nickNum: "7389",
+            conversations: [{
+                with: "Alice", messages: [{
+                    sender: false, type: "text", time: new Date(), content: "Hello Charlie, how is everything?",
+                    key: "0" + Hashing.cyrb53("Hello Charlie, how is everything?")
+                },
+                    {
+                        sender: true,
+                        type: "text",
+                        time: new Date(),
+                        content: "Everything is good, what up Alice?",
+                        key: "1" + Hashing.cyrb53("Everything is good, what up Alice?")
+                    }]
+            }]
+        }
+        ,
+        {
+            username: "Dana",
+            password: "1234",
+            email: "dana@foo.com",
+            phone: null,
+            dateOfBirth: null,
+            nickname: "Dana",
+            secretQuestions: null,
+            gender: "female",
+            verCode: "111222",
+            img: null,
+            description: "Fast&Furious4Life",
+            contacts: [{name: "Charlie", lastSeen: new Date()}]
+            ,
+            lastSeen: new Date(),
+            nickNum: "1502",
+            conversations: [{
+                with: "Charlie", messages: [{
+                    sender: false, type: "text", time: new Date(), content: "You still obsessed with trains?",
+                    key: "0" + Hashing.cyrb53("You still obsessed with trains?")
+                },
+                    {
+                        sender: true,
+                        type: "text",
+                        time: new Date(),
+                        content: "Hell yeah I am.",
+                        key: "1" + Hashing.cyrb53("Hell yeah I am.")
+                    }]
+            }]
+        }
+        ,
+        {
             username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
             secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
             lastSeen: new Date(), contacts: [{name: "Panda", lastSeen: new Date()}], nickNum: "3532",
