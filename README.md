@@ -5,7 +5,8 @@
 Yuval Uner, ID: 322558842, Github: OddPanda.\
 Nadav Elgrabli, ID: 316082791, Github: ZycleXx.
 
-To run the project, use "npm start".
+To run the project, use "npm start".\
+The root file is index.js.
 
 ### `dependencies`
 1. React
