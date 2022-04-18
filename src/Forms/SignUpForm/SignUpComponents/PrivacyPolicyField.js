@@ -1,5 +1,10 @@
 import pdf from "../../../Policies/privacy_policy.pdf"
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function PrivacyPolicyField() {
     return (
         <div className="form-check row mb-3">

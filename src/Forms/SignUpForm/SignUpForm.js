@@ -16,6 +16,11 @@ import PendingUser from "../../Users/PendingUser";
 import {useNavigate} from "react-router";
 import BaseForm from "../BaseForm";
 
+/**
+ * Sign up form of the app.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function SignUpForm({props}) {
 
     // Complete abuse of states. Likely to be deleted when we have a server.
@@ -37,6 +42,7 @@ function SignUpForm({props}) {
         let isTos = $("#tos-radio-check").is(":checked");
         let isPrivacyPolicy = $("#privacy-policy-radio-check").is(":checked");
 
+        //Checks that user agreed to terms of service and privacy policy, and all inputs are correct
         if (isTos && isPrivacyPolicy) {
             if (userConfirm && passConfirm && passConfirmationConfirm
                 && emailConfirm && nicknameConfirm && secretQuestionConfirm && secretAnswerConfirm) {
@@ -49,6 +55,7 @@ function SignUpForm({props}) {
                 let secretAnswer = $("#secret-answer").val();
                 props.username(username);
                 props.from(true);
+                //if all inputs are correct, create user
                 new PendingUser({
                     username: username, password: password,
                     email: email, phone: phone, dateOfBirth: null, nickname: nickname,
@@ -56,6 +63,7 @@ function SignUpForm({props}) {
                 });
                 nav("/verify_email");
             }
+            //If user didn't agree to terms of service or privacy policy, mark them as red.
         } else {
             if (!isTos) {
                 $("#invalid-tos").show();

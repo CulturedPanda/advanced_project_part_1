@@ -1,3 +1,7 @@
+/**
+ * Phone number field in signup form.
+ * @returns {JSX.Element}
+ */
 function PhoneNumberField(){
     return (
         <div>

@@ -2,12 +2,18 @@ import $ from "jquery";
 import RegisteredUser from "../../../Users/RegisteredUser";
 import PendingUser from "../../../Users/PendingUser";
 
+/**
+ * The field of email in the signup form.
+ * @param props
+ * @returns {JSX.Element}
+ */
 function EmailField({props}){
 
     const handleBlur = ()=>{
         let emailField = $("#email-signup-field");
         let current = emailField.val();
         let text = $("#email-error");
+        //if condition checks if the email already exists in system, if so mark as red and alert.
         if (RegisteredUser.DoesUserExist(current) || PendingUser.doesUserExist(current)){
             emailField.removeClass("border-success");
             emailField.addClass("border-danger");
@@ -15,6 +21,7 @@ function EmailField({props}){
             text.show();
             props.setConfirm(false);
         }
+        //if condition checks validity of email.
         else if(current.length < 3 || !current.includes("@") || current.length > 300){
             emailField.removeClass("border-success");
             emailField.addClass("border-danger");
@@ -22,6 +29,7 @@ function EmailField({props}){
             text.show();
             props.setConfirm(false);
         }
+        //else condition marks that email is good and colors it in green
         else{
             emailField.removeClass("border-danger");
             emailField.addClass("border-success");
