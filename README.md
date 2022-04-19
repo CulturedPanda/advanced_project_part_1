@@ -125,3 +125,13 @@ These issues are caused by the way the arrays containing the hard coded users ar
 However, everything done between 2 "real", that is, users actually created via the sign-up process
 works with no issues.\
 Therefore, we chose not to try and fix this as all the hard-coded users will be gone once a server is up.
+
+## Not yet implemented features
+
+1. Sending emails to the user - will be added on the server side.
+2. Adding contacts via their phone number - will be implemented when server side is developed.
+3. Adding contacts via their nickname + discriminator (much like discord) - will be implemented
+once the server side is developed.
+
+2 and 3 were not implemented to avoid adding even more duplicate data into the session storage, when
+in reality it should simply all be done in a database.
