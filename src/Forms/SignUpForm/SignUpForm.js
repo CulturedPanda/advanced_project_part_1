@@ -36,7 +36,7 @@ function SignUpForm({props}) {
     const nav = useNavigate();
 
     //This function prevents then loss of info in refresh once we submit new user
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         let isTos = $("#tos-radio-check").is(":checked");
         let isPrivacyPolicy = $("#privacy-policy-radio-check").is(":checked");
@@ -52,15 +52,20 @@ function SignUpForm({props}) {
                 let phone = $("#phone").val();
                 let secretQuestion = $("#secret-questions").val();
                 let secretAnswer = $("#secret-answer").val();
-                props.username(username);
-                props.from(true);
                 //if all inputs are correct, create user
-                new PendingUser({
+                let pendingUser = new PendingUser({
                     username: username, password: password,
                     email: email, phone: phone, dateOfBirth: null, nickname: nickname,
-                    secretQuestions: {question: secretQuestion, answer: secretAnswer}
+                    secretQuestion: {question: secretQuestion, answer: secretAnswer}
                 });
-                nav("/verify_email");
+                if (await PendingUser.signUp(pendingUser)) {
+                    props.setUser(username);
+                    props.from(true);
+                    nav("/verify_email");
+                }
+                else{
+                    $("#something-went-wrong").show();
+                }
             }
             //If user didn't agree to terms of service or privacy policy, mark them as red.
         } else {
@@ -95,6 +100,9 @@ function SignUpForm({props}) {
                     <PrivacyPolicyField/>
                     <div className="d-grid gap-2 col-6 mx-auto mb-3">
                         <button className="btn btn-primary">Submit</button>
+                    </div>
+                    <div className="mt-2 error-text" id="something-went-wrong">
+                        Oops, something went wrong. Please verify your details and try again.
                     </div>
                 </div>
                 <div>

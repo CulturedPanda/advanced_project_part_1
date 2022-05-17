@@ -33,7 +33,7 @@ function Router({props}) {
                         username: setUsername, toggle: setToggle,
                         fromSetter: setFrom, passReset: from, setLogIn: props.setLoggedIn
                     }}/>}/>
-                    <Route path="/sign_up" element={<SignUpForm props={{username: setUsername, from: setFrom}}/>}/>
+                    <Route path="/sign_up" element={<SignUpForm props={{setUser: setUsername, from: setFrom}}/>}/>
                     <Route path="/forgot_password" element={<InitialForgotPasswordForm
                         props={{
                             username: username,

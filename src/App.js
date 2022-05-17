@@ -9,18 +9,6 @@ import registeredUser from "./Users/RegisteredUser";
 
 function App() {
 
-    // Incredibly temporary methods where we make awful storage of sessions storage as our database.
-    // This causes all sorts of issues when trying to send messages to or from them.
-    // but as this should all go away the moment we set up a server, we have decided to not try and debug this.
-    PendingUser.pendingUsers.forEach(element => {
-        sessionStorage.setItem(element.username + "pend", JSON.stringify(element));
-        sessionStorage.setItem(element.email + "pend", JSON.stringify(element));
-    });
-    RegisteredUser.registeredUsers.forEach(element => {
-        sessionStorage.setItem(element.username + "log", JSON.stringify(element));
-        sessionStorage.setItem(element.email + "log", JSON.stringify(element));
-    });
-
     let cookie_verified = false;
     const cUsername = CookieHandling.getCookie("username");
     const password = CookieHandling.getCookie("password");

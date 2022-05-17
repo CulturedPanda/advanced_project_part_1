@@ -9,8 +9,8 @@ import PendingUser from "../../../Users/PendingUser";
 function ResendCodeButton({props}) {
 
     // Re-send the code, and then count down 60 seconds before re-enabling this.
-    const reSend = () => {
-        PendingUser.renewCode(props.username);
+    const reSend = async () => {
+        await PendingUser.renewCode(props.username);
         let button = $("#re-send-button");
         button.append("<br> <div class='small-text' id='text-area'></div>")
         let textArea = $("#text-area");

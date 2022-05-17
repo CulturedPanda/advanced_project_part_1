@@ -286,6 +286,19 @@ class RegisteredUser {
         sessionStorage.setItem(this.email + "log", JSON.stringify(this));
     }
 
+    static async doesUserExistByEmail(email){
+
+    }
+
+    /**
+     * Returns whether a user with that username already exists or not.
+     * @param username user to check existence for.
+     * @returns {null | string} null if not, the user if yes.
+     */
+    static doesUserExistByUsername(username) {
+        return (sessionStorage.getItem(username + "log"));
+    }
+
     /**
      * Generates a random string of 4 numbers for the user.
      * Temporary method as it has 0 collision prevention for nicknames, will be updated when database.
@@ -386,13 +399,13 @@ class RegisteredUser {
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
         let convo = user.conversations.find(x => x.with === convoWith).messages;
         // Unique key for the message.
-        message.key = Hashing.cyrb53(convo.length.toString() + message.content + PendingUser.generateVerificationCode());
+        message.key = Hashing.cyrb53(convo.length.toString() + message.content + PendingUser.generateRandomString());
         convo.push(message);
         RegisteredUser.updateUser(user);
         let otherUser = JSON.parse(sessionStorage.getItem(convoWith + "log"));
         message.sender = !message.sender;
         let otherConvo = otherUser.conversations.find(x => x.with === username).messages;
-        message.key = Hashing.cyrb53(otherConvo.length.toString() + message.content + PendingUser.generateVerificationCode());
+        message.key = Hashing.cyrb53(otherConvo.length.toString() + message.content + PendingUser.generateRandomString());
         otherConvo.push(message)
         // Updates the last seen status for the active user on the other's contacts bar.
         otherUser.contacts.find(x => x.name === username).lastSeen = new Date();
@@ -440,14 +453,7 @@ class RegisteredUser {
         return user.description;
     }
 
-    /**
-     * Returns whether a user with that username already exists or not.
-     * @param username user to check existence for.
-     * @returns {null | string} null if not, the user if yes.
-     */
-    static DoesUserExist(username) {
-        return (sessionStorage.getItem(username + "log"));
-    }
+
 
     /**
      * Returns a contact's last seen for a user.
@@ -530,7 +536,7 @@ class RegisteredUser {
      */
     static generateVerCode(username) {
         let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        user.verCode = PendingUser.generateVerificationCode();
+        user.verCode = PendingUser.generateRandomString();
         RegisteredUser.updateUser(user);
     }
 

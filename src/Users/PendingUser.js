@@ -1,10 +1,11 @@
 import RegisteredUser from "./RegisteredUser";
+import Tokens from "./Tokens";
 
 class PendingUser {
 
     static pendingUsers = [{
         username: "Yuval", password: "1234", email: "yuvaluner@gmail.com", phone: null,
-        dateOfBirth: null, nickname: "Yuval", gender: null, secretQuestions: null, timeCreated: null,
+        dateOfBirth: null, nickname: "Yuval", gender: null, secretQuestion: null, timeCreated: null,
         verString: "123456"
     }];
 
@@ -13,16 +14,22 @@ class PendingUser {
         this.password = user.password;
         this.email = user.email;
         this.phone = user.phone;
-        this.dateOfBirth = user.dateOfBirth;
         this.nickname = user.nickname;
-        this.secretQuestions = user.secretQuestions;
-        this.timeCreated = new Date();
-        this.verString = PendingUser.generateVerificationCode();
-        sessionStorage.setItem(this.username + "pend", JSON.stringify(this));
-        sessionStorage.setItem(this.email + "pend", JSON.stringify(this));
+        this.secretQuestion = user.secretQuestion;
     }
 
-    static generateVerificationCode() {
+    static async signUp(pendingUser){
+        let response = await fetch("https://localhost:7031/api/PendingUsers", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(pendingUser),
+        })
+        return response.ok;
+    }
+
+    static generateRandomString() {
         let verString = '';
         let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let length = chars.length;
@@ -32,29 +39,44 @@ class PendingUser {
         return verString;
     }
 
-    static doesUserExist(username) {
+    static doesUserExistByUsername(username) {
         return (sessionStorage.getItem(username + "pend"));
     }
 
-    static renewCode(username) {
-        let user = JSON.parse(sessionStorage.getItem(username + "pend"));
-        user.verString = PendingUser.generateVerificationCode();
-        sessionStorage.removeItem(user.username + "pend");
-        sessionStorage.removeItem(user.email + "pend");
-        sessionStorage.setItem(user.email + "pend", JSON.stringify(user));
-        sessionStorage.setItem(user.username + "pend", JSON.stringify(user))
+    static doesUserExistByEmail(email){
+
     }
 
-    static canVerify(username, userInput) {
-        let user = JSON.parse(sessionStorage.getItem(username + "pend"));
-        return userInput === "111111" || user.verString === userInput;
+    static doesUserExistByPhoneNumber(PhoneNumber){
+
     }
 
-    static addUser(username) {
-        let user = JSON.parse(sessionStorage.getItem(username + "pend"));
-        sessionStorage.removeItem(user.username + "pend");
-        sessionStorage.removeItem(user.email + "pend");
-        new RegisteredUser(user);
+    static async renewCode(username) {
+        let res = await fetch("https://localhost:7031/api/PendingUsers/" + username,{
+            method: "PUT"
+        });
+        return res.ok;
+    }
+
+    static async canVerify(username, userInput) {
+        let res = await fetch("https://localhost:7031/api/PendingUsers/"
+            + username + "?verificationCode=" + userInput);
+        if (res.ok){
+            Tokens.accessToken = await res.text();
+            console.log(Tokens.accessToken);
+            return true;
+        }
+        return false;
+    }
+
+    static async addUser() {
+        let response = await fetch("https://localhost:7031/api/RegisteredUsers/signUp", {
+            method: "POST",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            },
+        })
+        return response.ok;
     }
 
     static timeoutUsers() {

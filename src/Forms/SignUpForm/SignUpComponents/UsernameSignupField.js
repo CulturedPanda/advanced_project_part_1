@@ -24,7 +24,7 @@ function UsernameSignupField({props}){
         }
 
         //else if condition checks user doesn't already exist, if already exists, pritns error message.
-        else if (RegisteredUser.DoesUserExist(usernameField.val()) || PendingUser.doesUserExist(usernameField.val())){
+        else if (RegisteredUser.doesUserExistByUsername(usernameField.val()) || PendingUser.doesUserExistByUsername(usernameField.val())){
             usernameField.removeClass("border-success");
             usernameField.addClass("border-danger");
             text.text("Error: Username already exists")

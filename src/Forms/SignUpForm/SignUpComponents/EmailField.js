@@ -14,7 +14,7 @@ function EmailField({props}){
         let current = emailField.val();
         let text = $("#email-error");
         //if condition checks if the email already exists in system, if so mark as red and alert.
-        if (RegisteredUser.DoesUserExist(current) || PendingUser.doesUserExist(current)){
+        if (RegisteredUser.doesUserExistByUsername(current) || PendingUser.doesUserExistByEmail(current)){
             emailField.removeClass("border-success");
             emailField.addClass("border-danger");
             text.text("Error: Email already exists")

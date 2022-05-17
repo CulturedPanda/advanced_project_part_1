@@ -18,7 +18,7 @@ function EmailVerificationForm({props}) {
 
     const nav = useNavigate();
 
-    let handleSubmit = (e) => {
+    let handleSubmit = async (e) => {
         e.preventDefault();
         let code = textFormRef.current.value;
         let field = $("#verification-code-input");
@@ -35,8 +35,8 @@ function EmailVerificationForm({props}) {
         }
         // If fromSignup, log the user in.
         if (props.fromSignup) {
-            if (PendingUser.canVerify(props.username, code)) {
-                PendingUser.addUser(props.username);
+            if (await PendingUser.canVerify(props.username, code)) {
+                await PendingUser.addUser(props.username);
                 props.setFrom(false);
                 props.setLogIn(true);
                 nav("/")

@@ -28,10 +28,10 @@ function PasswordSignupField({props}) {
             props.setConfirmPass(false);
         }
         //if condition checks if password too short or too long, prints error message and colors border in red.
-        else if(len > 20 || len < 8){
+        else if(len > 4096 || len < 8){
             passField.removeClass("border-success");
             passField.addClass("border-danger");
-            error.text("Error: Password must be between 8 to 20 characters long");
+            error.text("Error: Password must be between 8 to 4096 characters long");
             error.show();
             props.setConfirmPass(false);
         }
