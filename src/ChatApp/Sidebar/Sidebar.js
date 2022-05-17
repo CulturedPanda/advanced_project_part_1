@@ -10,20 +10,31 @@ class Sidebar extends Component {
 
     constructor(props) {
         super(props);
-        let contactsTemp = RegisteredUser.getContacts(this.props.username);
+        // let contactsTemp = RegisteredUser.getContacts(this.props.username);
         this.state = {
+            contacts: null,
+            filteredContacts: null,
+            nickname: null,
+            valid: false
+        };
+    }
+
+    async componentDidMount() {
+        let contactsTemp = await RegisteredUser.getContacts(this.props.username);
+        this.setState({
             contacts: contactsTemp,
             filteredContacts: contactsTemp,
-            nickname: RegisteredUser.getNickname(this.props.username)
-        };
+            nickname: await RegisteredUser.getNickname(this.props.username),
+            valid: true
+        });
     }
 
     /**
      * Updates the user's nickname.
      */
-    updateNickname = () => {
+    updateNickname = async () => {
         this.setState({
-            nickname: RegisteredUser.getNickname(this.props.username)
+            nickname: await RegisteredUser.getNickname(this.props.username)
         });
     }
 
@@ -31,11 +42,11 @@ class Sidebar extends Component {
      * Filters the contacts upon search.
      * @param val the value to filter by.
      */
-    filterContacts = (val) => {
+    filterContacts = async (val) => {
         let contacts = this.state.contacts;
         this.setState({
             filteredContacts: contacts.filter(
-                element => RegisteredUser.getNickname(element).toLowerCase().includes(val.toLowerCase()))
+                async element =>  await RegisteredUser.getNickname(element).toLowerCase().includes(val.toLowerCase()))
         });
     }
 
@@ -58,12 +69,14 @@ class Sidebar extends Component {
     render() {
         return (
             <div className="col-3 ms-5 mh-75 pe-0" id="sidebar-div">
-                <UserProfileContainer username={this.props.username} setLogIn={this.props.setLogIn} renderButtons={true}
-                                      renderNum={true} updateContacts={this.updateContacts}
-                                      updateNickname={this.updateNickname} nickname={this.state.nickname}/>
-                <Contacts username={this.props.username} shouldUpdate={this.state.shouldUpdate}
-                          contacts={this.state.contacts} filteredContacts={this.state.filteredContacts}
-                          filterContacts={this.filterContacts} setConvo={this.props.setConvo}/>
+                {this.state.valid && <>
+                    <UserProfileContainer username={this.props.username} setLogIn={this.props.setLogIn} renderButtons={true}
+                    renderNum={true} updateContacts={this.updateContacts}
+                    updateNickname={this.updateNickname} nickname={this.state.nickname}/>
+                    <Contacts username={this.props.username} shouldUpdate={this.state.shouldUpdate}
+                    contacts={this.state.contacts} filteredContacts={this.state.filteredContacts}
+                    filterContacts={this.filterContacts} setConvo={this.props.setConvo}/>
+                    </>}
             </div>
         )
     }

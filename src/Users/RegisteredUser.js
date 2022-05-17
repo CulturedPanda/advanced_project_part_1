@@ -1,267 +1,14 @@
 import PendingUser from "./PendingUser";
 import person from "../Resources/person-circle.svg"
 import Hashing from "../Misc/Hashing";
-
+import Tokens from "./Tokens";
+import $ from "jquery"
 
 
 /**
  * Temporary class for handling all the "database" related actions for already registered users.
  */
 class RegisteredUser {
-
-    static registeredUsers = [
-        {
-            username: "Alice",
-            password: "1234",
-            email: "alice@foo.com",
-            phone: null,
-            dateOfBirth: null,
-            nickname: "Alice",
-            secretQuestions: null,
-            gender: "female",
-            verCode: "111222",
-            img: null,
-            description: "Ha-ha RSA go BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
-            contacts: [{name: "Panda", lastSeen: new Date()}]
-            ,
-            lastSeen: new Date(),
-            nickNum: "4512",
-            conversations: [{
-                with: "Panda", messages: [{
-                    sender: false, type: "text", time: new Date(), content: "Hello",
-                    key: "0" + Hashing.cyrb53("Hello")
-                },
-                    {
-                        sender: true,
-                        type: "text",
-                        time: new Date(),
-                        content: "Yoooo",
-                        key: "1" + Hashing.cyrb53("Yoooo")
-                    },]
-            }]
-        },
-        {
-            username: "Charlie",
-            password: "1234",
-            email: "charlie@foo.com",
-            phone: null,
-            dateOfBirth: null,
-            nickname: "Charlie",
-            secretQuestions: null,
-            gender: "male",
-            verCode: "111222",
-            img: null,
-            description: "I like trains.",
-            contacts: [{name: "Alice", lastSeen: new Date()}]
-            ,
-            lastSeen: new Date(),
-            nickNum: "7389",
-            conversations: [{
-                with: "Alice", messages: [{
-                    sender: false, type: "text", time: new Date(), content: "Hello Charlie, how is everything?",
-                    key: "0" + Hashing.cyrb53("Hello Charlie, how is everything?")
-                },
-                    {
-                        sender: true,
-                        type: "text",
-                        time: new Date(),
-                        content: "Everything is good, what up Alice?",
-                        key: "1" + Hashing.cyrb53("Everything is good, what up Alice?")
-                    }]
-            }]
-        }
-        ,
-        {
-            username: "Dana",
-            password: "1234",
-            email: "dana@foo.com",
-            phone: null,
-            dateOfBirth: null,
-            nickname: "Dana",
-            secretQuestions: null,
-            gender: "female",
-            verCode: "111222",
-            img: null,
-            description: "Fast&Furious4Life",
-            contacts: [{name: "Charlie", lastSeen: new Date()}]
-            ,
-            lastSeen: new Date(),
-            nickNum: "1502",
-            conversations: [{
-                with: "Panda", messages: [{
-                    sender: false, type: "text", time: new Date(), content: "You still obsessed with trains?",
-                    key: "0" + Hashing.cyrb53("You still obsessed with trains?")
-                },
-                    {
-                        sender: true,
-                        type: "text",
-                        time: new Date(),
-                        content: "Hell yeah I am.",
-                        key: "1" + Hashing.cyrb53("Hell yeah I am.")
-                    }]
-            }]
-        }
-        ,
-        {
-            username: "Bob", password: "5678", email: null, phone: null, dateOfBirth: null, nickname: "Bob",
-            secretQuestions: null, gender: "male", verCode: "112233", img: null, description: "Alice y r u like this",
-            lastSeen: new Date(), contacts: [{name: "Panda", lastSeen: new Date()}], nickNum: "3532",
-            conversations: [{
-                with: "Panda", messages: [{
-                    sender: false, type: "text", time: new Date(), content: "YOU ARE BOB",
-                    key: "0" + Hashing.cyrb53("YOU ARE BOB")
-                },
-                    {
-                        sender: true,
-                        type: "text",
-                        time: new Date(),
-                        content: "YES I AM",
-                        key: "1" + Hashing.cyrb53("YES I AM")
-                    }]
-            }]
-        },
-        {
-            username: "Panda",
-            password: "2468",
-            email: null,
-            phone: null,
-            dateOfBirth: null,
-            nickname: "Panda",
-            description: "Please give bamboo",
-            secretQuestions: {question: "1", answer: "PandaES"},
-            gender: null,
-            verCode: "445566",
-            img: null,
-            contacts: [{name: "Alice", lastSeen: new Date()}, {name: "Bob", lastSeen: new Date()},
-                {name: "Mom", lastSeen: new Date()}, {name: "Emily", lastSeen: new Date()}, {name: "Dana", lastSeen: new Date()}],
-            lastSeen: new Date(),
-            nickNum: "5113",
-            conversations: [{
-                with: "Alice", messages: [{
-                    sender: true, type: "text", time: new Date(), content: "Hello",
-                    key: "0" + Hashing.cyrb53("Hello")
-                },
-                    {
-                        sender: false,
-                        type: "text",
-                        time: new Date(),
-                        content: "Yoooo",
-                        key: "1" + Hashing.cyrb53("Yoooo")
-                    }]
-            },
-                {
-                    with: "Bob", messages: [{
-                        sender: true, type: "text", time: new Date(), content: "YOU ARE BOB",
-                        key: "0" + Hashing.cyrb53("YOU ARE BOB")
-                    },
-                        {
-                            sender: false,
-                            type: "text",
-                            time: new Date(),
-                            content: "YES I AM",
-                            key: "1" + Hashing.cyrb53("YES I AM")
-                        }]
-                },
-                {
-                with: "Mom", messages: [{
-                        sender: false, type: "text", time: new Date(), content: "GO CLEAN YOUR ROOM YOUNG MAN",
-                        key: "0" + Hashing.cyrb53("Hello")
-                    },
-                        {
-                            sender: true,
-                            type: "text",
-                            time: new Date(),
-                            content: "NOOOOOOOOOOOOOOOOOOO",
-                            key: "1" + Hashing.cyrb53("NOOOOOOOOOOOOOOOOOOO")
-                        },]},
-                {
-                    with: "Emily", messages: [{
-                        sender: false, type: "text", time: new Date(), content: "I have bamboo for you",
-                        key: "0" + Hashing.cyrb53("Hello")
-                    },
-                        {
-                            sender: true,
-                            type: "text",
-                            time: new Date(),
-                            content: "Yoooo",
-                            key: "1" + Hashing.cyrb53("OMNOMNOMNOMNOMNOM")
-                        }]
-                },
-                {
-                    with: "Dana", messages: [{
-                        sender: true, type: "text", time: new Date(), content: "You still obsessed with trains?",
-                        key: "0" + Hashing.cyrb53("You still obsessed with trains?")
-                    },
-                        {
-                            sender: false,
-                            type: "text",
-                            time: new Date(),
-                            content: "Hell yeah I am.",
-                            key: "1" + Hashing.cyrb53("Hell yeah I am.")
-                        }]
-                }]
-        },
-        {
-            username: "Emily",
-            password: "1234",
-            email: "emily@foo.com",
-            phone: null,
-            dateOfBirth: null,
-            nickname: "Emily",
-            secretQuestions: null,
-            gender: "female",
-            verCode: "111222",
-            img: null,
-            description: "Mediation is health",
-            contacts: [{name: "Panda", lastSeen: new Date()}]
-            ,
-            lastSeen: new Date(),
-            nickNum: "4512",
-            conversations: [{
-                with: "Panda", messages: [{
-                    sender: true, type: "text", time: new Date(), content: "I have bamboo for you",
-                    key: "0" + Hashing.cyrb53("Hello")
-                },
-                    {
-                        sender: false,
-                        type: "text",
-                        time: new Date(),
-                        content: "Yoooo",
-                        key: "1" + Hashing.cyrb53("OMNOMNOMNOMNOMNOM")
-                    }]
-            }]
-        },
-        {
-            username: "Mom",
-            password: "1234",
-            email: "mom@shoetoyourface.com",
-            phone: null,
-            dateOfBirth: null,
-            nickname: "Mom",
-            secretQuestions: null,
-            gender: "female",
-            verCode: "111222",
-            img: null,
-            description: "Busy",
-            contacts: [{name: "Panda", lastSeen: new Date()}]
-            ,
-            lastSeen: new Date(),
-            nickNum: "4512",
-            conversations: [{
-                with: "Panda", messages: [{
-                    sender: true, type: "text", time: new Date(), content: "GO CLEAN YOUR ROOM YOUNG MAN",
-                    key: "0" + Hashing.cyrb53("Hello")
-                },
-                    {
-                        sender: false,
-                        type: "text",
-                        time: new Date(),
-                        content: "NOOOOOOOOOOOOOOOOOOO",
-                        key: "1" + Hashing.cyrb53("NOOOOOOOOOOOOOOOOOOO")
-                    },]
-            }]
-        }
-    ];
 
     /**
      * Constructor. Puts all the information from the pending user, including new information needed into storage.
@@ -282,8 +29,6 @@ class RegisteredUser {
         this.contacts = [];
         this.conversations = [];
         this.lastSeen = new Date();
-        sessionStorage.setItem(this.username + "log", JSON.stringify(this));
-        sessionStorage.setItem(this.email + "log", JSON.stringify(this));
     }
 
     static async doesUserExistByEmail(email){
@@ -331,18 +76,17 @@ class RegisteredUser {
      * @param convoWith the user the active user is conversing with.
      * @returns an array containing the user's conversation, sorted chronologically.
      */
-    static getConvo(username, convoWith) {
-        if (!convoWith) {
-            return [];
+    static async getConvo(username, convoWith) {
+        let res = await fetch("https://localhost:7031/api/Contacts/getConvo/?convoWith=" + convoWith, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
+        })
+        if (res.ok){
+            return await res.json();
         }
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        let convos = user.conversations;
-        if (convos.length > 0) {
-            return user.conversations.find(x => x.with === convoWith).messages.sort((a, b) => {
-                return Date.parse(a.time) > Date.parse(b.time)
-            });
-        }
-        return convos;
+        return null;
     }
 
     /**
@@ -350,15 +94,22 @@ class RegisteredUser {
      * @param username the active user.
      * @param contact the contact t oadd.
      */
-    static addContact(username, contact) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        user.contacts.push({name: contact, lastSeen: new Date()});
-        user.conversations.push({with: contact, messages: []});
-        RegisteredUser.updateUser(user);
-        let contactUser = JSON.parse(sessionStorage.getItem(contact + "log"));
-        contactUser.contacts.push({name: username, lastSeen: new Date()});
-        contactUser.conversations.push({with: username, messages: []});
-        RegisteredUser.updateUser(contactUser);
+    static async addContact(username, contact) {
+        let res = await fetch("https://localhost:7031/api/Contacts/", {
+            method: "POST",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: contact,
+                server: window.location.protocol + window.location.hostname
+            })
+        })
+        if (res.ok){
+            return await res.text();
+        }
+        return null;
     }
 
     /**
@@ -378,15 +129,7 @@ class RegisteredUser {
      * @returns a link to their profile picture. If the user has no custom picture, the default one is returned.
      */
     static getImage(username) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        if (!user) {
-            return person;
-        }
-        if (user.img) {
-            return user.img;
-        } else {
-            return person;
-        }
+        return person;
     }
 
     /**
@@ -395,21 +138,18 @@ class RegisteredUser {
      * @param convoWith the user the active user is conversing with.
      * @param message the message to add.
      */
-    static addMessageToConvo(username, convoWith, message) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        let convo = user.conversations.find(x => x.with === convoWith).messages;
-        // Unique key for the message.
-        message.key = Hashing.cyrb53(convo.length.toString() + message.content + PendingUser.generateRandomString());
-        convo.push(message);
-        RegisteredUser.updateUser(user);
-        let otherUser = JSON.parse(sessionStorage.getItem(convoWith + "log"));
-        message.sender = !message.sender;
-        let otherConvo = otherUser.conversations.find(x => x.with === username).messages;
-        message.key = Hashing.cyrb53(otherConvo.length.toString() + message.content + PendingUser.generateRandomString());
-        otherConvo.push(message)
-        // Updates the last seen status for the active user on the other's contacts bar.
-        otherUser.contacts.find(x => x.name === username).lastSeen = new Date();
-        RegisteredUser.updateUser(otherUser)
+    static async addMessageToConvo(username, convoWith, message) {
+        let res = await fetch("https://localhost:7031/api/Contacts/" + convoWith + "/messages" , {
+            method: "POST",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: message.content
+            })
+        });
+        return res.ok;
     }
 
     /**
@@ -417,9 +157,17 @@ class RegisteredUser {
      * @param username the user to get their nickname discriminator.
      * @returns {string|*} nickname discriminator.
      */
-    static getNickNum(username) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        return user.nickNum;
+    static async getNickNum(username) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/GetNickNum", {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken
+            },
+        })
+        if (res.ok){
+            return await res.text();
+        }
+        return null;
     }
 
     /**
@@ -438,9 +186,17 @@ class RegisteredUser {
      * @param username
      * @returns {string|*}
      */
-    static getNickname(username) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        return user.nickname;
+    static async getNickname(username) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/getNickName/" + username, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken
+            },
+        })
+        if (res.ok){
+            return await res.text();
+        }
+        return null;
     }
 
     /**
@@ -448,9 +204,17 @@ class RegisteredUser {
      * @param username
      * @returns {string|*}
      */
-    static getDescription(username) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        return user.description;
+    static async getDescription(username) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/getDescription/" + username, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken
+            },
+        })
+        if (res.ok){
+            return await res.text();
+        }
+        return null;
     }
 
 
@@ -485,16 +249,20 @@ class RegisteredUser {
 
     /**
      * Returns the user's contacts in an array.
-     * @param username
      * @returns {*[]} the user's contacts in an array.
      */
-    static getContacts(username) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        // Frankly, I don't remember why I needed to do it this way.
-        // However, it breaks if it is not done this way.
-        let contacts = []
-        user.contacts.forEach(x => contacts.push(x.name));
-        return contacts;
+    static async getContacts(username) {
+
+        let res = await fetch("https://localhost:7031/api/Contacts", {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken
+            },
+        })
+        if (res.ok){
+            return await res.json();
+        }
+        return [];
     }
 
     /**
@@ -556,11 +324,27 @@ class RegisteredUser {
      * Verifies if a user and password pair match. If yes, the user can be logged in.
      * @param username
      * @param password
+     * @param rememberMe
      * @returns {any|boolean} true if yes, false otherwise.
      */
-    static DoUserAndPasswordMatch(username, password) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        return (user && user.password === password);
+    static async DoUserAndPasswordMatch(username, password, rememberMe) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers?rememberMe=" + rememberMe,{
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            })
+        });
+        if (res.ok){
+            let tokens = await res.json();
+            Tokens.accessToken = tokens.accessToken;
+            Tokens.refreshToken = tokens.refreshToken;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -572,8 +356,7 @@ class RegisteredUser {
      * @returns {any|boolean}
      */
     static doEmailAndPasswordMatch(email, password) {
-        let user = JSON.parse(sessionStorage.getItem(email + "log"));
-        return (user && user.password === password);
+        return false;
     }
 
 }

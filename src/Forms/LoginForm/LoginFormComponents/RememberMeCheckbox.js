@@ -5,7 +5,7 @@
 function RememberMeCheckbox() {
     return (
         <div className="mb-3">
-            <input defaultChecked={true} type="checkbox" className="form-check-input" id="remember-me-checkbox"/>
+            <input defaultChecked={true} type="checkbox" className="form-check-input" id="remember-me-checkbox" disabled/>
             <label className="form-check-label" htmlFor="remember-me-checkbox">Remember me</label>
         </div>
     )

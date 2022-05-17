@@ -8,9 +8,9 @@ import RegisteredUser from "../../../../Users/RegisteredUser";
 function VideoButton({props}) {
 
     //function receives adds the video to the conversation
-    const handleChange = (e)=>{
+    const handleChange = async (e)=>{
         let url = URL.createObjectURL(e.target.files[0]);
-        RegisteredUser.addMessageToConvo(props.username, props.convo, {
+        await RegisteredUser.addMessageToConvo(props.username, props.convo, {
             sender: true, type: "video", time: new Date(), content: url
         });
         props.setConvo();

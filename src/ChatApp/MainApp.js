@@ -10,28 +10,37 @@ class MainApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {currentConvo: "", convoContent: RegisteredUser.getConvo(this.props.username, ""),
-            contactNickname: null}
+        this.state = {currentConvo: "", convoContent: null,
+            contactNickname: null, valid: false}
+    }
+
+    async componentDidMount() {
+        this.setState({
+            currentConvo: "",
+            convoContent: await RegisteredUser.getConvo(this.props.username, ""),
+            contactNickname: null,
+            valid: true
+        });
     }
 
     /**
      * Sets who the current conversation is with, and loads their messages.
      * @param convoWith the user the current covnersation is with.
      */
-    setConvo = (convoWith) => {
+    setConvo = async (convoWith) => {
         this.setState({
             currentConvo: convoWith,
-            convoContent: RegisteredUser.getConvo(this.props.username, convoWith),
-            contactNickname: RegisteredUser.getNickname(convoWith)
+            convoContent: await RegisteredUser.getConvo(this.props.username, convoWith),
+            contactNickname: await RegisteredUser.getNickname(convoWith)
         })
     }
 
     /**
      * Loads the messages in the conversation after they were updated.
      */
-    convoContentSetter = () => {
+    convoContentSetter = async () => {
         this.setState({
-            convoContent: RegisteredUser.getConvo(this.props.username, this.state.currentConvo)
+            convoContent: await RegisteredUser.getConvo(this.props.username, this.state.currentConvo)
         })
     }
 
@@ -39,14 +48,15 @@ class MainApp extends Component {
     render() {
         return (
             <div className="container-fluid p-5 pb-2" id="main-app-div">
-                <div className="row">
-                    <Sidebar setLogIn={this.props.setLogIn} username={this.props.username} setConvo={this.setConvo}/>
-                    <Conversation convo={this.state.currentConvo}
-                                  convoContent={this.state.convoContent}
-                                  setConvo={this.convoContentSetter}
-                                  username={this.props.username}
-                                  nickname={this.state.contactNickname}/>
-                </div>
+                {this.state.valid &&
+                    <div className="row">
+                        <Sidebar setLogIn={this.props.setLogIn} username={this.props.username} setConvo={this.setConvo}/>
+                        <Conversation convo={this.state.currentConvo}
+                                      convoContent={this.state.convoContent}
+                                      setConvo={this.convoContentSetter}
+                                      username={this.props.username}
+                                      nickname={this.state.contactNickname}/>
+                    </div>}
             </div>
         )
     }

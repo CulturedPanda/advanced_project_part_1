@@ -7,6 +7,7 @@ import CookieHandling from "../../Misc/CookieHandling";
 import {useNavigate} from "react-router";
 import BaseForm from "../BaseForm";
 import RememberMeCheckbox from "./LoginFormComponents/RememberMeCheckbox";
+import Tokens from "../../Users/Tokens";
 
 /**
  * The log-in form of the app.
@@ -18,7 +19,7 @@ function LoginForm({props}) {
     const nav = useNavigate();
 
     // Verifies the user's identity on submit or other events.
-    const handleVerification = (e, username, password) => {
+    const handleVerification = async (e, username, password) => {
         e.preventDefault();
         let isUsername = $("#username-radio").is(":checked");
         if (username === "" && password === "") {
@@ -28,18 +29,18 @@ function LoginForm({props}) {
         const onSuccess = () => {
             wrongDetails.hide();
             props.setLogIn(true);
-            if ($("#remember-me-checkbox").is(":checked")) {
-                // Renews cookie for the logged-in user.
-                CookieHandling.deleteCookie("username");
-                CookieHandling.deleteCookie("password");
-                CookieHandling.setCookie("username", username, 7);
-                CookieHandling.setCookie("password", password, 7);
-            }
+            // if (rememberMe) {
+            //     // Renews cookie for the logged-in user.
+            //     CookieHandling.deleteCookie("rToken");
+            //     CookieHandling.setCookie("rToken", Tokens.accessToken, 30);
+            //     Tokens.autoRenewTokens();
+            // }
+            Tokens.autoRenewTokens();
             nav("/chat");
         }
         let wrongDetails = $("#wrong-details-text");
         if (isUsername) {
-            if (RegisteredUser.DoUserAndPasswordMatch(username, password)) {
+            if (await RegisteredUser.DoUserAndPasswordMatch(username, password, $("#remember-me-checkbox").is(":checked"))) {
                 onSuccess();
             } else {
                 wrongDetails.text("Incorrect username or password");

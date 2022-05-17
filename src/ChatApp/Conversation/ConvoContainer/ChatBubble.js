@@ -7,7 +7,8 @@ class ChatBubble extends Component {
 
     //function puts the time sent of each message in chat bubble.
     parseTime = () => {
-        let date = new Date(this.props.time);
+        let dateParse =  Date.parse(this.props.time);
+        let date = new Date(dateParse);
         let minutes = date.getMinutes().toString().padStart(2, "0");
         let hours = date.getHours().toString().padStart(2, "0");
         return hours + ":" + minutes;

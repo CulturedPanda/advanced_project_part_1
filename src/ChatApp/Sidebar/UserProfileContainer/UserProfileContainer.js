@@ -12,8 +12,16 @@ class UserProfileContainer extends Component {
         super(props);
         this.state = {
             showModal: false, profilePicture: RegisteredUser.getImage(this.props.username),
-            nickname: RegisteredUser.getNickname(this.props.username)
+            nickname: null,
+            valid: false
         };
+    }
+
+    async componentDidMount() {
+        this.setState({
+            valid: true,
+            nickname: await RegisteredUser.getNickname(this.props.username)
+        })
     }
 
     /**
@@ -53,11 +61,10 @@ class UserProfileContainer extends Component {
         return (
             <div className={this.determineClasses()}>
                 <div className={this.props.renderButtons ? "col-8" : ""}>
-                    <ImageNameContainer props={{
-                        username: this.props.username,
-                        renderNum: this.props.renderNum, profilePicture: this.state.profilePicture,
-                        nickname: this.props.nickname
-                    }}/>
+                    {this.state.valid && <ImageNameContainer
+                        username={this.props.username}
+                        renderNum={this.props.renderNum} profilePicture={this.state.profilePicture}
+                        nickname={this.props.nickname}/>}
                 </div>
                 {/*Only render this part if this profile container is for the active user and not a contact*/}
                 {this.props.renderButtons &&

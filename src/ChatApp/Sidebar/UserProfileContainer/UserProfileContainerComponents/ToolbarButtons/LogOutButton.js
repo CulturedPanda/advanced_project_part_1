@@ -14,8 +14,6 @@ function LogOutButton({props}) {
      * Deletes the cookies related to the user and logs them out.
      */
     const clickHandler = () => {
-        CookieHandling.deleteCookie("username");
-        CookieHandling.deleteCookie("password");
         props.setLogIn(false);
         nav('/log_in')
     }

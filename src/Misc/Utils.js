@@ -11,6 +11,16 @@ class Utils {
         const element = document.getElementById(id);
         element.scrollTop = element.scrollHeight;
     }
+
+    static generateRandString = (len) => {
+        let verString = '';
+        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let length = chars.length;
+        for (let i = 0; i < len; i++) {
+            verString += chars.charAt(Math.floor(Math.random() * length));
+        }
+        return verString;
+    }
 }
 
 export default Utils;

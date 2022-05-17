@@ -1,6 +1,7 @@
 import {Component} from "react";
 import ChatBubble from "./ChatBubble";
 import Utils from "../../../Misc/Utils";
+import Hashing from "../../../Misc/Hashing";
 
 /**
  * Class of the container of the entire conversation.
@@ -10,9 +11,10 @@ class ConversationContainer extends Component {
     //function creates the bubbles based on all inputs.
     generateChatBubbles =() =>{
         return(
-            this.props.convo.map((message)=>
-                <ChatBubble key={message.key} content={message.content} time={message.time}
-                            sender={message.sender} type={message.type}/>
+            this.props.convo.messages.map((message)=>
+                <ChatBubble key={Hashing.cyrb53(message.content + Utils.generateRandString(128))}
+                            content={message.content} time={message.created}
+                            sender={message.sent} type={message.type}/>
         ))
     }
 

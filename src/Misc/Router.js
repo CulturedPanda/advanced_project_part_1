@@ -20,7 +20,7 @@ import React, {useState} from "react";
  */
 function Router({props}) {
 
-    const [username, setUsername] = useState(props.username);
+    const [username, setUsername] = useState("");
     const [toggle, setToggle] = useState(true);
     const [from, setFrom] = useState(false);
 

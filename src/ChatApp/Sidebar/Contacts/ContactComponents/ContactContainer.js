@@ -11,7 +11,9 @@ class ContactContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastMessageDate: RegisteredUser.getLastSeen(this.props.user, this.props.username)
+            lastMessageDate: Date.parse(props.lastSeen),
+            description: null,
+            valid: false
         };
     }
 
@@ -20,15 +22,20 @@ class ContactContainer extends Component {
      */
     updateTime = () => {
         this.setState(
-            {lastMessageDate: RegisteredUser.getLastSeen(this.props.user, this.props.username)}
+            {lastMessageDate: Date.parse(this.props.lastSeen)}
         );
     }
 
     /**
      * Make updates occur every minute.
      */
-    componentDidMount() {
+    async componentDidMount() {
         setInterval(this.updateTime, 60000);
+        this.setState({
+            nickname: await RegisteredUser.getNickname(this.props.username),
+            description: await RegisteredUser.getDescription(this.props.username),
+            valid: true
+        })
     }
 
     /**
@@ -58,10 +65,11 @@ class ContactContainer extends Component {
     /**
      * Adds a clear indication to the user that they chose the contact, and changes to that contact.
      */
-    focusHandler = () => {
+    focusHandler = async (e) => {
+        e.persist();
         let thisItem = $("#contact" + this.props.username);
         thisItem.addClass("active border-primary border-primary border-2");
-        this.props.setConvo(this.props.username);
+        await this.props.setConvo(this.props.username);
     }
 
     blurHandler = () => {
@@ -73,21 +81,22 @@ class ContactContainer extends Component {
     render() {
         return (
             <li className="d-grid list-group-item bg-light hover-pointer mw-50" id={"contact" + this.props.username}>
-                <button onFocus={this.focusHandler} onBlur={this.blurHandler}
+                <button onFocus={async (e)=> await this.focusHandler(e)} onBlur={this.blurHandler}
                         className="btn no-effect-button text-start btn-flex justify-content-left break-text">
                     <div className="col">
                         <div className="break-text">
-                            <ImageNameContainer props={{
-                                username: this.props.username,
-                                nickname: RegisteredUser.getNickname(this.props.username),
-                                renderNum: false, profilePicture: RegisteredUser.getImage(this.props.username)
-                            }}/>
+                            {this.state.valid && <ImageNameContainer
+                                username={this.props.username}
+                                nickname={this.state.nickname}
+                                renderNum={false} profilePicture={RegisteredUser.getImage(this.props.username)}/>}
                             <span className="float-end small-text">
                                 {this.timeFromLast()}
                             </span>
-                            <div className="small-text break-text">
-                                {RegisteredUser.getDescription(this.props.username)}
-                            </div>
+                            {this.state.valid &&
+                                <div className="small-text break-text">
+                                    {this.state.description}
+                                </div>
+                            }
                         </div>
                     </div>
                 </button>
