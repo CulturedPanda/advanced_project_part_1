@@ -46,7 +46,7 @@ class Sidebar extends Component {
         let contacts = this.state.contacts;
         this.setState({
             filteredContacts: contacts.filter(
-                async element =>  await RegisteredUser.getNickname(element).toLowerCase().includes(val.toLowerCase()))
+                element => element.name.toLowerCase().includes(val.toLowerCase()))
         });
     }
 
@@ -55,14 +55,11 @@ class Sidebar extends Component {
      */
     updateContacts = async () => {
         let contactsTemp = await RegisteredUser.getContacts(this.props.username);
-        let newContact = contactsTemp.filter(x => !this.state.contacts.includes(x));
-        if (newContact[0]) {
-            this.setState({
-                contacts: this.state.contacts.concat(newContact[0]),
-                filteredContacts: this.state.contacts.concat(newContact[0]),
-                shouldUpdate: false
-            })
-        }
+        this.setState({
+            contacts: contactsTemp,
+            filteredContacts: contactsTemp,
+            shouldUpdate: false
+        })
     }
 
 
@@ -70,13 +67,14 @@ class Sidebar extends Component {
         return (
             <div className="col-3 ms-5 mh-75 pe-0" id="sidebar-div">
                 {this.state.valid && <>
-                    <UserProfileContainer username={this.props.username} setLogIn={this.props.setLogIn} renderButtons={true}
-                    renderNum={true} updateContacts={this.updateContacts}
-                    updateNickname={this.updateNickname} nickname={this.state.nickname}/>
+                    <UserProfileContainer username={this.props.username} setLogIn={this.props.setLogIn}
+                                          renderButtons={true}
+                                          renderNum={true} updateContacts={this.updateContacts}
+                                          updateNickname={this.updateNickname} nickname={this.state.nickname}/>
                     <Contacts username={this.props.username} shouldUpdate={this.state.shouldUpdate}
-                    contacts={this.state.contacts} filteredContacts={this.state.filteredContacts}
-                    filterContacts={this.filterContacts} setConvo={this.props.setConvo}/>
-                    </>}
+                              contacts={this.state.contacts} filteredContacts={this.state.filteredContacts}
+                              filterContacts={this.filterContacts} setConvo={this.props.setConvo}/>
+                </>}
             </div>
         )
     }

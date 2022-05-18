@@ -9,23 +9,23 @@ import PendingUser from "../../../Users/PendingUser";
  */
 function EmailField({props}){
 
-    const handleBlur = ()=>{
+    const handleBlur = async ()=>{
         let emailField = $("#email-signup-field");
         let current = emailField.val();
         let text = $("#email-error");
-        //if condition checks if the email already exists in system, if so mark as red and alert.
-        if (RegisteredUser.doesUserExistByUsername(current) || PendingUser.doesUserExistByEmail(current)){
-            emailField.removeClass("border-success");
-            emailField.addClass("border-danger");
-            text.text("Error: Email already exists")
-            text.show();
-            props.setConfirm(false);
-        }
         //if condition checks validity of email.
-        else if(current.length < 3 || !current.includes("@") || current.length > 300){
+        if(current.length < 3 || !current.includes("@") || current.length > 300){
             emailField.removeClass("border-success");
             emailField.addClass("border-danger");
             text.text("Error: Invalid email address");
+            text.show();
+            props.setConfirm(false);
+        }
+        //if condition checks if the email already exists in system, if so mark as red and alert.
+        else if (await PendingUser.doesUserExistByEmail(current)){
+            emailField.removeClass("border-success");
+            emailField.addClass("border-danger");
+            text.text("Error: Email already exists")
             text.show();
             props.setConfirm(false);
         }
@@ -44,7 +44,7 @@ function EmailField({props}){
                 <span className = "required-field"> *</span>
             </label>
             <div className="col-10">
-                <input type="email" onBlur={handleBlur}
+                <input type="email" onBlur={async () => await handleBlur()}
                        id="email-signup-field" className="form-control" placeholder="name@example.com" required/>
                 <div className="error-text" id="email-error"/>
             </div>

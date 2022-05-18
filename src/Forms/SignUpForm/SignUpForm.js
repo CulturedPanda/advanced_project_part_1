@@ -30,7 +30,7 @@ function SignUpForm({props}) {
     const [nicknameConfirm, nicknameConfirmSet] = useState(false);
     const [secretQuestionConfirm, secretQuestionConfirmSet] = useState(false);
     const [secretAnswerConfirm, secretAnswerConfirmSet] = useState(false);
-    const [phoneConfirm, phoneConfirmSet] = useState(false);
+    const [phoneConfirm, phoneConfirmSet] = useState(true);
 
 
     const nav = useNavigate();
@@ -44,7 +44,8 @@ function SignUpForm({props}) {
         //Checks that user agreed to terms of service and privacy policy, and all inputs are correct
         if (isTos && isPrivacyPolicy) {
             if (userConfirm && passConfirm && passConfirmationConfirm
-                && emailConfirm && nicknameConfirm && secretQuestionConfirm && secretAnswerConfirm) {
+                && emailConfirm && nicknameConfirm && secretQuestionConfirm && secretAnswerConfirm
+                && phoneConfirm) {
                 let username = $("#username-signup-field").val();
                 let email = $("#email-signup-field").val().toLowerCase();
                 let password = $("#new-pass1").val();
@@ -55,7 +56,7 @@ function SignUpForm({props}) {
                 //if all inputs are correct, create user
                 let pendingUser = new PendingUser({
                     username: username, password: password,
-                    email: email, phone: phone, dateOfBirth: null, nickname: nickname,
+                    email: email, phone: phone, nickname: nickname,
                     secretQuestion: {question: secretQuestion, answer: secretAnswer}
                 });
                 if (await PendingUser.signUp(pendingUser)) {

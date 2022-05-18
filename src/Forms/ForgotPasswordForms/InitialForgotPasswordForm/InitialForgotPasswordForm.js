@@ -20,10 +20,10 @@ function InitialForgotPasswordForm({props}) {
     const [questionConfirm, questionConfirmSet] = useState(false);
     const [answerConfirm, answerConfirmSet] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (questionConfirm && answerConfirm) {
-            if (RegisteredUser.VerifySecretQuestion($("#login-username").val(),
+            if (await RegisteredUser.VerifySecretQuestion($("#login-username").val(),
                 $("#secret-questions").val(), $("#secret-answer").val())) {
                 nav("/forgot_password/verify");
             } else {
@@ -45,7 +45,7 @@ function InitialForgotPasswordForm({props}) {
 
     return (
         <BaseForm>
-            <form id="forgot-password-form" onSubmit={handleSubmit}>
+            <form id="forgot-password-form" onSubmit={async(e) => handleSubmit(e)}>
                 <InitialForgotPasswordFormText/>
                 <div className="row">
                     <UsernameField props={{

@@ -39,16 +39,40 @@ class PendingUser {
         return verString;
     }
 
-    static doesUserExistByUsername(username) {
-        return (sessionStorage.getItem(username + "pend"));
+    static async doesUserExistByUsername(username) {
+        let res = await fetch("https://localhost:7031/api/PendingUsers/doesUserExistByUsername/"
+            + username, {
+            method: "GET",
+        })
+        if (res.ok){
+            let text = await res.text();
+            return text === "true";
+        }
+        return null;
     }
 
-    static doesUserExistByEmail(email){
-
+    static async doesUserExistByEmail(email){
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByEmail/"
+            + email, {
+            method: "GET",
+        })
+        if (res.ok){
+            let text = await res.text();
+            return text === "true";
+        }
+        return null;
     }
 
-    static doesUserExistByPhoneNumber(PhoneNumber){
-
+    static async doesUserExistByPhoneNumber(phoneNumber){
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByPhone/"
+            + phoneNumber, {
+            method: "GET",
+        })
+        if (res.ok){
+            let text = await res.text();
+            return text === "true";
+        }
+        return null;
     }
 
     static async renewCode(username) {

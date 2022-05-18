@@ -12,7 +12,27 @@ class RegisteredUser {
 
 
     static async doesUserExistByEmail(email){
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByEmail/"
+            + email, {
+            method: "GET",
+        })
+        if (res.ok){
+            let text = await res.text();
+            return text === "true";
+        }
+        return null;
+    }
 
+    static async doesUserExistByPhone(phone){
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByPhone/"
+            + phone, {
+            method: "GET",
+        })
+        if (res.ok){
+            let text = await res.text();
+            return text === "true";
+        }
+        return null;
     }
 
     /**
@@ -64,7 +84,7 @@ class RegisteredUser {
         if (res.ok){
             return await res.json();
         }
-        return null;
+        return [];
     }
 
     /**
@@ -84,10 +104,37 @@ class RegisteredUser {
                 server: window.location.origin
             })
         })
-        if (res.ok){
-            return await res.text();
-        }
-        return [];
+        return res.ok;
+    }
+
+    static async addContactByEmail(username, email) {
+        let res = await fetch("https://localhost:7031/api/Contacts/byEmail?local=true", {
+            method: "POST",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: email,
+                server: window.location.origin
+            })
+        })
+        return res.ok;
+    }
+
+    static async addContactByPhone(username, phone) {
+        let res = await fetch("https://localhost:7031/api/Contacts/byPhone?local=true", {
+            method: "POST",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: phone,
+                server: window.location.origin
+            })
+        })
+        return res.ok;
     }
 
     /**
@@ -253,8 +300,42 @@ class RegisteredUser {
      * @param contact
      * @returns {T} returns the contact if yes, null otherwise.
      */
-    static async isAlreadyContact(username, contact) {
+    static async isAlreadyContactByUsername(username, contact) {
         let res = await fetch("https://localhost:7031/api/Contacts/alreadyContact/" + contact, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
+        })
+        if (res.ok){
+            let text = await res.text();
+            if (text === "true"){
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    static async isAlreadyContactByEmail(username, email){
+        let res = await fetch("https://localhost:7031/api/Contacts/byEmail/" + email, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
+        })
+        if (res.ok){
+            let text = await res.text();
+            if (text === "true"){
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    static async isAlreadyContactByPhone(username, phone){
+        let res = await fetch("https://localhost:7031/api/Contacts/byPhone/" + phone, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -309,9 +390,25 @@ class RegisteredUser {
      * @param answer
      * @returns {any|boolean} true if yes, false otherwise.
      */
-    static VerifySecretQuestion(username, questionNum, answer) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        return (user && user.secretQuestions.question === questionNum && user.secretQuestions.answer === answer);
+    static async VerifySecretQuestion(username, questionNum, answer) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/secretQuestion/" + username,{
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                Question: questionNum,
+                Answer: answer,
+            })
+        });
+        if (res.ok){
+            let text = await res.text();
+            if (text === "true"){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     /**
