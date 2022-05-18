@@ -50,7 +50,7 @@ function SignUpForm({props}) {
                 let email = $("#email-signup-field").val().toLowerCase();
                 let password = $("#new-pass1").val();
                 let nickname = $("#nickname-signup-field").val();
-                let phone = $("#phone").val();
+                let phone = $("#phone-signup-field").val();
                 let secretQuestion = $("#secret-questions").val();
                 let secretAnswer = $("#secret-answer").val();
                 //if all inputs are correct, create user

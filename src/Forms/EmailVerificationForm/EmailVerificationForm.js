@@ -6,6 +6,7 @@ import VerificationFormText from "./EmailVerificationComponents/VerificationForm
 import RegisteredUser from "../../Users/RegisteredUser";
 import {useNavigate} from "react-router";
 import BaseForm from "../BaseForm";
+import Tokens from "../../Users/Tokens";
 
 /**
  * Email verification form for when the user is sent a code to their email.
@@ -39,6 +40,7 @@ function EmailVerificationForm({props}) {
                 await PendingUser.addUser(props.username);
                 props.setFrom(false);
                 props.setLogIn(true);
+                Tokens.autoRenewTokens(false);
                 nav("/")
             } else {
                 onError();

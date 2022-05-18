@@ -102,7 +102,6 @@ class PendingUser {
             + username + "?verificationCode=" + userInput);
         if (res.ok){
             Tokens.accessToken = await res.text();
-            console.log(Tokens.accessToken);
             return true;
         }
         return false;

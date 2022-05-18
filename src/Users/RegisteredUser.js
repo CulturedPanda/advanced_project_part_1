@@ -17,6 +17,9 @@ class RegisteredUser {
         let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByEmail/"
             + email, {
             method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
         })
         if (res.ok){
             let text = await res.text();
@@ -34,6 +37,9 @@ class RegisteredUser {
         let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByPhone/"
             + phone, {
             method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
         })
         if (res.ok){
             let text = await res.text();
@@ -51,6 +57,9 @@ class RegisteredUser {
         let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByUsername/"
             + username, {
             method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
         })
         if (res.ok){
             let text = await res.text();
