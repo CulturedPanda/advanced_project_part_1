@@ -57,7 +57,7 @@ class ChangeTextDataButton extends Component {
                 <span>Change {this.props.textData}</span>
                 <ChangeTextDataModal username={this.props.username} show={this.state.show} hide={this.handleClick}
                 textData={this.props.textData} updateNickname={this.props.updateNickname}
-                description={this.state.description}/>
+                description={this.state.description} connection={this.props.connection}/>
             </div>
         )
     }

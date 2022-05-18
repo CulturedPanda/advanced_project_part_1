@@ -49,13 +49,14 @@ class AddContactModal extends Component {
      */
     handleSubmit = async (e) => {
         e.preventDefault();
-        let val = $("#modal-field").val()
+        let val = $("#modal-field").val();
         if (this.state.radioValue === "username") {
             // If contact exists and is not already the user's contact, add them.
             if (await RegisteredUser.doesUserExistByUsername(val)) {
                 if (await RegisteredUser.isAlreadyContactByUsername(this.props.username, val) === false) {
                     await RegisteredUser.addContactByUsername(this.props.username, val);
                     await this.props.updateContacts();
+                    this.props.connection.invoke("addedContactByUsername", val);
                     this.props.setShow(false);
                 } else {
                     let errText = $("#modal-field-error");
@@ -73,6 +74,7 @@ class AddContactModal extends Component {
                 if (await RegisteredUser.isAlreadyContactByEmail(this.props.username, val) === false) {
                     await RegisteredUser.addContactByEmail(this.props.username, val);
                     await this.props.updateContacts();
+                    this.props.connection.invoke("addedContactByEmail", val);
                     this.props.setShow(false);
                 } else {
                     let errText = $("#modal-field-error");
@@ -90,6 +92,7 @@ class AddContactModal extends Component {
                 if (await RegisteredUser.isAlreadyContactByPhone(this.props.username, val) === false) {
                     await RegisteredUser.addContactByPhone(this.props.username, val);
                     await this.props.updateContacts();
+                    this.props.connection.invoke("addedContactByPhone", val);
                     this.props.setShow(false);
                 } else {
                     let errText = $("#modal-field-error");

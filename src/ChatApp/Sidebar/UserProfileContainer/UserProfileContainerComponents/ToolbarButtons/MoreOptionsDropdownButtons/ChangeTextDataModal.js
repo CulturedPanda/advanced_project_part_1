@@ -32,6 +32,7 @@ class ChangeTextDataModal extends Component {
         if (this.props.textData === "description") {
             if (val.match("^[\\w\\s]{1,100}$")) {
                 await RegisteredUser.changeDescription(this.props.username, val);
+                this.props.connection.invoke("changedDescription", this.props.username);
                 this.handleClose(e);
             } else {
                 errText.show();

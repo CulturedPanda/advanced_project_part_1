@@ -27,6 +27,7 @@ class Sidebar extends Component {
             nickname: await RegisteredUser.getNickname(this.props.username),
             valid: true
         });
+        this.props.connection.on("updateContacts", async () => this.updateContacts());
     }
 
     /**
@@ -36,6 +37,7 @@ class Sidebar extends Component {
         this.setState({
             nickname: await RegisteredUser.getNickname(this.props.username)
         });
+        this.props.connection.invoke("nicknameUpdated", this.props.username);
     }
 
     /**
@@ -67,13 +69,21 @@ class Sidebar extends Component {
         return (
             <div className="col-3 ms-5 mh-75 pe-0" id="sidebar-div">
                 {this.state.valid && <>
-                    <UserProfileContainer username={this.props.username} setLogIn={this.props.setLogIn}
+                    <UserProfileContainer username={this.props.username}
+                                          setLogIn={this.props.setLogIn}
                                           renderButtons={true}
-                                          renderNum={true} updateContacts={this.updateContacts}
-                                          updateNickname={this.updateNickname} nickname={this.state.nickname}/>
-                    <Contacts username={this.props.username} shouldUpdate={this.state.shouldUpdate}
-                              contacts={this.state.contacts} filteredContacts={this.state.filteredContacts}
-                              filterContacts={this.filterContacts} setConvo={this.props.setConvo}/>
+                                          renderNum={true}
+                                          updateContacts={this.updateContacts}
+                                          updateNickname={this.updateNickname}
+                                          nickname={this.state.nickname}
+                                          connection={this.props.connection}/>
+                    <Contacts username={this.props.username}
+                              shouldUpdate={this.state.shouldUpdate}
+                              contacts={this.state.contacts}
+                              filteredContacts={this.state.filteredContacts}
+                              filterContacts={this.filterContacts}
+                              setConvo={this.props.setConvo}
+                              connection={this.props.connection}/>
                 </>}
             </div>
         )

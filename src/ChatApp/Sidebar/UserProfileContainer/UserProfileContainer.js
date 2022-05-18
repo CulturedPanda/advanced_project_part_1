@@ -2,6 +2,7 @@ import {Component} from "react";
 import RegisteredUser from "../../../Users/RegisteredUser";
 import ImageNameContainer from "./UserProfileContainerComponents/ImageNameContainer";
 import ButtonsToolbar from "./UserProfileContainerComponents/ButtonsToolbar";
+import $ from "jquery";
 
 /**
  * Container for a user's profile.
@@ -31,7 +32,8 @@ class UserProfileContainer extends Component {
     setShowModal = (val) => {
         this.setState({
             showModal: val
-        })
+        });
+        $("input[name=addContactSelectionRadio][value=username]").prop("checked",true);
     }
 
     /**
@@ -76,7 +78,8 @@ class UserProfileContainer extends Component {
                                             setShow={this.setShowModal}
                                             show={this.state.showModal}
                                             updateProfilePicture={this.updateProfilePicture}
-                                            updateNickname={this.props.updateNickname}/>
+                                            updateNickname={this.props.updateNickname}
+                                            connection={this.props.connection}/>
                         </div>
                     </div>}
             </div>

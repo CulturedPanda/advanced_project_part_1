@@ -16,7 +16,8 @@ class ButtonsToolbar extends Component {
                 <div>
                     <AddContactButton props={{setShow: this.props.setShow}}/>
                     <AddContactModal show={this.props.show} username={this.props.username}
-                                     updateContacts={this.props.updateContacts} setShow={this.props.setShow}/>
+                                     updateContacts={this.props.updateContacts}
+                                     setShow={this.props.setShow} connection={this.props.connection}/>
                 </div>
                 <div className="me-2">
                     <LogOutButton props={{setLogIn: this.props.setLogIn}}/>
@@ -24,7 +25,8 @@ class ButtonsToolbar extends Component {
                 <div className="text-center">
                     <MoreOptionsDropdown props={{
                         username: this.props.username,
-                        updateProfilePicture: this.props.updateProfilePicture, updateNickname: this.props.updateNickname
+                        updateProfilePicture: this.props.updateProfilePicture,
+                        updateNickname: this.props.updateNickname, connection: this.props.connection
                     }}/>
                 </div>
             </div>

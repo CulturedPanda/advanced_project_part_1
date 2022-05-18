@@ -13,7 +13,7 @@ class Contacts extends Component {
     createContacts = () => {
         return this.props.filteredContacts.map((contact) =>
             <ContactContainer username={contact.id} user={this.props.username} setConvo={this.props.setConvo}
-                              key={contact.id} lastSeen={contact.lastdate}/>)
+                              key={contact.id} lastSeen={contact.lastdate} connection={this.props.connection}/>)
     }
 
     render() {

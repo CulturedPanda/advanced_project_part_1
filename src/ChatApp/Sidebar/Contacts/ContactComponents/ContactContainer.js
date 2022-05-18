@@ -15,6 +15,7 @@ class ContactContainer extends Component {
             description: null,
             valid: false
         };
+        this.props.connection.on("updateTime", () => this.updateTime());
     }
 
     /**
@@ -35,6 +36,16 @@ class ContactContainer extends Component {
             nickname: await RegisteredUser.getNickname(this.props.username),
             description: await RegisteredUser.getDescription(this.props.username),
             valid: true
+        });
+        this.props.connection.on("nicknameChanged", async () => {
+            this.setState({
+                nickname: await  RegisteredUser.getNickname(this.props.username)
+            });
+        });
+        this.props.connection.on("descriptionChanged", async () => {
+            this.setState({
+                description: await RegisteredUser.getDescription(this.props.username)
+            });
         })
     }
 
@@ -54,7 +65,7 @@ class ContactContainer extends Component {
         else if (timeDelta < 1440) {
             return Math.floor(timeDelta / 60) + " hours ago";
         } else {
-            let date = this.state.lastMessageDate;
+            let date = new Date(this.state.lastMessageDate);
             let day = date.getDate().toString().padStart(2, "0");
             let month = date.getMonth() + 1;
             let year = date.getFullYear();

@@ -2,6 +2,7 @@ import Conversation from "./Conversation/Conversation";
 import Sidebar from "./Sidebar/Sidebar";
 import {Component} from "react";
 import RegisteredUser from "../Users/RegisteredUser";
+import { HubConnectionBuilder } from "@microsoft/signalr";
 
 /**
  * The main app class, holds all the components of the app and manages some of their states.
@@ -11,7 +12,11 @@ class MainApp extends Component {
     constructor(props) {
         super(props);
         this.state = {currentConvo: "", convoContent: null,
-            contactNickname: null, valid: false}
+            contactNickname: null, valid: false,
+            connection: new HubConnectionBuilder()
+                .withUrl("https://localhost:7031/ChatAppHub")
+                .build()}
+        this.state.connection.on("updateChat", async () => await this.convoContentSetter());
     }
 
     async componentDidMount() {
@@ -19,8 +24,10 @@ class MainApp extends Component {
             currentConvo: "",
             convoContent: await RegisteredUser.getConvo(this.props.username, ""),
             contactNickname: null,
-            valid: true
+            valid: true,
         });
+        await this.state.connection.start({withCredentials: false})
+            .then(async ()=> await this.state.connection.invoke("connected", this.props.username));
     }
 
     /**
@@ -50,12 +57,16 @@ class MainApp extends Component {
             <div className="container-fluid p-5 pb-2" id="main-app-div">
                 {this.state.valid &&
                     <div className="row">
-                        <Sidebar setLogIn={this.props.setLogIn} username={this.props.username} setConvo={this.setConvo}/>
+                        <Sidebar setLogIn={this.props.setLogIn}
+                                 username={this.props.username}
+                                 setConvo={this.setConvo}
+                                 connection={this.state.connection}/>
                         <Conversation convo={this.state.currentConvo}
                                       convoContent={this.state.convoContent}
                                       setConvo={this.convoContentSetter}
                                       username={this.props.username}
-                                      nickname={this.state.contactNickname}/>
+                                      nickname={this.state.contactNickname}
+                                      connection={this.state.connection}/>
                     </div>}
             </div>
         )
