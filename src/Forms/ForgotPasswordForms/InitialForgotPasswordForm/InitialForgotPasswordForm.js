@@ -22,9 +22,11 @@ function InitialForgotPasswordForm({props}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        let val = $("#login-username").val();
         if (questionConfirm && answerConfirm) {
-            if (await RegisteredUser.VerifySecretQuestion($("#login-username").val(),
+            if (await RegisteredUser.VerifySecretQuestion(val,
                 $("#secret-questions").val(), $("#secret-answer").val())) {
+                await RegisteredUser.generateVerCode(val);
                 nav("/forgot_password/verify");
             } else {
                 let warnText = $("#wrong-details-text");

@@ -34,7 +34,7 @@ function VerifierField({props}) {
                 <span id="verification-error" className="error-text">Error - incorrect code</span>
             </div>
             <div className="col-4">
-                <ResendCodeButton props={{username: props.username}}/>
+                <ResendCodeButton props={{username: props.username, fromSignup: props.fromSignup}}/>
             </div>
         </div>
     )

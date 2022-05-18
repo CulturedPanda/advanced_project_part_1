@@ -45,7 +45,7 @@ function EmailVerificationForm({props}) {
             }
             // Otherwise, continue to reset password form.
         } else {
-            if (RegisteredUser.canVerify(props.username, code)) {
+            if (await RegisteredUser.canVerify(props.username, code)) {
                 nav("/forgot_password/reset_password");
             } else {
                 onError();
@@ -57,7 +57,7 @@ function EmailVerificationForm({props}) {
         <BaseForm>
             <form id="verify-form" onSubmit={handleSubmit}>
                 <VerificationFormText props={{fromSignup: props.fromSignup}}/>
-                <VerifierField props={{textRef: textFormRef, username: props.username}}/>
+                <VerifierField props={{textRef: textFormRef, username: props.username, fromSignup: props.fromSignup}}/>
                 <div className="col text-center mt-4">
                     <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
                 </div>

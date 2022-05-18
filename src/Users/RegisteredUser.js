@@ -1,8 +1,5 @@
-import PendingUser from "./PendingUser";
 import person from "../Resources/person-circle.svg"
-import Hashing from "../Misc/Hashing";
 import Tokens from "./Tokens";
-import $ from "jquery"
 
 
 /**
@@ -11,6 +8,11 @@ import $ from "jquery"
 class RegisteredUser {
 
 
+    /***
+     * Checks if a user already exists by their email.
+     * @param email
+     * @returns {Promise<null|boolean>}
+     */
     static async doesUserExistByEmail(email){
         let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByEmail/"
             + email, {
@@ -23,6 +25,11 @@ class RegisteredUser {
         return null;
     }
 
+    /***
+     * Checks if a user already exists by their phone number.
+     * @param phone
+     * @returns {Promise<null|boolean>}
+     */
     static async doesUserExistByPhone(phone){
         let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByPhone/"
             + phone, {
@@ -107,6 +114,12 @@ class RegisteredUser {
         return res.ok;
     }
 
+    /***
+     * Adds a contact by their email.
+     * @param username
+     * @param email
+     * @returns {Promise<boolean>}
+     */
     static async addContactByEmail(username, email) {
         let res = await fetch("https://localhost:7031/api/Contacts/byEmail?local=true", {
             method: "POST",
@@ -122,6 +135,12 @@ class RegisteredUser {
         return res.ok;
     }
 
+    /***
+     * Adds a contact by their phone number.
+     * @param username
+     * @param phone
+     * @returns {Promise<boolean>}
+     */
     static async addContactByPhone(username, phone) {
         let res = await fetch("https://localhost:7031/api/Contacts/byPhone?local=true", {
             method: "POST",
@@ -148,7 +167,7 @@ class RegisteredUser {
     }
 
     /**
-     * Gets the user's profile picture.
+     * Gets the user's profile picture. Currently, basically disabled.
      * @param username the user to get the profile picture for.
      * @returns a link to their profile picture. If the user has no custom picture, the default one is returned.
      */
@@ -246,31 +265,19 @@ class RegisteredUser {
         return null;
     }
 
-
-
-    /**
-     * Returns a contact's last seen for a user.
-     * @param username the username holding the contact.
-     * @param contact the contact's name.
-     * @returns {number} parsed date.
-     */
-    static getLastSeen(username, contact) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        let lastSeen = user.contacts.find(x => x.name === contact).lastSeen;
-        return Date.parse(lastSeen);
-    }
-
     /**
      * Returns whether a user's code can be verified.
      * @param username the user.
      * @param input the input from the text box.
      * @returns {boolean}
      */
-    static canVerify(username, input) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        if (input === "111111" || input === user.verCode) {
-            user.verCode = null;
-            RegisteredUser.updateUser(user);
+    static async canVerify(username, input) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/verifyCode/"
+            + username + "?verificationCode=" + input, {
+            method: "GET"
+        })
+        if (res.ok){
+            Tokens.accessToken = await res.text();
             return true;
         }
         return false;
@@ -356,31 +363,37 @@ class RegisteredUser {
      * @param username
      * @param newPassword
      */
-    static updatePassword(username, newPassword) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        user.password = newPassword;
-        RegisteredUser.updateUser(user);
-    }
-
-    /**
-     * Updates a user in the session storage.
-     * @param user
-     */
-    static updateUser(user) {
-        sessionStorage.removeItem(user.username + "log");
-        sessionStorage.removeItem(user.email + "log");
-        sessionStorage.setItem(user.username + "log", JSON.stringify(user));
-        sessionStorage.setItem(user.email + "log", JSON.stringify(user));
+    static async updatePassword(username, newPassword) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/editPassword/", {
+            method: "PUT",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                password: newPassword
+            })
+        });
+        if (res.ok){
+            let text = await res.text();
+            if (text === "true"){
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
     /**
      * Generates the code needed for resetting password.
      * @param username
      */
-    static generateVerCode(username) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        user.verCode = PendingUser.generateRandomString();
-        RegisteredUser.updateUser(user);
+    static async generateVerCode(username) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/renewVerificationCode/"
+            + username,{
+            method: "PUT"
+        });
+        return res.ok;
     }
 
     /**
@@ -391,15 +404,12 @@ class RegisteredUser {
      * @returns {any|boolean} true if yes, false otherwise.
      */
     static async VerifySecretQuestion(username, questionNum, answer) {
-        let res = await fetch("https://localhost:7031/api/RegisteredUsers/secretQuestion/" + username,{
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/secretQuestion/"
+            + username + "?question=" + questionNum + "&answer=" + answer,{
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                Question: questionNum,
-                Answer: answer,
-            })
+            }
         });
         if (res.ok){
             let text = await res.text();
@@ -409,6 +419,20 @@ class RegisteredUser {
             return false;
         }
         return false;
+    }
+
+    /***
+     * If the user explicitly logged out, have the server erase their refresh token / access cookie.
+     * @returns {Promise<boolean>}
+     */
+    static async logOut(){
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/logOut",{
+            method: "PUT",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
+        });
+        return res.ok;
     }
 
     /**
@@ -446,7 +470,23 @@ class RegisteredUser {
      * @param password
      * @returns {any|boolean}
      */
-    static doEmailAndPasswordMatch(email, password) {
+    static async doEmailAndPasswordMatch(email, password) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/emailLogIn",{
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            })
+        });
+        if (res.ok){
+            let tokens = await res.json();
+            Tokens.accessToken = tokens.accessToken;
+            Tokens.refreshToken = tokens.refreshToken;
+            return true;
+        }
         return false;
     }
 
