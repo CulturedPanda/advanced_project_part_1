@@ -26,22 +26,21 @@ function LoginForm({props}) {
             return
         }
         // If user verified successfully, this will be executed.
-        const onSuccess = () => {
+        const onSuccess = (rememberMe) => {
             wrongDetails.hide();
             props.setLogIn(true);
-            // if (rememberMe) {
-            //     // Renews cookie for the logged-in user.
-            //     CookieHandling.deleteCookie("rToken");
-            //     CookieHandling.setCookie("rToken", Tokens.accessToken, 30);
-            //     Tokens.autoRenewTokens();
-            // }
-            Tokens.autoRenewTokens();
+            if (rememberMe) {
+                // Renews cookie for the logged-in user.
+                CookieHandling.deleteCookie("rToken");
+                CookieHandling.setCookie("rToken", Tokens.refreshToken, 30);
+            }
+            Tokens.autoRenewTokens(rememberMe);
             nav("/chat");
         }
         let wrongDetails = $("#wrong-details-text");
         if (isUsername) {
-            if (await RegisteredUser.DoUserAndPasswordMatch(username, password, $("#remember-me-checkbox").is(":checked"))) {
-                onSuccess();
+            if (await RegisteredUser.DoUserAndPasswordMatch(username, password)) {
+                onSuccess($("#remember-me-checkbox").is(":checked"));
             } else {
                 wrongDetails.text("Incorrect username or password");
                 wrongDetails.show();

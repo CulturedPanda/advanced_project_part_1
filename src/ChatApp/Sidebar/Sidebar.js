@@ -53,8 +53,8 @@ class Sidebar extends Component {
     /**
      * Updates the user's contacts upon adding a contact.
      */
-    updateContacts = () => {
-        let contactsTemp = RegisteredUser.getContacts(this.props.username);
+    updateContacts = async () => {
+        let contactsTemp = await RegisteredUser.getContacts(this.props.username);
         let newContact = contactsTemp.filter(x => !this.state.contacts.includes(x));
         if (newContact[0]) {
             this.setState({

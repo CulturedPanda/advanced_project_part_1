@@ -50,16 +50,16 @@ class AddContactModal extends Component {
      * Handles submission once the user submits the contact's info.
      * @param e
      */
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
         // Currently, do not do anything in case it is not one of these 2 values.
         if (this.state.radioValue === "username" || this.state.radioValue === "email") {
             let val = $("#modal-field").val()
             // If contact exists and is not already the user's contact, add them.
-            if (RegisteredUser.doesUserExistByUsername(val)) {
-                if (!RegisteredUser.isAlreadyContact(this.props.username, val)) {
-                    RegisteredUser.addContact(this.props.username, val);
-                    this.props.updateContacts();
+            if (await RegisteredUser.doesUserExistByUsername(val)) {
+                if (await RegisteredUser.isAlreadyContact(this.props.username, val) === false) {
+                    await RegisteredUser.addContactByUsername(this.props.username, val);
+                    await this.props.updateContacts();
                     this.props.setShow(false);
                 } else {
                     let errText = $("#modal-field-error");
@@ -103,7 +103,7 @@ class AddContactModal extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="btn-danger" onClick={() => this.props.setShow(false)}>Close</Button>
-                    <Button onClick={this.handleSubmit}>Add contact</Button>
+                    <Button onClick={async (e) => await this.handleSubmit(e)}>Add contact</Button>
                 </Modal.Footer>
             </Modal>
         )

@@ -10,26 +10,6 @@ import $ from "jquery"
  */
 class RegisteredUser {
 
-    /**
-     * Constructor. Puts all the information from the pending user, including new information needed into storage.
-     * @param pendingUser the pending user that finished their sign up.
-     */
-    constructor(pendingUser) {
-        this.username = pendingUser.username;
-        this.password = pendingUser.password;
-        this.email = pendingUser.email;
-        this.phone = pendingUser.phone;
-        this.dateOfBirth = pendingUser.dateOfBirth;
-        this.nickname = pendingUser.nickname;
-        this.nickNum = RegisteredUser.generateNickNum();
-        this.secretQuestions = pendingUser.secretQuestions;
-        this.verCode = null;
-        this.description = "I just made my account!";
-        this.img = null;
-        this.contacts = [];
-        this.conversations = [];
-        this.lastSeen = new Date();
-    }
 
     static async doesUserExistByEmail(email){
 
@@ -40,23 +20,16 @@ class RegisteredUser {
      * @param username user to check existence for.
      * @returns {null | string} null if not, the user if yes.
      */
-    static doesUserExistByUsername(username) {
-        return (sessionStorage.getItem(username + "log"));
-    }
-
-    /**
-     * Generates a random string of 4 numbers for the user.
-     * Temporary method as it has 0 collision prevention for nicknames, will be updated when database.
-     * @returns {string} string of 4 random numbers.
-     */
-    static generateNickNum() {
-        let nickNum = '';
-        let chars = '0123456789';
-        let length = chars.length;
-        for (let i = 0; i < 4; i++) {
-            nickNum += chars.charAt(Math.floor(Math.random() * length));
+    static async doesUserExistByUsername(username) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/doesUserExistByUsername/"
+            + username, {
+            method: "GET",
+        })
+        if (res.ok){
+            let text = await res.text();
+            return text === "true";
         }
-        return nickNum;
+        return null;
     }
 
     /**
@@ -64,10 +37,15 @@ class RegisteredUser {
      * @param username The username to update for.
      * @param newDesc The user's new description.
      */
-    static changeDescription(username, newDesc) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        user.description = newDesc;
-        RegisteredUser.updateUser(user);
+    static async changeDescription(username, newDesc) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/editDescription/"
+            + newDesc, {
+            method: "PUT",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
+        })
+        return res.ok;
     }
 
     /**
@@ -77,7 +55,7 @@ class RegisteredUser {
      * @returns an array containing the user's conversation, sorted chronologically.
      */
     static async getConvo(username, convoWith) {
-        let res = await fetch("https://localhost:7031/api/Contacts/getConvo/?convoWith=" + convoWith, {
+        let res = await fetch("https://localhost:7031/api/Contacts/" + convoWith + "/messages", {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -94,8 +72,8 @@ class RegisteredUser {
      * @param username the active user.
      * @param contact the contact t oadd.
      */
-    static async addContact(username, contact) {
-        let res = await fetch("https://localhost:7031/api/Contacts/", {
+    static async addContactByUsername(username, contact) {
+        let res = await fetch("https://localhost:7031/api/Contacts/?local=true", {
             method: "POST",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -103,24 +81,23 @@ class RegisteredUser {
             },
             body: JSON.stringify({
                 id: contact,
-                server: window.location.protocol + window.location.hostname
+                server: window.location.origin
             })
         })
         if (res.ok){
             return await res.text();
         }
-        return null;
+        return [];
     }
 
     /**
      * Updates a user's profile picture.
+     * Currently disabled.
      * @param username the user to update.
      * @param url a url to their new picture.
      */
     static updateProfileImg(username, url) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        user.img = url;
-        RegisteredUser.updateUser(user);
+        return false;
     }
 
     /**
@@ -175,10 +152,15 @@ class RegisteredUser {
      * @param username
      * @param newNickname
      */
-    static updateNickname(username, newNickname) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        user.nickname = newNickname;
-        RegisteredUser.updateUser(user);
+    static async updateNickname(username, newNickname) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers/editNickName/"
+            + newNickname, {
+            method: "PUT",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
+        })
+        return res.ok;
     }
 
     /**
@@ -271,9 +253,21 @@ class RegisteredUser {
      * @param contact
      * @returns {T} returns the contact if yes, null otherwise.
      */
-    static isAlreadyContact(username, contact) {
-        let user = JSON.parse(sessionStorage.getItem(username + "log"));
-        return user.contacts.find(x => x === contact);
+    static async isAlreadyContact(username, contact) {
+        let res = await fetch("https://localhost:7031/api/Contacts/alreadyContact/" + contact, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + Tokens.accessToken,
+            }
+        })
+        if (res.ok){
+            let text = await res.text();
+            if (text === "true"){
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -327,8 +321,8 @@ class RegisteredUser {
      * @param rememberMe
      * @returns {any|boolean} true if yes, false otherwise.
      */
-    static async DoUserAndPasswordMatch(username, password, rememberMe) {
-        let res = await fetch("https://localhost:7031/api/RegisteredUsers?rememberMe=" + rememberMe,{
+    static async DoUserAndPasswordMatch(username, password) {
+        let res = await fetch("https://localhost:7031/api/RegisteredUsers",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

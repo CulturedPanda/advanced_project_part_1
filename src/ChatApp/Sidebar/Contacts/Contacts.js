@@ -1,6 +1,8 @@
 import {Component} from "react";
 import ContactContainer from "./ContactComponents/ContactContainer";
 import SearchBar from "./ContactComponents/ContainerComponents/SearchBar";
+import Utils from "../../../Misc/Utils";
+import Hashing from "../../../Misc/Hashing";
 
 /**
  * Holds and generates all the contact containers, the part seen in the buttom of the sidebar.

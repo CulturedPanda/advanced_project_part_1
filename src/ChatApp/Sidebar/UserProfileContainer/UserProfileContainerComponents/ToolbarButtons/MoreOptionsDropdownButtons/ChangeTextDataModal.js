@@ -25,20 +25,20 @@ class ChangeTextDataModal extends Component {
      * Updates data, depending on that data's rules.
      * @param e
      */
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
         let val = $("#new-desc-input").val();
         let errText = $("#desc-choose-error");
         if (this.props.textData === "description") {
             if (val.match("^[\\w\\s]{1,100}$")) {
-                RegisteredUser.changeDescription(this.props.username, val);
+                await RegisteredUser.changeDescription(this.props.username, val);
                 this.handleClose(e);
             } else {
                 errText.show();
             }
         } else if (this.props.textData === "nickname") {
             if (val.match("^[\\w\\s]{1,10}$")) {
-                RegisteredUser.updateNickname(this.props.username, val);
+                await RegisteredUser.updateNickname(this.props.username, val);
                 this.handleClose(e);
                 this.props.updateNickname();
             } else {
@@ -47,36 +47,9 @@ class ChangeTextDataModal extends Component {
         }
     }
 
-    /**
-     * Generates a description, depending on the type of data being changed.
-     * @returns {JSX.Element}
-     */
-    generateDescription = async () => {
-        if (this.props.textData === "description") {
-            return (
-                <>
-                    Current description: <br/><br/>
-                    {await RegisteredUser.getDescription(this.props.username)}
-                    <br/>
-                    <hr/>
-                </>
-            )
-        } else if (this.props.textData === "nickname") {
-            return (
-                <>
-                    Current nickname: <br/><br/>
-                    {await RegisteredUser.getNickname(this.props.username)}
-                    <br/>
-                    <hr/>
-                </>
-            )
-        }
-    }
-
     async componentDidMount() {
         this.setState({
             valid: true,
-            description: await this.generateDescription()
         });
     }
 
@@ -98,10 +71,10 @@ class ChangeTextDataModal extends Component {
                         <Modal.Body>
                             <div>
                                 <span>
-                                {this.state.description}
+                                {this.props.description}
                                 </span>
                             </div>
-                            <form onSubmit={this.handleSubmit} className="m-3">
+                            <form onSubmit={async (e) => await this.handleSubmit(e)} className="m-3">
                                 <label className="col-label" htmlFor="new-desc-input">New {this.props.textData}:</label>
                                 <div className="col-auto input-group mt-2">
                                     <span className="input-group-text"><i className="bi bi-person-fill"/></span>
@@ -119,7 +92,7 @@ class ChangeTextDataModal extends Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button className="btn-danger" onClick={this.handleClose}>Close</Button>
-                            <Button onClick={this.handleSubmit}>Change {this.props.textData}</Button>
+                            <Button onClick={async (e) => this.handleSubmit(e)}>Change {this.props.textData}</Button>
                         </Modal.Footer>
                     </Modal>
                 }

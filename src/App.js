@@ -11,11 +11,13 @@ import Tokens from "./Users/Tokens";
 function App() {
 
     const [userLoggedIn, setUserLoggedIn] = useState(false);
+    const [username, setUsername] = useState("");
 
     return (
-        <SharedDesign>
+        <SharedDesign setUser={setUsername} setLoggedIn={setUserLoggedIn}>
             <BrowserRouter>
-                <Router props={{loggedIn: userLoggedIn, setLoggedIn: setUserLoggedIn, username: ""}}/>
+                <Router props={{loggedIn: userLoggedIn, setLoggedIn: setUserLoggedIn,
+                    username: username, setUsername: setUsername}}/>
             </BrowserRouter>
         </SharedDesign>
     );

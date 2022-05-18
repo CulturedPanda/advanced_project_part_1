@@ -11,11 +11,15 @@ class ConversationContainer extends Component {
     //function creates the bubbles based on all inputs.
     generateChatBubbles =() =>{
         return(
-            this.props.convo.messages.map((message)=>
+            this.props.convo.map((message)=>
                 <ChatBubble key={Hashing.cyrb53(message.content + Utils.generateRandString(128))}
                             content={message.content} time={message.created}
                             sender={message.sent} type={message.type}/>
         ))
+    }
+
+    componentDidMount() {
+        Utils.scrollToBottom("convo-container");
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
