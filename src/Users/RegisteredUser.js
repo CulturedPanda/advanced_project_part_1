@@ -7,20 +7,6 @@ import Tokens from "./Tokens";
  */
 class RegisteredUser {
 
-    static async getLastSeen(contact){
-        let res = await fetch("https://localhost:7031/api/Contacts/" + contact + "/lastSeen", {
-            method: "GET",
-            headers: {
-                'Authorization': 'Bearer ' + Tokens.accessToken,
-            }
-        })
-        if (res.ok){
-            return await res.text();
-        }
-        return new Date();
-    }
-
-
     /***
      * Checks if a user already exists by their email.
      * @param email

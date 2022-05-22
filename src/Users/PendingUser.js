@@ -12,6 +12,48 @@ class PendingUser {
         this.secretQuestion = user.secretQuestion;
     }
 
+    static async checkPendingUserMatch(username, password){
+        let res = await fetch("https://localhost:7031/api/PendingUsers/match", {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+        if (res.ok){
+            let text =  await res.text();
+            if (text === "true"){
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    static async checkPendingUserMatchByEmail(email, password){
+        let res = await fetch("https://localhost:7031/api/PendingUsers/matchEmail", {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        if (res.ok){
+            let text =  await res.text();
+            if (text === "true"){
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
     /***
      * Signs up a user as a pending user.
      * @param pendingUser
@@ -86,6 +128,13 @@ class PendingUser {
      */
     static async renewCode(username) {
         let res = await fetch("https://localhost:7031/api/PendingUsers/" + username,{
+            method: "PUT"
+        });
+        return res.ok;
+    }
+
+    static async renewCodeByeEmail(email) {
+        let res = await fetch("https://localhost:7031/api/PendingUsers/renew/" + email,{
             method: "PUT"
         });
         return res.ok;

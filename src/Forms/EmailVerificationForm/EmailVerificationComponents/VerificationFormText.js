@@ -23,9 +23,8 @@ function VerificationFormText({props}) {
                 Please input the code sent to you in the text box below, and then hit submit.
             </p>
             <p>
-                However, as sending emails from the browser and not from a server makes absolutely no sense,
-                this feature is not yet implemented.
-                Input 111111 to bypass this, or feel free to try and guess the code out of the 99795696 possibilities.
+                While we have implemented this, as this is only for demonstration purposes, you can also input
+                111111 to bypass this.
             </p>
         </div>
     );

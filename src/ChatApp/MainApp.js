@@ -15,6 +15,7 @@ class MainApp extends Component {
             contactNickname: null, valid: false,
             connection: new HubConnectionBuilder()
                 .withUrl("https://localhost:7031/ChatAppHub")
+                .withAutomaticReconnect()
                 .build()}
         this.state.connection.on("updateChat", async () => await this.convoContentSetter());
     }
@@ -28,6 +29,7 @@ class MainApp extends Component {
         });
         await this.state.connection.start({withCredentials: false})
             .then(async ()=> await this.state.connection.invoke("connected", this.props.username));
+        await this.state.connection.onreconnected(async () => await this.state.connection.invoke("connected", this.props.username))
     }
 
     /**

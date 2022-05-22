@@ -8,6 +8,7 @@ import {useNavigate} from "react-router";
 import BaseForm from "../BaseForm";
 import RememberMeCheckbox from "./LoginFormComponents/RememberMeCheckbox";
 import Tokens from "../../Users/Tokens";
+import PendingUser from "../../Users/PendingUser";
 
 /**
  * The log-in form of the app.
@@ -42,16 +43,30 @@ function LoginForm({props}) {
             if (await RegisteredUser.DoUserAndPasswordMatch(username, password)) {
                 onSuccess($("#remember-me-checkbox").is(":checked"));
             } else {
-                wrongDetails.text("Incorrect username or password");
-                wrongDetails.show();
+                if (await PendingUser.checkPendingUserMatch(username, password)){
+                    await PendingUser.renewCode(username);
+                    props.fromSetter(true);
+                    nav("/verify_email");
+                }
+                else {
+                    wrongDetails.text("Incorrect username or password");
+                    wrongDetails.show();
+                }
             }
         } else {
             // Emails are not case-sensitive, hence the toLowerCase.
             if (RegisteredUser.doEmailAndPasswordMatch(username.toLowerCase(), password)) {
                 onSuccess();
             } else {
-                wrongDetails.text("Incorrect Email or password");
-                wrongDetails.show();
+                if (await PendingUser.checkPendingUserMatchByEmail(username, password)){
+                    await PendingUser.renewCodeByeEmail(username);
+                    props.fromSetter(true);
+                    nav("/verify_email");
+                }
+                else {
+                    wrongDetails.text("Incorrect Email or password");
+                    wrongDetails.show();
+                }
             }
         }
     }
