@@ -14,7 +14,7 @@ class PendingUser {
 
     static async checkPendingUserMatch(username, password){
         let res = await fetch("https://localhost:7031/api/PendingUsers/match", {
-            method: "PUT",
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -35,7 +35,7 @@ class PendingUser {
 
     static async checkPendingUserMatchByEmail(email, password){
         let res = await fetch("https://localhost:7031/api/PendingUsers/matchEmail", {
-            method: "PUT",
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },

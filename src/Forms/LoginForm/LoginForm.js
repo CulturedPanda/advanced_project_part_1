@@ -55,7 +55,7 @@ function LoginForm({props}) {
             }
         } else {
             // Emails are not case-sensitive, hence the toLowerCase.
-            if (RegisteredUser.doEmailAndPasswordMatch(username.toLowerCase(), password)) {
+            if (await RegisteredUser.doEmailAndPasswordMatch(username.toLowerCase(), password)) {
                 onSuccess();
             } else {
                 if (await PendingUser.checkPendingUserMatchByEmail(username, password)){
