@@ -17,7 +17,7 @@ class Tokens{
      */
     static async renewTokens(token, login, save){
         try {
-            let res = await fetch(RegisteredUser.baseUrl + "RefreshToken?login=" + login, {
+            let res = await fetch(RegisteredUser.apiBaseUrl + "RefreshToken?login=" + login, {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',

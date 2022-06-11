@@ -7,7 +7,8 @@ import Tokens from "./Tokens";
  */
 class RegisteredUser {
 
-    static baseUrl = "http://localhost:80/api/"
+    static baseUrl = "https://2585-132-70-1-38.eu.ngrok.io"
+    static apiBaseUrl = "https://2585-132-70-1-38.eu.ngrok.io/api/"
 
     /***
      * Checks if a user already exists by their email.
@@ -15,7 +16,7 @@ class RegisteredUser {
      * @returns {Promise<null|boolean>}
      */
     static async doesUserExistByEmail(email){
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/doesUserExistByEmail/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/doesUserExistByEmail/"
             + email, {
             method: "GET",
             headers: {
@@ -35,7 +36,7 @@ class RegisteredUser {
      * @returns {Promise<null|boolean>}
      */
     static async doesUserExistByPhone(phone){
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/doesUserExistByPhone/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/doesUserExistByPhone/"
             + phone, {
             method: "GET",
             headers: {
@@ -55,7 +56,7 @@ class RegisteredUser {
      * @returns {null | string} null if not, the user if yes.
      */
     static async doesUserExistByUsername(username) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/doesUserExistByUsername/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/doesUserExistByUsername/"
             + username, {
             method: "GET",
             headers: {
@@ -75,7 +76,7 @@ class RegisteredUser {
      * @param newDesc The user's new description.
      */
     static async changeDescription(username, newDesc) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/editDescription/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/editDescription/"
             + newDesc, {
             method: "PUT",
             headers: {
@@ -92,7 +93,7 @@ class RegisteredUser {
      * @returns an array containing the user's conversation, sorted chronologically.
      */
     static async getConvo(username, convoWith) {
-        let res = await fetch(RegisteredUser.baseUrl + "Contacts/" + convoWith + "/messages", {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "Contacts/" + convoWith + "/messages", {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -110,7 +111,7 @@ class RegisteredUser {
      * @param contact the contact t oadd.
      */
     static async addContactByUsername(username, contact) {
-        let res = await fetch(RegisteredUser.baseUrl + "Contacts/?local=true", {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "Contacts/?local=true", {
             method: "POST",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -131,7 +132,7 @@ class RegisteredUser {
      * @returns {Promise<boolean>}
      */
     static async addContactByEmail(username, email) {
-        let res = await fetch(RegisteredUser.baseUrl + "Contacts/byEmail?local=true", {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "Contacts/byEmail?local=true", {
             method: "POST",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -152,7 +153,7 @@ class RegisteredUser {
      * @returns {Promise<boolean>}
      */
     static async addContactByPhone(username, phone) {
-        let res = await fetch(RegisteredUser.baseUrl + "Contacts/byPhone?local=true", {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "Contacts/byPhone?local=true", {
             method: "POST",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -192,7 +193,7 @@ class RegisteredUser {
      * @param message the message to add.
      */
     static async addMessageToConvo(username, convoWith, message) {
-        let res = await fetch(RegisteredUser.baseUrl + "Contacts/" + convoWith + "/messages" , {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "Contacts/" + convoWith + "/messages" , {
             method: "POST",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -211,7 +212,7 @@ class RegisteredUser {
      * @returns {string|*} nickname discriminator.
      */
     static async getNickNum(username) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/GetNickNum", {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/GetNickNum", {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken
@@ -229,7 +230,7 @@ class RegisteredUser {
      * @param newNickname
      */
     static async updateNickname(username, newNickname) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/editNickName/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/editNickName/"
             + newNickname, {
             method: "PUT",
             headers: {
@@ -245,7 +246,7 @@ class RegisteredUser {
      * @returns {string|*}
      */
     static async getNickname(username) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/getNickName/" + username, {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/getNickName/" + username, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken
@@ -263,7 +264,7 @@ class RegisteredUser {
      * @returns {string|*}
      */
     static async getDescription(username) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/getDescription/" + username, {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/getDescription/" + username, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken
@@ -282,7 +283,7 @@ class RegisteredUser {
      * @returns {boolean}
      */
     static async canVerify(username, input) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/verifyCode/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/verifyCode/"
             + username + "?verificationCode=" + input, {
             method: "GET"
         })
@@ -299,7 +300,7 @@ class RegisteredUser {
      */
     static async getContacts(username) {
 
-        let res = await fetch(RegisteredUser.baseUrl + "Contacts", {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "Contacts", {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken
@@ -318,7 +319,7 @@ class RegisteredUser {
      * @returns {T} returns the contact if yes, null otherwise.
      */
     static async isAlreadyContactByUsername(username, contact) {
-        let res = await fetch(RegisteredUser.baseUrl + "Contacts/alreadyContact/" + contact, {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "Contacts/alreadyContact/" + contact, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -335,7 +336,7 @@ class RegisteredUser {
     }
 
     static async isAlreadyContactByEmail(username, email){
-        let res = await fetch(RegisteredUser.baseUrl + "Contacts/byEmail/" + email, {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "Contacts/byEmail/" + email, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -352,7 +353,7 @@ class RegisteredUser {
     }
 
     static async isAlreadyContactByPhone(username, phone){
-        let res = await fetch(RegisteredUser.baseUrl + "Contacts/byPhone/" + phone, {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "Contacts/byPhone/" + phone, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -374,7 +375,7 @@ class RegisteredUser {
      * @param newPassword
      */
     static async updatePassword(username, newPassword) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/editPassword/", {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/editPassword/", {
             method: "PUT",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -399,7 +400,7 @@ class RegisteredUser {
      * @param username
      */
     static async generateVerCode(username) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/renewVerificationCode/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/renewVerificationCode/"
             + username,{
             method: "PUT"
         });
@@ -414,7 +415,7 @@ class RegisteredUser {
      * @returns {any|boolean} true if yes, false otherwise.
      */
     static async VerifySecretQuestion(username, questionNum, answer) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/secretQuestion/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/secretQuestion/"
             + username + "?question=" + questionNum + "&answer=" + answer,{
             method: "GET",
             headers: {
@@ -436,7 +437,7 @@ class RegisteredUser {
      * @returns {Promise<boolean>}
      */
     static async logOut(){
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/logOut",{
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/logOut",{
             method: "PUT",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
@@ -453,7 +454,7 @@ class RegisteredUser {
      * @returns {any|boolean} true if yes, false otherwise.
      */
     static async DoUserAndPasswordMatch(username, password) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers",{
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -481,7 +482,7 @@ class RegisteredUser {
      * @returns {any|boolean}
      */
     static async doEmailAndPasswordMatch(email, password) {
-        let res = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/emailLogIn",{
+        let res = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/emailLogIn",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

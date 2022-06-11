@@ -21,7 +21,6 @@ const InputBar =  (props) => {
             sender: true, type: "text", time: new Date(), content: inputField.val()
         })
         inputField.val("");
-        props.connection.invoke("messageSent", props.convo);
         props.setConvo();
     }
 

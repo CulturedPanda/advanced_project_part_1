@@ -14,7 +14,7 @@ class MainApp extends Component {
         this.state = {currentConvo: "", convoContent: null,
             contactNickname: null, valid: false,
             connection: new HubConnectionBuilder()
-                .withUrl("https://localhost:7031/ChatAppHub")
+                .withUrl(RegisteredUser.baseUrl + "/ChatAppHub")
                 .withAutomaticReconnect()
                 .build()}
         this.state.connection.on("updateChat", async () => await this.convoContentSetter());

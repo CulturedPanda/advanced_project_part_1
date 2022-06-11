@@ -13,7 +13,7 @@ class PendingUser {
     }
 
     static async checkPendingUserMatch(username, password){
-        let res = await fetch(RegisteredUser.baseUrl + "PendingUsers/match", {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "PendingUsers/match", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ class PendingUser {
     }
 
     static async checkPendingUserMatchByEmail(email, password){
-        let res = await fetch(RegisteredUser.baseUrl + "PendingUsers/matchEmail", {
+        let res = await fetch(RegisteredUser.apiBaseUrl + "PendingUsers/matchEmail", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ class PendingUser {
      * @returns {Promise<boolean>}
      */
     static async signUp(pendingUser){
-        let response = await fetch(RegisteredUser.baseUrl + "PendingUsers", {
+        let response = await fetch(RegisteredUser.apiBaseUrl + "PendingUsers", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ class PendingUser {
      * @returns {Promise<null|boolean>}
      */
     static async doesUserExistByUsername(username) {
-        let res = await fetch(RegisteredUser.baseUrl + "PendingUsers/doesPendingUserExistByUsername/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "PendingUsers/doesPendingUserExistByUsername/"
             + username, {
             method: "GET",
         })
@@ -93,7 +93,7 @@ class PendingUser {
      * @returns {Promise<null|boolean>}
      */
     static async doesUserExistByEmail(email){
-        let res = await fetch(RegisteredUser.baseUrl + "PendingUsers/doesPendingUserExistByEmail/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "PendingUsers/doesPendingUserExistByEmail/"
             + email, {
             method: "GET",
         })
@@ -110,7 +110,7 @@ class PendingUser {
      * @returns {Promise<null|boolean>}
      */
     static async doesUserExistByPhoneNumber(phoneNumber){
-        let res = await fetch(RegisteredUser.baseUrl + "PendingUsers/doesPendingUserExistByPhone/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "PendingUsers/doesPendingUserExistByPhone/"
             + phoneNumber, {
             method: "GET",
         })
@@ -127,14 +127,14 @@ class PendingUser {
      * @returns {Promise<boolean>}
      */
     static async renewCode(username) {
-        let res = await fetch(RegisteredUser.baseUrl + "PendingUsers/" + username,{
+        let res = await fetch(RegisteredUser.apiBaseUrl + "PendingUsers/" + username,{
             method: "PUT"
         });
         return res.ok;
     }
 
     static async renewCodeByeEmail(email) {
-        let res = await fetch(RegisteredUser.baseUrl + "PendingUsers/renew/" + email,{
+        let res = await fetch(RegisteredUser.apiBaseUrl + "PendingUsers/renew/" + email,{
             method: "PUT"
         });
         return res.ok;
@@ -147,7 +147,7 @@ class PendingUser {
      * @returns {Promise<boolean>}
      */
     static async canVerify(username, userInput) {
-        let res = await fetch(RegisteredUser.baseUrl + "PendingUsers/"
+        let res = await fetch(RegisteredUser.apiBaseUrl + "PendingUsers/"
             + username + "?verificationCode=" + userInput);
         if (res.ok){
             Tokens.accessToken = await res.text();
@@ -161,7 +161,7 @@ class PendingUser {
      * @returns {Promise<boolean>}
      */
     static async addUser() {
-        let response = await fetch(RegisteredUser.baseUrl + "RegisteredUsers/signUp", {
+        let response = await fetch(RegisteredUser.apiBaseUrl + "RegisteredUsers/signUp", {
             method: "POST",
             headers: {
                 'Authorization': 'Bearer ' + Tokens.accessToken,
