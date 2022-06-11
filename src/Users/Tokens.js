@@ -1,4 +1,5 @@
 import CookieHandling from "../Misc/CookieHandling";
+import RegisteredUser from "./RegisteredUser";
 
 /***
  * A class for handling all token related operations.
@@ -16,7 +17,7 @@ class Tokens{
      */
     static async renewTokens(token, login, save){
         try {
-            let res = await fetch("https://localhost:7031/api/RefreshToken?login=" + login, {
+            let res = await fetch(RegisteredUser.baseUrl + "RefreshToken?login=" + login, {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',
