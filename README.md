@@ -10,7 +10,7 @@ on the university's server.
 
 Yuval Uner, Github: OddPanda.\
 Nadav Elgrabli, Github: ZycleXx.\
-As the repository was made public according to the instructions sent on the 19/20/2022, 
+As the repository was made public according to the instructions sent on the 19/06/2022, 
 our IDs were removed and are only in the readme file sent in the submission box.
 
 To run the project, use "npm start".\
