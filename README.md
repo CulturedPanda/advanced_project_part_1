@@ -8,8 +8,10 @@ on the university's server.
 
 ### `Submitters`:
 
-Yuval Uner, ID: 322558842, Github: OddPanda.\
-Nadav Elgrabli, ID: 316082791, Github: ZycleXx.
+Yuval Uner, Github: OddPanda.\
+Nadav Elgrabli, Github: ZycleXx.\
+As the repository was made public according to the instructions sent on the 19/20/2022, 
+our IDs were removed and are only in the readme file sent in the submission box.
 
 To run the project, use "npm start".\
 The root file is index.js.
