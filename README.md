@@ -1,3 +1,9 @@
+## Note about branches:
+The main branch has the serverless web app.
+The PostServer branch has the app updated to work against the server designed in part 2.
+Specifically, at the time of updating this (6/20/2022), it works against the server running
+on the university's server.
+
 # Whatsapp-like web-client
 
 ### `Submitters`:
